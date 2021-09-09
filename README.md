@@ -1,5 +1,5 @@
 # Waitless
-Honours Project 2021
+COMP4905 Honours Project 2021
 
 <h1> Overview </h1>
 The proposed project, WAITLESS, is an endeavor to create an interactive online menu where
