@@ -1,0 +1,38 @@
+<p>add-info works!</p>
+<!-- <label> {{prompt}}</label> -->
+<!-- Three possibilities for using prompt (a variable) as a value. t4 is optimal currently for getting user input-->
+<!-- <input type="text" class="t1" [value]="prompt" ><br>
+<input type="text" class="t2" placeholder={{prompt}}><br>
+<input type="text" class="t3" [placeholder]="prompt"><br>
+<textarea class="t4" [placeholder]="prompt"  #i></textarea> -->
+<textarea class="t1" [(ngModel)]="restVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t2" [(ngModel)]="locVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t3" [(ngModel)]="emailVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t4" [(ngModel)]="pNumVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t5" [(ngModel)]="pwVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t6" [(ngModel)]="nOtVal" [placeholder]="prompt"  ></textarea>
+
+
+<!-- <p *ngIf="data.length > 0">
+  <p *ngFor="let x of data">
+    <label> {{x.title}}</label>
+    <label> {{x.content}} </label>
+  </p> -->
+
+  <ng-container *ngIf="data.length > 0">
+    <p *ngFor="let x of data">
+      <label> {{x.title}}</label>
+      <label> {{x.content}} </label>
+    </p>
+  </ng-container>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<p *ngIf="data.length <= 0"> Nothing yet!</p>
+<button (click)="onAdd()">TEST</button>
+<p>{{restInput}}<br>
+{{locInput}}<br>
+{{emailInput}}<br>
+{{pNumInput}}<br>
+{{pwInput}}<br>
+{{nOtInput}}</p>

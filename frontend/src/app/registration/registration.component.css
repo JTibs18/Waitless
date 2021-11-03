@@ -1,0 +1,20 @@
+.restaurantReg {
+  position: absolute;
+width: 731px;
+height: 20px;
+left: 355px;
+top: 136px;
+
+font-family: Baskervville;
+font-style: normal;
+font-weight: normal;
+font-size: 64px;
+line-height: 83px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+}
