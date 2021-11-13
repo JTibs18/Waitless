@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Rdata } from './add-info/rData.model'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'backend';
+ // restData: Rdata[] = [];
+
+  // onAddedInfo(rData){
+  //   this.restData.push(rData);
+  // }
 }
