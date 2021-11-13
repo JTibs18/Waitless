@@ -4,5 +4,5 @@
    email: string;
    phoneNumber: number;
    password: string;
-   password2: number;
+   password2: string;
  }

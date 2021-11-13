@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./mini-menu.component.css']
 })
 export class MiniMenuComponent implements OnInit, OnDestroy{
-  @Input() inData: Rdata[] = [];
+  // @Input() inData: Rdata[] = [];
   dataList: Rdata[] = [];
   private addInfoSub: Subscription;
 
@@ -17,8 +17,9 @@ export class MiniMenuComponent implements OnInit, OnDestroy{
    }
 
   ngOnInit() {
-    this.dataList = this.addInfoService.getData();
-    this.addInfoSub = this.addInfoService.getAddDataListener().subscribe((dataList)=>{
+    // this.dataList = this.addInfoService.getData();
+    this.addInfoService.getData();
+    this.addInfoSub = this.addInfoService.getAddDataListener().subscribe((dataList: Rdata[])=>{
       this.dataList = dataList;
     });
   }

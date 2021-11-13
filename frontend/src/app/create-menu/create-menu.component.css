@@ -1,0 +1,202 @@
+.t1 {
+  position: relative;
+  width: 731px;
+  height: 41px;
+  left: 355px;
+  top: 190px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+}
+
+.t2 {
+  position: relative;
+  width: 731px;
+  height: 41px;
+  left: 355px;
+  top: 254px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.t3{
+  position: relative;
+  width: 731px;
+  height: 41px;
+  left: 355px;
+  top: 318px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.t4{
+  position: relative;
+  width: 731px;
+  height: 41px;
+  left: 354px;
+  top: 382px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.t5{
+  position: relative;
+  width: 731px;
+  height: 41px;
+  left: 354px;
+  top: 446px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.t6{
+  position: relative;
+  width: 731px;
+  height: 41px;
+  left: 354px;
+  top: 510px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.addText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+
+.addButt{
+  position: relative;
+  width: 258px;
+  height: 65px;
+  left: 268px;
+  top: 918px;
+
+  background: #8ED0EC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.saveAndExitText{
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.saveButt{
+  position: relative;
+  width: 258px;
+  height: 69px;
+  left: 713px;
+  top: 914px;
+
+  background: #AEECB8;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.labelText{
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.promptText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+}
+
+.label1{
+  position: relative;
+  height: 42px;
+  left: 115px;
+  top: 190px;
+}
+
+.label2{
+  position: relative;
+  width: 124px;
+  left: 115px;
+  top: 254px;
+}
+
+.label3{
+  position: relative;
+  height: 42px;
+  left: 115px;
+  top: 318px;
+}
+
+.label4{
+  position: relative;
+  height: 42px;
+  left: 115px;
+  top: 382px;
+}
+
+.label5{
+  position: relative;
+  height: 42px;
+  left: 115px;
+  top: 446px;
+}
+
+.label6{
+  position: relative;
+  height: 42px;
+  left: 115px;
+  top: 510px;
+}
+
+.errorMsg{
+  color:red;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  height: 35px;
+  left: 354px;
+  top:550px;
+
+}

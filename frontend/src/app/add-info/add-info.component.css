@@ -163,3 +163,16 @@
   left: 115px;
   top: 510px;
 }
+
+.errorMsg{
+  color:red;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  height: 35px;
+  left: 354px;
+  top:550px;
+
+}
