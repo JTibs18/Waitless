@@ -9,3 +9,23 @@ background: #FFFFFF;
 border: 1px solid #000000;
 box-sizing: border-box;
 }
+
+/* Unofficial button styles for now. Will be replaced with iamge later */
+.deleteButton{
+  text-align: center;
+
+  background: #FF0000;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.deleteText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  color: #000000;
+}

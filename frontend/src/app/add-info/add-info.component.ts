@@ -42,7 +42,7 @@ export class AddInfoComponent implements OnInit {
                {label: "Email", st:"label3", prompt:"restaurant_email@domain.com", tbClass: "t3", inVar: "emailVal"},
                {label: "Phone Number", st: "label4", prompt:"123-456-7899", tbClass: "t4", inVar: "pNumVal"},
                {label: "Password", st:"label5", prompt:"creativePassword123", tbClass: "t5", inVar: "pwVal"},
-               {label: "Retype Password", st: "label6", prompt:"creativePassword123", tbClass: "t6", inVar: "pw2Var"}
+               {label: "Retype Password", st: "label6", prompt:"creativePassword123", tbClass: "t6", inVar: "pw2Val"}
         ]
 
   constructor(public addInfoService: AddInfoService) { }

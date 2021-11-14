@@ -28,4 +28,9 @@ export class MiniMenuComponent implements OnInit, OnDestroy{
     this.addInfoSub.unsubscribe();
   }
 
+  onDelete(regDataId: string){
+    this.addInfoService.getData();
+    this.addInfoService.deleteProfile(regDataId);
+  }
+
 }

@@ -5,4 +5,5 @@
    phoneNumber: number;
    password: string;
    password2: string;
+   id: string;
  }

@@ -8,6 +8,7 @@
     <label> {{x.phoneNumber}}</label><br>
     <label> {{x.password}}</label><br>
     <label> {{x.password2}}</label><br>
+    <button class="deleteButton deleteText" (click)="onDelete(x.id)">DELETE</button>
 
   </p>
 <p *ngIf="dataList.length <= 0"> Empty inData!</p>
