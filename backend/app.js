@@ -19,6 +19,8 @@ app.use((req, res ,next) => {
 client.connect(err => {
   let db = client.db('Waitless');
   let collRestaurant = db.collection('RestaurantData');
+  let collMenu = db.collection('MenuData');
+
 
 
 
@@ -70,6 +72,25 @@ client.connect(err => {
 
   })
 
+
+  app.get('/Waitless/Create_Menu',(req, res, next)=>{
+    // res.send("Hello world from express!");
+
+    collMenu.find().toArray(function(err, result){
+      if (err) throw err;
+
+      res.status(201).json({
+        message: "Item added successfully",
+        data: result
+      });
+    })
+    //
+    // res.status(200).json({message: 'Data fetched successfully!',
+    //           data: regData
+    // });
+
+  })
+
   app.post("/Waitless/Registration", (req, res, next) => {
     const data = req.body;
     console.log("HERE")
@@ -85,10 +106,24 @@ client.connect(err => {
 
   });
 
-  //May later be /EditMenu/:id
-  app.delete("/Waitless/Registration/:id", (req, res, next) => {
+  app.post("/Waitless/Create_Menu", (req, res, next) => {
+    const data = req.body;
+    console.log("HERE")
+    console.log(data);
+    collMenu.insertOne(data, function(err, result){
+      if (err) throw err;
+      // console.log("RESULTTT", data._id.toString())
+      res.status(201).json({
+        message: "Post added successfully",
+        dataId: data._id.toString()
+      });
+    })
+
+  });
+
+  app.delete("/Waitless/Create_Menu/:id", (req, res, next) => {
       console.log(req.params.id);
-      collRestaurant.deleteOne({_id: ObjectId(req.params.id)}, function(err, result){
+      collMenu.deleteOne({_id: ObjectId(req.params.id)}, function(err, result){
         if (err) throw err;
         console.log("Delete Response: ", result);
         res.status(200).json({message:'Info deleted!'});

@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy, Input} from '@angular/core';
-import { Rdata } from '../add-info/rData.model';
-import { AddInfoService } from '../add-info/add-info.service';
+import { Rdata } from '../add-info/rData.model'; //delete
+import { AddInfoService } from '../add-info/add-info.service'; //delete
 import { Subscription } from 'rxjs';
+import { AddMenuService } from '../create-menu/AddMenu.service';
+import { Menu } from '../create-menu/menu.model'
 
 @Component({
   selector: 'app-mini-menu',
@@ -10,16 +12,16 @@ import { Subscription } from 'rxjs';
 })
 export class MiniMenuComponent implements OnInit, OnDestroy{
   // @Input() inData: Rdata[] = [];
-  dataList: Rdata[] = [];
+  dataList: Menu[] = [];
   private addInfoSub: Subscription;
 
-  constructor(public addInfoService: AddInfoService) {
+  constructor( public AddMenuService: AddMenuService) {
    }
 
   ngOnInit() {
     // this.dataList = this.addInfoService.getData();
-    this.addInfoService.getData();
-    this.addInfoSub = this.addInfoService.getAddDataListener().subscribe((dataList: Rdata[])=>{
+    this.AddMenuService.getData();
+    this.addInfoSub = this.AddMenuService.getAddDataListener().subscribe((dataList: Menu[])=>{
       this.dataList = dataList;
     });
   }
@@ -28,9 +30,9 @@ export class MiniMenuComponent implements OnInit, OnDestroy{
     this.addInfoSub.unsubscribe();
   }
 
-  onDelete(regDataId: string){
-    this.addInfoService.getData();
-    this.addInfoService.deleteProfile(regDataId);
+  onDelete(menuDataId: string){
+    this.AddMenuService.getData();
+    this.AddMenuService.deleteItem(menuDataId);
   }
 
 }

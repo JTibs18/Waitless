@@ -31,7 +31,7 @@ export class CreateMenuComponent implements OnInit {
     }
 
     // this.addInfoService.addData(form.value)
-    this.addMenuService.addData(form.value.itemName, form.value.des, form.value.ingredl, form.value.pricel, form.value.cals)
+    this.addMenuService.addData(form.value.itemName, form.value.des, form.value.ingred, form.value.price, form.value.cals)
 
     form.resetForm();
 

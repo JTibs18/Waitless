@@ -2,14 +2,15 @@
 
 <div class="outerBox">
   <p *ngIf="dataList.length > 0">
-    <p *ngFor="let x of dataList">
-      <label> {{x.name}}</label><br>
-      <label> {{x.location}}</label><br>
-      <label> {{x.email}}</label><br>
-      <label> {{x.phoneNumber}}</label><br>
-      <label> {{x.password}}</label><br>
-      <label> {{x.password2}}</label><br>
+    <div class="separators" *ngFor="let x of dataList">
+      <button class="editButton editButtonLabel">EDIT</button>
       <button class="deleteButton deleteText" (click)="onDelete(x.id)">DELETE</button>
-    </p>
+
+      <label class="nameLabel"> {{x.itemName}}</label><br>
+      <label class="descriptionLabel"> {{x.description}}</label><br>
+      <!-- <label > {{x.ingredients}}</label><br> -->
+      <label class="priceLabel"> ${{x.price}}</label><br>
+      <!-- <label> {{x.calories}}</label><br> -->
+      </div>
 </div>
 <p *ngIf="dataList.length <= 0"> Empty inData!</p>

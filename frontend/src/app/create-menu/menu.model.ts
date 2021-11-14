@@ -4,4 +4,5 @@ export interface Menu {
   ingredients: string;
   price: number;
   calories: number;
+  id: string;
 }
