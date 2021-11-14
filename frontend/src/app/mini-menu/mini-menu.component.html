@@ -1,14 +1,15 @@
-<p>mini-menu works!</p>
+<!-- <p>mini-menu works!</p> -->
 
-<p *ngIf="dataList.length > 0">
-  <p *ngFor="let x of dataList">
-    <label> {{x.name}}</label><br>
-    <label> {{x.location}}</label><br>
-    <label> {{x.email}}</label><br>
-    <label> {{x.phoneNumber}}</label><br>
-    <label> {{x.password}}</label><br>
-    <label> {{x.password2}}</label><br>
-    <button class="deleteButton deleteText" (click)="onDelete(x.id)">DELETE</button>
-
-  </p>
+<div class="outerBox">
+  <p *ngIf="dataList.length > 0">
+    <p *ngFor="let x of dataList">
+      <label> {{x.name}}</label><br>
+      <label> {{x.location}}</label><br>
+      <label> {{x.email}}</label><br>
+      <label> {{x.phoneNumber}}</label><br>
+      <label> {{x.password}}</label><br>
+      <label> {{x.password2}}</label><br>
+      <button class="deleteButton deleteText" (click)="onDelete(x.id)">DELETE</button>
+    </p>
+</div>
 <p *ngIf="dataList.length <= 0"> Empty inData!</p>

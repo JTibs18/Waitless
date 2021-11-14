@@ -62,4 +62,5 @@ export class AddInfoService{
         this.dataUpdated.next([...this.dataList]);
       });
    }
+
 }

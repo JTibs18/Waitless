@@ -1,80 +1,71 @@
 .t1 {
-  position: relative;
-  width: 731px;
-  height: 41px;
-  left: 355px;
-  top: 190px;
+  position: absolute;
+  width: 703px;
+  height: 37px;
+  left: 268px;
+  top: 238px;
 
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
-
+  padding-left: 5px;
 }
 
 .t2 {
-  position: relative;
-  width: 731px;
-  height: 41px;
-  left: 355px;
-  top: 254px;
+  position: absolute;
+  width: 703px;
+  height: 94px;
+  left: 268px;
+  top: 302px;
 
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
+  padding-left: 5px;
 }
 
 .t3{
-  position: relative;
-  width: 731px;
-  height: 41px;
-  left: 355px;
-  top: 318px;
+  position: absolute;
+  width: 703px;
+  height: 112px;
+  left: 268px;
+  top: 423px;
 
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
+  padding-left: 5px;
 }
 
 .t4{
-  position: relative;
-  width: 731px;
-  height: 41px;
-  left: 354px;
-  top: 382px;
+  position: absolute;
+  width: 159px;
+  height: 37px;
+  left: 268px;
+  top: 572px;
 
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
+  padding-left: 5px;
 }
 
 .t5{
-  position: relative;
-  width: 731px;
-  height: 41px;
-  left: 354px;
-  top: 446px;
+  position: absolute;
+  width: 159px;
+  height: 37px;
+  left: 268px;
+  top: 643px;
 
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
-}
-
-.t6{
-  position: relative;
-  width: 731px;
-  height: 41px;
-  left: 354px;
-  top: 510px;
-
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  border-radius: 5px;
+  padding-left: 5px;
 }
 
 .addText{
@@ -89,11 +80,11 @@
 }
 
 .addButt{
-  position: relative;
+  position: absolute;
   width: 258px;
   height: 65px;
   left: 268px;
-  top: 918px;
+  top: 730px;
 
   background: #8ED0EC;
   border: 1px solid #000000;
@@ -114,11 +105,11 @@
 }
 
 .saveButt{
-  position: relative;
+  position: absolute;
   width: 258px;
-  height: 69px;
+  height: 65px;
   left: 713px;
-  top: 914px;
+  top: 730px;
 
   background: #AEECB8;
   border: 1px solid #000000;
@@ -147,45 +138,43 @@
 }
 
 .label1{
-  position: relative;
+  position: absolute;
+  width: 143px;
   height: 42px;
-  left: 115px;
-  top: 190px;
+  left: 120px;
+  top: 233px;
 }
 
 .label2{
-  position: relative;
-  width: 124px;
-  left: 115px;
-  top: 254px;
+  position: absolute;
+  width: 203px;
+  height: 42px;
+  left: 120px;
+  top: 303px;
 }
 
 .label3{
-  position: relative;
+  position: absolute;
+  width: 203px;
   height: 42px;
-  left: 115px;
-  top: 318px;
+  left: 120px;
+  top: 420px;
 }
 
 .label4{
-  position: relative;
-  height: 42px;
-  left: 115px;
-  top: 382px;
+  position: absolute;
+  width: 88px;
+  height: 33px;
+  left: 120px;
+  top: 572px;
 }
 
 .label5{
-  position: relative;
-  height: 42px;
-  left: 115px;
-  top: 446px;
-}
-
-.label6{
-  position: relative;
-  height: 42px;
-  left: 115px;
-  top: 510px;
+  position: absolute;
+  width: 88px;
+  height: 33px;
+  left: 120px;
+  top: 643px;
 }
 
 .errorMsg{
@@ -199,4 +188,64 @@
   left: 354px;
   top:550px;
 
+}
+
+.createMenuLabel{
+  position: absolute;
+  width: 388px;
+  height: 70px;
+  left: 526px;
+  top: 40px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 64px;
+  line-height: 83px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+  }
+
+.instruct{
+  position: absolute;
+  width: 430px;
+  height: 119px;
+  left: 268px;
+  top: 110px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.menuTitle{
+  position: absolute;
+  width: 312px;
+  height: 119px;
+  left: 1025px;
+  top: 110px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

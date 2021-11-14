@@ -73,6 +73,7 @@ export class AddInfoComponent implements OnInit {
     form.resetForm();
 
   }
+
   //
   // onAdd(){
   //   this.restInput =  "Restaurant Name: " + this.restVal;

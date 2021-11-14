@@ -1,4 +1,3 @@
-<p>add-info works!</p>
 <!-- <label> {{prompt}}</label> -->
 <!-- Three possibilities for using prompt (a variable) as a value. t4 is optimal currently for getting user input-->
 <!-- <input type="text" class="t1" [value]="prompt" ><br>
@@ -21,11 +20,11 @@
 </form> -->
 
 
-<p *ngIf="d2.length > 0">
+<!-- <p *ngIf="d2.length > 0">
   <p *ngFor="let x of d2">
     <label> {{x.title}}</label>
     <label> {{x.content}} </label>
-</p>
+</p> -->
 <!--
 <style type="text/css">
     .bg-color {
@@ -50,7 +49,8 @@
     <textarea [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel]="locVal" [placeholder]="x.prompt" required ></textarea>
   </p>
 
-  <button class="signUpButt signUpText" type="submit">Sign Up </button>
+<!--Needs to be a condition on this button to only go to create menu when a valid registration occurs. Otherwise that option should be disabled -->
+  <button class="signUpButt signUpText" type="submit"><a routerLink="/Create_Menu">Sign Up </a></button>
 </form>
 <p class="errorMsg" *ngIf="regForm.invalid"> *PLEASE FILL IN ALL FIELDS </p>
 
@@ -66,7 +66,7 @@
 
 <p *ngIf="data.length <= 0"> Nothing yet!</p> -->
 <!-- <button class="signUpButt signUpText" (click)="onAdd()">Sign Up</button> -->
- <p>{{restInput}}<br>
+ <!-- <p>{{restInput}}<br> -->
 <!--{{locInput}}<br>
 {{emailInput}}<br>
 {{pNumInput}}<br>

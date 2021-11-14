@@ -1,41 +1,21 @@
 .restaurantReg {
   position: absolute;
-width: 731px;
-height: 20px;
-left: 355px;
-top: 136px;
+  width: 731px;
+  height: 60px;
+  left: 355px;
+  top: 40px;
 
-font-family: Baskervville;
-font-style: normal;
-font-weight: normal;
-font-size: 64px;
-line-height: 83px;
-/* identical to box height */
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 64px;
+  line-height: 83px;
+  /* identical to box height */
 
-display: flex;
-align-items: center;
-text-align: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
 
-color: #000000;
+  color: #000000;
 }
-
-.label{
-  position: absolute;
-width: 731px;
-height: 60px;
-left: 355px;
-top: 40px;
-
-font-family: Baskervville;
-font-style: normal;
-font-weight: normal;
-font-size: 64px;
-line-height: 83px;
-/* identical to box height */
-
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #000000;
-}
+ 
