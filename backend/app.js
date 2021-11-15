@@ -108,7 +108,7 @@ client.connect(err => {
 
   app.post("/Waitless/Registration", (req, res, next) => {
     const data = req.body;
-    console.log("HERE")
+    console.log("HERE", data)
     console.log(data);
     collRestaurant.insertOne(data, function(err, result){
       if (err) throw err;

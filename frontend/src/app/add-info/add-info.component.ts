@@ -3,6 +3,7 @@ import { EventEmitter, Output } from '@angular/core';
 import { Rdata } from '../add-info/rData.model';
 import { NgForm } from '@angular/forms';
 import { AddInfoService } from '../add-info/add-info.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -45,7 +46,7 @@ export class AddInfoComponent implements OnInit {
                {label: "Retype Password", st: "label6", prompt:"creativePassword123", tbClass: "t6", inVar: "pw2Val"}
         ]
 
-  constructor(public addInfoService: AddInfoService) { }
+  constructor(public addInfoService: AddInfoService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -71,6 +72,7 @@ export class AddInfoComponent implements OnInit {
     this.addInfoService.addData(form.value.restVal, form.value.locVal, form.value.emailVal, form.value.pNumVal, form.value.pwVal, form.value.pw2Val)
 
     form.resetForm();
+    this.router.navigate(['/Waitless/Create_Menu'])
 
   }
 
