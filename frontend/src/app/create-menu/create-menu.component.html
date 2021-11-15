@@ -1,14 +1,28 @@
+<a routerLink="/Waitless/Registration"><button class="backButton"> < </button> </a>
+
 <p class="createMenuLabel">Create Menu </p>
 <p class="instruct">Please enter a menu item </p>
 <p class="menuTitle">User Menu Preview </p>
-<form (submit)="onAddItem(menuForm)" #menuForm="ngForm" >
+
+<form (submit)="onSaveItem(menuForm)" #menuForm="ngForm" >
   <p *ngFor="let x of labelText; let i = index" [attr.data-index]="i">
-    <label [ngClass]= "x.st" class="labelText"  > {{x.label}}</label>
-    <textarea [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel]="menu" [placeholder]="x.prompt" required ></textarea>
+    <!-- <label [ngClass]= "mode == 'create' ? ['x.st'] : ['data.itemName']" class="labelText"  > {{x.label}}</label> -->
+    <label [ngClass]= "x.st" class="labelText"  > {{x.label}}  </label>
+    <!-- <textarea [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel]="menu" [placeholder]="x.prompt" required ></textarea> -->
+    <textarea [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel] ="mode == 'edit' ? [data[menuLabels[i]]] : [menu]" [placeholder]="mode == 'create' ? [x.prompt] : [data[menuLabels[i]]]" [required] = "mode == 'create'"></textarea>
+
   </p>
+
+  <!-- <form (submit)="onAddItem(menuForm)" #menuForm="ngForm" > -->
+    <!-- <p *ngFor="let x of labelText; let i = index" [attr.data-index]="i"> -->
+      <!-- <label [ngClass]= "x.st" class="labelText"  > {{x.label}}</label> -->
+      <!-- <textarea [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel]="menu" [placeholder]="mode == 'create' ? [x.prompt] : [data]" required ></textarea> -->
+    <!-- </p> -->
 
   <button class="addButt addText" type="submit">Add </button>
 </form>
+<p class="errorMsg" *ngIf="menuForm.invalid && mode=='create'"> *PLEASE FILL IN ALL FIELDS </p>
+
 <button class="saveButt saveAndExitText" type="submit">Save and Exit </button>
 
 <!-- <p class="errorMsg" *ngIf="menuForm.invalid"> *PLEASE ENTER DATA IN FOR FIELDS </p> -->

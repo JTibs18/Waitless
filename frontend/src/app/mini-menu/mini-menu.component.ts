@@ -4,6 +4,8 @@ import { AddInfoService } from '../add-info/add-info.service'; //delete
 import { Subscription } from 'rxjs';
 import { AddMenuService } from '../create-menu/AddMenu.service';
 import { Menu } from '../create-menu/menu.model'
+// import { ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-mini-menu',

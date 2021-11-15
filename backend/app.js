@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res ,next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
   next();
 });
 client.connect(err => {
@@ -91,6 +91,21 @@ client.connect(err => {
 
   })
 
+  app.get('/Waitless/Create_Menu/Edit/:id',(req, res, next)=>{
+    // res.send("Hello world from express!");
+    console.log("OF INTEREST")
+    collMenu.find({_id: {$eq: req.params.id}}).toArray(function(err, result){
+      if (err) throw err;
+
+
+      if(result){
+        res.status(200).json(result);
+      }else{
+        res.status(404).json({messge: 'Id not found!'});
+      }
+    })
+   })
+
   app.post("/Waitless/Registration", (req, res, next) => {
     const data = req.body;
     console.log("HERE")
@@ -118,7 +133,24 @@ client.connect(err => {
         dataId: data._id.toString()
       });
     })
+  });
 
+  app.put("/Waitless/Create_Menu/Edit/:id", (req, res, next) => {
+
+    const data =  {
+      itemName: req.body.itemName,
+      description: req.body.description,
+      ingredients: req.body.ingredients,
+      price: req.body.price,
+      calories: req.body.calories,
+      _id: ObjectId(req.params.id)
+    }
+      collMenu.updateOne({_id: ObjectId(req.params.id)}, {$set: data}, function(err,result){
+            if(err) throw err;
+      console.log(result);
+      res.status(200).json({message:"Update successful!"})
+
+    })
   });
 
   app.delete("/Waitless/Create_Menu/:id", (req, res, next) => {

@@ -35,6 +35,16 @@ export class AddMenuService{
      // return [...this.dataList];
    }
 
+   getItem2(id: string){
+     // return{... this.dataList.find(i => i.id === id)};
+     return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: number, calories: number}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
+   }
+
+   getItem(id: string){
+     return{... this.dataList.find(i => i.id === id)};
+     // return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: number, calories: number}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
+   }
+
    addData(itemName: string, description: string, ingredients: string, price: number, calories: number){
      const data: Menu = {itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, id: null}
      this.http.post<{message:string, dataId: string}>('http://localhost:3000/Waitless/Create_Menu', data)
@@ -55,11 +65,22 @@ export class AddMenuService{
      this.http.delete("http://localhost:3000/Waitless/Create_Menu/" + dataId)
       .subscribe(() => {
         console.log('Deleted!');
-        const updatedRegData = this.dataList.filter(data => data.id !== dataId);
-        this.dataList = updatedRegData;
+        const updatedMenuData = this.dataList.filter(data => data.id !== dataId);
+        this.dataList = updatedMenuData;
         this.dataUpdated.next([...this.dataList]);
       });
    }
 
-   // deleteItem()
+   updateItem(dataId: string, itemName: string, description: string, ingredients: string, price: number, calories: number ){
+      const menuData: Menu = {id: dataId, itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories};
+      this.http.put("http://localhost:3000/Waitless/Create_Menu/Edit/" + dataId, menuData).subscribe(response => {
+          const updatedItem = [...this.dataList];
+          const oldItemIndex = updatedItem.findIndex(i => i.id === menuData.id);
+          updatedItem[oldItemIndex] = menuData;
+          this.dataList = updatedItem;
+          this.dataUpdated.next([...this.dataList]);
+        });
+
+   }
+
 }
