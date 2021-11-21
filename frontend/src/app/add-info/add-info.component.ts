@@ -14,8 +14,6 @@ import { Router } from '@angular/router';
 export class AddInfoComponent implements OnInit {
   // @Output() addInfo = new EventEmitter<Rdata>();
 
-
-
   restInput = "Restaurant"
   locInput = "Location"
   emailInput = "Email"

@@ -1,3 +1,174 @@
+input:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+   textarea:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+
 a{
   text-decoration: none;
+}
+
+.waitlessTitle{
+  position: absolute;
+  width: 457px;
+  height: 137px;
+  left: 502px;
+  top: -50px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100px;
+  line-height: 129px;
+  text-align: center;
+
+
+  color: #B18FCF;
+}
+
+.h2Style{
+  position: absolute;
+  width: 548px;
+  height: 69px;
+  left: 480px;
+  top: 90px;
+
+  font-family: Dancing Script;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 58px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.box{
+  position: absolute;
+  width: 620px;
+  height: 420px;
+  left: 445px;
+  top: 210px;
+
+  background: #FFFEFE;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.loginTextbox1{
+  position: absolute;
+  width: 545px;
+  height: 50px;
+  left: 35px;
+  top: 25px;
+
+  background: #FFFFFF;
+  border: 2px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.prompt{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 35px;
+  text-align: center;
+  padding: 5px;
+}
+
+.loginTextbox2{
+  position: absolute;
+  width: 545px;
+  height: 50px;
+  left: 35px;
+  top: 100px;
+
+  background: #FFFFFF;
+  border: 2px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.loginButton{
+  position: absolute;
+  width: 328px;
+  height: 64px;
+  left: 150px;
+  top: 175px;
+
+  background: #8ED0EC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+
+.loginText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+.forgotPasswordText{
+  position: absolute;
+  width: 287px;
+  height: 36px;
+  left: 170px;
+  top: 240px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+
+  color: #2A9AEB;
+}
+
+hr{
+  position: absolute;
+  width: 550px;
+  height: 0px;
+  left: 35px;
+  top: 300px;
+  border: 2px solid #000000;
+}
+
+.createNewAccButt{
+  position: absolute;
+  width: 328px;
+  height: 69px;
+  left: 150px;
+  top: 330px;
+
+  background: #AEECB8;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.createNewAcc{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+  font-variant: small-caps;
+
+  color: #000000;
 }

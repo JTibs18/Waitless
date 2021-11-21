@@ -1,5 +1,30 @@
-<p>login works!</p>
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+
+<h1 class="waitlessTitle">WAITLESS</h1>
+
+<h2 class="h2Style"> Order Now, Wait Less </h2>
 <!-- <button><a routerLink="/Registration">Registration</a></button> -->
 <!-- <button>Registration</button> -->
-<button><a routerLink="/Waitless/Registration">Registration</a></button>
+<div class='box'>
+  <form (submit)="onSignIn(signInForm)" #signInForm="ngForm" >
+      <textarea [ngClass]="'prompt'"class="loginTextbox1" type="text"  [name]="'userName'" #name="ngModel" [ngModel]="userName" [placeholder]="'Email or Phone Number'"  required></textarea>
+      <textarea [ngClass]="'prompt'" class="loginTextbox2"  type="text" [name]="'password'" #name="ngModel" [ngModel]="password" [placeholder]="'Password'" required></textarea>
+      <button type="submit" class="loginButton loginText">Log In</button>
+  <!-- This button goes to restaurant dashboard if it exists -->
+  </form>
+  <p class="forgotPasswordText"> Forgot Password?</p>
+
+  <hr>
+
+  <!-- This button needs to go to registration when clicked -->
+  <!-- <button class="loginButton loginText"><a routerLink="/Waitless/Registration">Registration</a></button> -->
+  <button class="createNewAccButt createNewAcc" (click)="onCreateNewAccount()">Create New Account</button>
+</div>
+
+<p>UserName: {{restName}}</p>
+<p>Password: {{pw}}</p>
+
+
 <!-- <p> wtf</p> -->
