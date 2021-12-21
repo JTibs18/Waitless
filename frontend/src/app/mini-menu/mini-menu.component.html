@@ -1,1 +1,18 @@
-<p>mini-menu works!</p>
+<!-- <p>mini-menu works!</p> -->
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<div class="outerBox">
+  <p *ngIf="dataList.length > 0">
+    <div class="separators" *ngFor="let x of dataList">
+      <button class="editButton editButtonLabel" [routerLink]="['/Waitless/Create_Menu/Edit', x.id]">EDIT</button>
+      <button class="deleteButton deleteText" (click)="onDelete(x.id)">DELETE</button>
+
+      <label class="nameLabel"> {{x.itemName}}</label><br>
+      <label class="descriptionLabel"> {{x.description}}</label><br>
+      <!-- <label > {{x.ingredients}}</label><br> -->
+      <label class="priceLabel"> ${{x.price}}</label><br>
+      <!-- <label> {{x.calories}}</label><br> -->
+      </div>
+</div>
+<p *ngIf="dataList.length <= 0"> Empty inData!</p>

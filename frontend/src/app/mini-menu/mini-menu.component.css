@@ -1,11 +1,103 @@
-.box{
-  position: absolute;
-width: 312px;
-height: 373px;
-left: 1050px;
-top: 324px;
+ /* Unofficial button styles for now. Will be replaced with iamge later */
 
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
+
+.outerBox{
+  position: absolute;
+  width: 400px;
+  height: 525px;
+  left: 1025px;
+  top: 238px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.separators{
+  position: relative;
+  height: 100px;
+  /* border-top: 1px solid #000000; */
+  border-bottom: 1px solid #000000;
+  padding-left: 7px;
+  padding-top: 5px;
+}
+
+.nameLabel{
+  position:absolute;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  left:4px;
+  width: 200px;
+  color: #000000;
+}
+
+.descriptionLabel{
+  position:absolute;
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 16px;
+  color: #000000;
+  display: inline-block;
+  width: 140px;
+  top: 35px;
+
+}
+
+.priceLabel{
+  position:absolute;
+  left: 279px;
+  top: 8px;
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.editButton{
+  position: absolute;
+  width: 48px;
+  height: 21px;
+  left: 305px;
+  top: 40px;
+  background: #E4E4E4;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.editButtonLabel{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.deleteButton{
+  position: absolute;
+  width: 75px;
+  height: 21px;
+  left: 279px;
+  top: 70px;
+
+  text-align: center;
+  background: #E4E4E4;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.deleteText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  align-items: center;
+  color: #000000;
 }

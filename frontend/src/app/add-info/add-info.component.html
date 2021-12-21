@@ -1,38 +1,80 @@
-<p>add-info works!</p>
 <!-- <label> {{prompt}}</label> -->
 <!-- Three possibilities for using prompt (a variable) as a value. t4 is optimal currently for getting user input-->
 <!-- <input type="text" class="t1" [value]="prompt" ><br>
 <input type="text" class="t2" placeholder={{prompt}}><br>
 <input type="text" class="t3" [placeholder]="prompt"><br>
 <textarea class="t4" [placeholder]="prompt"  #i></textarea> -->
-<textarea class="t1" [(ngModel)]="restVal" [placeholder]="prompt"  ></textarea>
-<textarea class="t2" [(ngModel)]="locVal" [placeholder]="prompt"  ></textarea>
-<textarea class="t3" [(ngModel)]="emailVal" [placeholder]="prompt"  ></textarea>
-<textarea class="t4" [(ngModel)]="pNumVal" [placeholder]="prompt"  ></textarea>
-<textarea class="t5" [(ngModel)]="pwVal" [placeholder]="prompt"  ></textarea>
-<textarea class="t6" [(ngModel)]="nOtVal" [placeholder]="prompt"  ></textarea>
+
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<!-- <textarea class="t1" type="text" [(ngModel)]="restVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t2" type="text" [(ngModel)]="locVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t3" type="text" [(ngModel)]="emailVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t4" type="text" [(ngModel)]="pNumVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t5" type="text" [(ngModel)]="pwVal" [placeholder]="prompt"  ></textarea>
+<textarea class="t6" type="text" [(ngModel)]="nOtVal" [placeholder]="prompt"  ></textarea> -->
+
+<!-- <form (submit)="onAdd(regForm)" #regForm="ngForm">
+  <textarea class="t1" type="text" name="restName" #name="ngModel" [ngModel]="restVal" [placeholder]="prompt" required></textarea>
+  <p style="color:red" *ngIf="name.invalid"> Entry invalid</p>
+  <button type="submit">Sign Up 2</button>
+</form> -->
 
 
-<!-- <p *ngIf="data.length > 0">
-  <p *ngFor="let x of data">
+<!-- <p *ngIf="d2.length > 0">
+  <p *ngFor="let x of d2">
     <label> {{x.title}}</label>
     <label> {{x.content}} </label>
-  </p> -->
+</p> -->
+<!--
+<style type="text/css">
+    .bg-color {
+        background-color: pink;
+        padding:10px;
+        font-size: 18px;
+    }
+</style>
 
-  <ng-container *ngIf="data.length > 0">
+<p  [ngStyle]="{'background-color':'green'}">TEST</p> -->
+<!--
+<p *ngIf="labels.length > 0">
+  <p *ngFor="let x of labels; let i = index" [attr.data-index]="i">
+    <!-- <label [ngStyle="'left:':'calc(i * 50px)'"]> {{i }}{{x}}</label> -->
+    <!-- <label [ngStyle]="{}"> {{i }}{{x}}</label>
+
+</p> -->
+
+<form (submit)="onAdd(regForm)" #regForm="ngForm" >
+  <p *ngFor="let x of labelText; let i = index" [attr.data-index]="i">
+    <label [ngClass]= "x.st" class="labelText"  > {{x.label}}</label>
+    <textarea [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel]="locVal" [placeholder]="x.prompt" required ></textarea>
+  </p>
+
+<!--Needs to be a condition on this button to only go to create menu when a valid registration occurs. Otherwise that option should be disabled -->
+  <!-- <a *ngIf="regForm.invalid == false" routerLink="/Waitless/Create_Menu"><button class="signUpButt signUpText" type="submit">Sign Up </button></a> -->
+  <button  type="submit" class="signUpButt signUpText">Sign Up </button>
+
+</form>
+<p class="errorMsg" *ngIf="regForm.invalid"> *PLEASE FILL IN ALL FIELDS </p>
+
+
+  <!-- <ng-container *ngIf="data.length > 0">
     <p *ngFor="let x of data">
       <label> {{x.title}}</label>
       <label> {{x.content}} </label>
     </p>
-  </ng-container>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </ng-container> -->
+  <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<p *ngIf="data.length <= 0"> Nothing yet!</p>
-<button (click)="onAdd()">TEST</button>
-<p>{{restInput}}<br>
-{{locInput}}<br>
+<p *ngIf="data.length <= 0"> Nothing yet!</p> -->
+<!-- <button class="signUpButt signUpText" (click)="onAdd()">Sign Up</button> -->
+ <!-- <p>{{restInput}}<br> -->
+<!--{{locInput}}<br>
 {{emailInput}}<br>
 {{pNumInput}}<br>
 {{pwInput}}<br>
-{{nOtInput}}</p>
+{{nOtInput}}</p> -->
+<br><br><br><br><br><br>

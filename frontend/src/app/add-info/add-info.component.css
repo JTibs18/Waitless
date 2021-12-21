@@ -1,79 +1,186 @@
 .t1 {
   position: absolute;
-width: 731px;
-height: 41px;
-left: 355px;
-top: 274px;
+  width: 731px;
+  height: 41px;
+  left: 355px;
+  top: 190px;
 
-overflow: hidden;
-
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .t2 {
   position: absolute;
-width: 731px;
-height: 41px;
-left: 355px;
-top: 338px;
+  width: 731px;
+  height: 41px;
+  left: 355px;
+  top: 254px;
 
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .t3{
-position: absolute;
-width: 731px;
-height: 41px;
-left: 355px;
-top: 402px;
+  position: absolute;
+  width: 731px;
+  height: 41px;
+  left: 355px;
+  top: 318px;
 
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .t4{
   position: absolute;
-width: 731px;
-height: 41px;
-left: 354px;
-top: 475px;
+  width: 731px;
+  height: 41px;
+  left: 354px;
+  top: 382px;
 
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .t5{
-position: absolute;
-width: 731px;
-height: 41px;
-left: 354px;
-top: 549px;
+  position: absolute;
+  width: 731px;
+  height: 41px;
+  left: 354px;
+  top: 446px;
 
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .t6{
   position: absolute;
-width: 731px;
-height: 41px;
-left: 354px;
-top: 644px;
+  width: 731px;
+  height: 41px;
+  left: 354px;
+  top: 510px;
 
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.signUpButt{
+  position: absolute;
+  width: 427px;
+  height: 64px;
+  left: 516px;
+  top: 610px;
+  text-align: center;
+
+  background: #AEECB8;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.signUpText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  color: #000000;
+}
+
+.labelText{
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.promptText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+}
+
+.label1{
+  position: absolute;
+  height: 42px;
+  left: 115px;
+  top: 190px;
+}
+
+.label2{
+  position: absolute;
+  width: 124px;
+  left: 115px;
+  top: 254px;
+}
+
+.label3{
+  position: absolute;
+  height: 42px;
+  left: 115px;
+  top: 318px;
+}
+
+.label4{
+  position: absolute;
+  height: 42px;
+  left: 115px;
+  top: 382px;
+}
+
+.label5{
+  position: absolute;
+  height: 42px;
+  left: 115px;
+  top: 446px;
+}
+
+.label6{
+  position: absolute;
+  height: 42px;
+  left: 115px;
+  top: 510px;
+}
+
+.errorMsg{
+  color:red;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  height: 35px;
+  left: 354px;
+  top:550px;
+}
+
+a{
+  text-decoration: none;
 }

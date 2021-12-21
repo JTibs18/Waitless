@@ -1,0 +1,302 @@
+.t1 {
+  position: absolute;
+  width: 703px;
+  height: 37px;
+  left: 268px;
+  top: 238px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t2 {
+  position: absolute;
+  width: 703px;
+  height: 94px;
+  left: 268px;
+  top: 302px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t3{
+  position: absolute;
+  width: 703px;
+  height: 112px;
+  left: 268px;
+  top: 423px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t4{
+  position: absolute;
+  width: 159px;
+  height: 37px;
+  left: 268px;
+  top: 572px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t5{
+  position: absolute;
+  width: 159px;
+  height: 37px;
+  left: 268px;
+  top: 635px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.addText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+
+.addButt{
+  position: absolute;
+  width: 258px;
+  height: 65px;
+  left: 268px;
+  top: 800px;
+
+  background: #8ED0EC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.saveAndExitText{
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.saveButt{
+  position: absolute;
+  width: 258px;
+  height: 65px;
+  left: 713px;
+  top: 800px;
+
+  background: #AEECB8;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.labelText{
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.promptText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+}
+
+.label1{
+  position: absolute;
+  width: 143px;
+  height: 42px;
+  left: 120px;
+  top: 233px;
+}
+
+.label2{
+  position: absolute;
+  width: 203px;
+  height: 42px;
+  left: 120px;
+  top: 303px;
+}
+
+.label3{
+  position: absolute;
+  width: 203px;
+  height: 42px;
+  left: 120px;
+  top: 420px;
+}
+
+.label4{
+  position: absolute;
+  width: 88px;
+  height: 33px;
+  left: 120px;
+  top: 572px;
+}
+
+.label5{
+  position: absolute;
+  width: 88px;
+  height: 33px;
+  left: 120px;
+  top: 640px;
+}
+
+.errorMsg{
+  color:red;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  height: 35px;
+  left: 268px;
+  top: 745px;
+}
+
+.createMenuLabel{
+  position: absolute;
+  width: 388px;
+  height: 70px;
+  left: 526px;
+  top: 40px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 64px;
+  line-height: 83px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+  }
+
+.instruct{
+  position: absolute;
+  width: 430px;
+  height: 119px;
+  left: 268px;
+  top: 110px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.menuTitle{
+  position: absolute;
+  width: 312px;
+  height: 119px;
+  left: 1025px;
+  top: 110px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.backButton{
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  left: 45px;
+  top: 115px;
+
+  background: #FFFFFF;
+  border-radius: 5px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.uploadImageButt{
+  position: absolute;
+  width: 162px;
+  height: 45px;
+  left: 268px;
+  top: 700px;
+
+  background: #000000;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.uploadImageLabel{
+  position: absolute;
+  width: 163px;
+  height: 33px;
+  left: 120px;
+  top: 710px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+
+  color: #000000;
+}
+
+input[type="file"]{
+  visibility: hidden;
+}
