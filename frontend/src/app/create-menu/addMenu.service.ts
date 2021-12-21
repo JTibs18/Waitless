@@ -35,15 +35,15 @@ export class AddMenuService{
      // return [...this.dataList];
    }
 
-   getItem2(id: string){
+   getItem(id: string){
      // return{... this.dataList.find(i => i.id === id)};
      return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: number, calories: number}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
    }
 
-   getItem(id: string){
-     return{... this.dataList.find(i => i.id === id)};
-     // return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: number, calories: number}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
-   }
+   // getItem(id: string){
+   //   return{... this.dataList.find(i => i.id === id)};
+   //   // return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: number, calories: number}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
+   // }
 
    addData(itemName: string, description: string, ingredients: string, price: number, calories: number){
      const data: Menu = {itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, id: null}

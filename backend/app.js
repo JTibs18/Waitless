@@ -94,12 +94,16 @@ client.connect(err => {
   app.get('/Waitless/Create_Menu/Edit/:id',(req, res, next)=>{
     // res.send("Hello world from express!");
     console.log("OF INTEREST")
-    collMenu.find({_id: {$eq: req.params.id}}).toArray(function(err, result){
+    collMenu.find({_id: {$eq: ObjectId(req.params.id)}}).toArray(function(err, result){
       if (err) throw err;
+    // console.log(result, result[0].itemName, result[0]._id)
+    result[0]._id = result[0]._id.toString()
+    // console.log(result[0]._id, result[0]._id.toString())
 
-
+    // console.log(result, req.params.id)
+    console.log(result[0])
       if(result){
-        res.status(200).json(result);
+        res.status(200).json(result[0]);
       }else{
         res.status(404).json({messge: 'Id not found!'});
       }

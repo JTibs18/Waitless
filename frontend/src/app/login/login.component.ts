@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
 
     form.resetForm();
-    // this.router.navigate(['/Waitless/Create_Menu'])
+    // this.router.navigate(['/Waitless/Dashboard'])
   }
 
   onCreateNewAccount(){

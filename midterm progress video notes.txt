@@ -1,0 +1,25 @@
+Waitless is a web application for restaurant menus
+Users are able to scan a QR code when seated at a restaurant to view the menu 
+Restaurants are able to recieve fulfill and keep track of orders and update their menu in real time, online. 
+
+Progress 
+- full stack is connected and functional for 1/3 views 
+- learn angular and typescript through online courses 
+- figma has really helped in implementation so far 
+
+Snags/Complications: 
+- becoming comfortable in angular/typescript took more time than expected which has slowed down development. 
+Some major difficulties in angular thus far were: 
+	- Learning how to create components and use components within components
+	- Connecting Angular front end to node/express and mongo in the back end (Running front end and back end servers) 
+		-routing with angular and express 
+
+Some future challenges in angular will be: 
+	- uploading images to the application 
+	- creating user authentication 
+
+Important features that need to be implemented: 
+	- Restaurant dashboard 
+	- Patron view (mobile) 
+	- Connecting client's (patron and restaurant dashboard) via websockets 
+	- Writing a NLP algorithm to identify allergens with labels given a list of ingredients 

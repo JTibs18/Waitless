@@ -59,7 +59,7 @@
   width: 159px;
   height: 37px;
   left: 268px;
-  top: 643px;
+  top: 635px;
 
   background: #FFFFFF;
   border: 1px solid #000000;
@@ -84,7 +84,7 @@
   width: 258px;
   height: 65px;
   left: 268px;
-  top: 730px;
+  top: 800px;
 
   background: #8ED0EC;
   border: 1px solid #000000;
@@ -109,7 +109,7 @@
   width: 258px;
   height: 65px;
   left: 713px;
-  top: 730px;
+  top: 800px;
 
   background: #AEECB8;
   border: 1px solid #000000;
@@ -174,7 +174,7 @@
   width: 88px;
   height: 33px;
   left: 120px;
-  top: 643px;
+  top: 640px;
 }
 
 .errorMsg{
@@ -186,7 +186,7 @@
   position: absolute;
   height: 35px;
   left: 268px;
-  top: 675px;
+  top: 745px;
 }
 
 .createMenuLabel{
@@ -262,4 +262,41 @@
 
 a{
   text-decoration: none;
+}
+
+.uploadImageButt{
+  position: absolute;
+  width: 162px;
+  height: 45px;
+  left: 268px;
+  top: 700px;
+
+  background: #000000;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.uploadImageLabel{
+  position: absolute;
+  width: 163px;
+  height: 33px;
+  left: 120px;
+  top: 710px;
+
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+
+  color: #000000;
+}
+
+input[type="file"]{
+  visibility: hidden;
 }

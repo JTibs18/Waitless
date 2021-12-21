@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http"
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { CreateMenuComponent } from './create-menu/create-menu.component';
 import { AddInfoComponent } from './add-info/add-info.component';
 import { HeaderComponent } from './header/header.component';
 import { MiniMenuComponent } from './mini-menu/mini-menu.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -21,12 +22,14 @@ import { MiniMenuComponent } from './mini-menu/mini-menu.component';
     CreateMenuComponent,
     AddInfoComponent,
     HeaderComponent,
-    MiniMenuComponent
+    MiniMenuComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
