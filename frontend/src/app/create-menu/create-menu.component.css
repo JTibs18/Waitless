@@ -1,3 +1,14 @@
+input:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+   textarea:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+
 .t1 {
   position: absolute;
   width: 703px;
@@ -296,6 +307,23 @@ a{
 
   color: #000000;
 }
+
+.uploadButtonTxt{
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  align-items: center;
+  text-align: center;
+  text-transform: capitalize;
+
+
+  color: #FFFFFF;
+}
+
+
 
 input[type="file"]{
   visibility: hidden;
