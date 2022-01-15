@@ -1,0 +1,5 @@
+Waitless Notes: 
+
+-Delete button on mini menu should have a confirmation before deleting (alert or pop up?) 
+-Mini menu should adjust vertical height based on the height of the text
+-dynamically adjust components based on size of screen

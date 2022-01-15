@@ -7,7 +7,7 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <p class="createMenuLabel">Create Menu </p>
-<p *ngIf="mode=== 'create'"class="instruct">Please enter a menu item </p>
+<p *ngIf="mode=== 'create'"class="instruct">Please Enter A Menu Item </p>
 <p *ngIf="mode=== 'edit'"class="instruct">Editing: {{data.itemName}} </p>
 <p class="menuTitle">User Menu Preview </p>
 
@@ -21,7 +21,7 @@
 
   </p>
   <label class="uploadImageLabel"> Upload Image </label>
-  <button type="button" class="uploadImageButt" (click)="filePicker.click()">Upload Image </button>
+  <button type="button" class="uploadImageButt uploadButtonTxt" (click)="filePicker.click()">Upload</button>
   <input class="uploadImageButt"  type="file" #filePicker>
   <!-- <form (submit)="onAddItem(menuForm)" #menuForm="ngForm" > -->
     <!-- <p *ngFor="let x of labelText; let i = index" [attr.data-index]="i"> -->
