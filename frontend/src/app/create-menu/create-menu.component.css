@@ -328,3 +328,19 @@ a{
 input[type="file"]{
   visibility: hidden;
 }
+
+.imagePreview{
+  position: absolute;
+  width: 258px;
+  height: 204px;
+  left: 713px;
+  top: 572px;
+
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.imagePreview img{
+  height: 100%;
+  width: 100%;
+}
