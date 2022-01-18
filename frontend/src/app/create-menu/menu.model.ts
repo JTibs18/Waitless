@@ -2,7 +2,8 @@ export interface Menu {
   itemName: string;
   description: string;
   ingredients: string;
-  price: number;
-  calories: number;
+  price: string;
+  calories: string;
   id: string;
+  imagePath: string;
 }

@@ -1,14 +1,40 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
+const multer = require("multer");
+const path = require("path");
 const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 var ObjectId = require('mongodb').ObjectID;
 
 const app = express();
+const MIME_TYPE_MAP = {
+  'image/png': 'png',
+  'image/jpeg': 'jpeg',
+  'image/jpg': 'jpg'
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error('Invalid mime type');
+
+    if (isValid){
+      error = null;
+    }
+
+    cb(error, "backend/images");
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname.toLowerCase().split(' ').join("-");
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + "-" + Date.now() + '.' + ext);
+  }
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res ,next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -125,8 +151,19 @@ client.connect(err => {
 
   });
 
-  app.post("/Waitless/Create_Menu", (req, res, next) => {
-    const data = req.body;
+  app.post("/Waitless/Create_Menu", multer({storage: storage}).single("image"), (req, res, next) => {
+    const url = req.protocol + '://' + req.get("host");
+    const imagePath = url + "/images/" + req.file.filename;
+
+    const data = {
+      itemName: req.body.itemName,
+      description: req.body.description,
+      ingredients: req.body.ingredients,
+      price: req.body.price,
+      calories: req.body.calories,
+      imagePath: imagePath
+    }
+
     console.log("HERE")
     console.log(data);
     collMenu.insertOne(data, function(err, result){
@@ -134,21 +171,28 @@ client.connect(err => {
       // console.log("RESULTTT", data._id.toString())
       res.status(201).json({
         message: "Post added successfully",
-        dataId: data._id.toString()
+        dataId: data._id.toString(),
+        imagePath: url + "/images/" + req.file.filename
       });
     })
   });
 
-  app.put("/Waitless/Create_Menu/Edit/:id", (req, res, next) => {
-
+  app.put("/Waitless/Create_Menu/Edit/:id", multer({storage: storage}).single("image"), (req, res, next) => {
+    let imagePath = req.body.imagePath;
+    if (req.file){
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename
+    }
     const data =  {
       itemName: req.body.itemName,
       description: req.body.description,
       ingredients: req.body.ingredients,
       price: req.body.price,
       calories: req.body.calories,
-      _id: ObjectId(req.params.id)
+      _id: ObjectId(req.params.id),
+      imagePath: imagePath
     }
+
       collMenu.updateOne({_id: ObjectId(req.params.id)}, {$set: data}, function(err,result){
             if(err) throw err;
       console.log(result);

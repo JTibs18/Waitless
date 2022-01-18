@@ -23,7 +23,8 @@ export class AddMenuService{
             ingredients: data.ingredients,
             price: data.price,
             calories: data.calories,
-            id: data._id
+            id: data._id,
+            imagePath: data.imagePath
           };
         });
       }))
@@ -37,7 +38,7 @@ export class AddMenuService{
 
    getItem(id: string){
      // return{... this.dataList.find(i => i.id === id)};
-     return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: number, calories: number}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
+     return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: string, calories: string, imagePath: string}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
    }
 
    // getItem(id: string){
@@ -45,16 +46,26 @@ export class AddMenuService{
    //   // return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: number, calories: number}>('http://localhost:3000/Waitless/Create_Menu/Edit/'+ id);
    // }
 
-   addData(itemName: string, description: string, ingredients: string, price: number, calories: number){
-     const data: Menu = {itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, id: null}
-     this.http.post<{message:string, dataId: string}>('http://localhost:3000/Waitless/Create_Menu', data)
-     .subscribe(responseData =>{
-       const id = responseData.dataId;
-       console.log(responseData.message);
-       data.id = id;
-       this.dataList.push(data)
-       this.dataUpdated.next([...this.dataList]);
-     });
+   addData(itemName: string, description: string, ingredients: string, price: string, calories: string, image: File){
+     // const data: Menu = {itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, id: null}
+     const data = new FormData();
+     data.append("itemName", itemName);
+     data.append("description", description);
+     data.append("ingredients", ingredients);
+     data.append("price", price);
+     data.append("calories", calories);
+     data.append("image", image, itemName);
+
+     this.http
+      .post<{message:string, dataId: string, imageP: string}>('http://localhost:3000/Waitless/Create_Menu', data)
+       .subscribe(responseData =>{
+         const data =  {id: responseData.dataId, itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, imagePath: responseData.imageP }
+         // const id = responseData.dataId;
+         // console.log(responseData.message);
+         // data.id = id;
+         this.dataList.push(data)
+         this.dataUpdated.next([...this.dataList]);
+      });
    }
 
    getAddDataListener(){
@@ -71,16 +82,29 @@ export class AddMenuService{
       });
    }
 
-   updateItem(dataId: string, itemName: string, description: string, ingredients: string, price: number, calories: number ){
-      const menuData: Menu = {id: dataId, itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories};
+   updateItem(dataId: string, itemName: string, description: string, ingredients: string, price: string, calories: string, image: File | string ){
+     let menuData: any;
+     if (typeof image === 'object'){
+       menuData = new FormData();
+       menuData.append("id", dataId);
+       menuData.append('itemName', itemName);
+       menuData.append('description', description);
+       menuData.append('ingredients', ingredients);
+       menuData.append('price', price);
+       menuData.append('calories', calories);
+       menuData.append('image', image, itemName);
+     }else{
+       menuData = {id: dataId, itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, imagePath: image };
+     }
+      // const menuData: Menu = {id: dataId, itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, imagePath: null};
       this.http.put("http://localhost:3000/Waitless/Create_Menu/Edit/" + dataId, menuData).subscribe(response => {
           const updatedItem = [...this.dataList];
-          const oldItemIndex = updatedItem.findIndex(i => i.id === menuData.id);
-          updatedItem[oldItemIndex] = menuData;
+          const oldItemIndex = updatedItem.findIndex(i => i.id === dataId);
+          const data: Menu = {itemName: itemName, description: description, ingredients: ingredients, price: price, calories: calories, id: dataId, imagePath: ""};
+          updatedItem[oldItemIndex] = data;
           this.dataList = updatedItem;
           this.dataUpdated.next([...this.dataList]);
         });
-
    }
 
 }

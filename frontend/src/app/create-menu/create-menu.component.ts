@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EventEmitter, Output } from '@angular/core';
 import { Menu } from '../create-menu/menu.model';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AddMenuService } from '../create-menu/AddMenu.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
+import { mimeType } from './mime-type.validator';
 
 @Component({
   selector: 'app-create-menu',
@@ -14,24 +15,41 @@ import { Router } from '@angular/router';
 export class CreateMenuComponent implements OnInit {
   menu = '';
   mode = 'create';
+  imagePicker = 'True';
   itemId: string;
   data: Menu;
+  form: FormGroup;
+  imagePreview: string;
 
   labelText = [{label: "Item Name", st: "label1", prompt: "Delicious dish name", tbClass: "t1", inVar: "itemName"},
-               {label: "Description", st: "label2", prompt: "Fresh spinach, mushrooms, and hard-boiled egg", tbClass: "t2", inVar: "des"},
-               {label: "Ingredients", st:"label3", prompt:"spinach, mushrooms, egg, bacon vinaigrette", tbClass: "t3", inVar: "ingred"},
+               {label: "Description", st: "label2", prompt: "Fresh spinach, mushrooms, and hard-boiled egg", tbClass: "t2", inVar: "description"},
+               {label: "Ingredients", st:"label3", prompt:"spinach, mushrooms, egg, bacon vinaigrette", tbClass: "t3", inVar: "ingredients"},
                {label: "Price", st: "label4", prompt:"9.99", tbClass: "t4", inVar: "price"},
-               {label: "Calories", st:"label5", prompt:"420", tbClass: "t5", inVar: "cals"}
+               {label: "Calories", st:"label5", prompt:"420", tbClass: "t5", inVar: "calories"}
         ]
 
   menuLabels = ["itemName", "description", "ingredients", "price" , "calories" ]
 
-  constructor(public addMenuService: AddMenuService, public route: ActivatedRoute, private router: Router) { }
+  constructor(
+    public addMenuService: AddMenuService,
+    public route: ActivatedRoute,
+    private router: Router
+  ){}
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      'itemName': new FormControl(null, {validators: [Validators.required]}),
+      'description': new FormControl(null, {validators: [Validators.required]}),
+      'ingredients': new FormControl(null, {validators: [Validators.required]}),
+      'price': new FormControl(null, {validators: [Validators.required]}),
+      'calories': new FormControl(null, {validators: [Validators.required]}),
+      'image': new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType]})
+    });
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (paramMap.has('itemId')){
           this.mode = 'edit';
+          this.imagePicker = 'False';
           this.itemId = paramMap.get('itemId');
           // this.data = this.addMenuService.getItem(this.itemId);
           this.addMenuService.getItem(this.itemId).subscribe(menuData =>{
@@ -41,8 +59,17 @@ export class CreateMenuComponent implements OnInit {
               description: menuData.description,
               ingredients: menuData.ingredients,
               price: menuData.price,
-              calories: menuData.calories
+              calories: menuData.calories,
+              imagePath: menuData.imagePath
             };
+            this.form.setValue({'itemName': this.data.itemName,
+                                'description': this.data.description,
+                                'ingredients': this.data.ingredients,
+                                'price': this.data.price,
+                                'calories': this.data.calories,
+                                'image': this.data.imagePath 
+                              }
+                              );
           });
         }else{
           this.mode = 'create';
@@ -51,18 +78,28 @@ export class CreateMenuComponent implements OnInit {
     });
   }
 
+  onImagePicked(event: Event){
+    this.imagePicker = 'True';
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({image: file});
+    this.form.get('image').updateValueAndValidity();
 
-  onSaveItem(form: NgForm){
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
-    if (form.invalid && this.mode ==='create'){
+  onSaveItem(){
+    if (this.form.invalid && this.mode ==='create'){
       return
     }
 
-
     if (this.mode === 'create'){
-      this.addMenuService.addData(form.value.itemName, form.value.des, form.value.ingred, form.value.price, form.value.cals)
+      this.addMenuService.addData(this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
     }else{
-      this.addMenuService.updateItem(this.itemId, form.value.itemName, form.value.des, form.value.ingred, form.value.price, form.value.cals)
+      this.addMenuService.updateItem(this.itemId, this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
       this.router.navigate(['/Waitless/Create_Menu'])
     }
     // this.mode = 'create'
@@ -70,8 +107,7 @@ export class CreateMenuComponent implements OnInit {
     // this.addInfoService.addData(form.value)
     // this.addMenuService.addData(form.value.itemName, form.value.des, form.value.ingred, form.value.price, form.value.cals)
 
-    form.resetForm();
-
+    this.form.reset();
   }
 
 }
