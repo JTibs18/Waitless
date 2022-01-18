@@ -7,7 +7,7 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <p class="createMenuLabel">Create Menu </p>
-<p *ngIf="mode=== 'create'"class="instruct">Please enter a menu item </p>
+<p *ngIf="mode=== 'create'"class="instruct">Please Enter A Menu Item </p>
 <p *ngIf="mode=== 'edit'"class="instruct">Editing: {{data.itemName}} </p>
 <p class="menuTitle">User Menu Preview </p>
 
@@ -21,7 +21,8 @@
 
   </p>
   <label class="uploadImageLabel"> Upload Image </label>
-  <button type="button" class="uploadImageButt" (click)="filePicker.click()">Upload Image </button>
+  
+  <button type="button" class="uploadImageButt uploadButtonTxt" (click)="filePicker.click()">Upload</button>
   <input class="uploadImageButt"  type="file" #filePicker (change)="onImagePicked($event)">
   <div class="imagePreview" *ngIf="(imagePreview !== '' && imagePreview && form.get('image').valid) || form.get('image').valid">
     <img [src]="imagePicker === 'True' ? imagePreview : form.value.image " [alt]="form.get('image').invalid ? 'no image' : form.value.itemName " >
@@ -30,6 +31,7 @@
   <!-- <div class="imagePreview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
     <img [src]="form.value.image" [alt]="form.get('image').invalid ? 'no image' : form.value.itemName " >
   </div> -->
+
   <!-- <form (submit)="onAddItem(menuForm)" #menuForm="ngForm" > -->
     <!-- <p *ngFor="let x of labelText; let i = index" [attr.data-index]="i"> -->
       <!-- <label [ngClass]= "x.st" class="labelText"  > {{x.label}}</label> -->
