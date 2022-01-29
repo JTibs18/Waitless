@@ -1,3 +1,14 @@
+input:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+   textarea:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+
 .t1 {
   position: absolute;
   width: 731px;
