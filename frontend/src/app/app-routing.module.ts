@@ -15,11 +15,12 @@ const routes: Routes = [
   // {path: 'Create_Menu', component: CreateMenuComponent, pathMatch: 'full'}
   {path: '', component: LoginComponent, pathMatch: 'full'},
   {path: 'Waitless', component: LoginComponent, pathMatch: 'full'},
+  {path: 'Waitless/Login', component: LoginComponent, pathMatch: 'full'},
   {path: 'Waitless/Registration', component: RegistrationComponent, pathMatch: 'full'},
   {path: 'Waitless/Create_Menu', component: CreateMenuComponent, pathMatch: 'full'},
   {path: 'Waitless/Create_Menu/Edit/:itemId', component: CreateMenuComponent, pathMatch: 'full'},
-  // Change to /Dashboard/:restaurantId 
-  {path: 'Waitless/Dashboard', component: DashboardComponent, pathMatch: 'full'}
+  // Change to /Dashboard/:restaurantId
+  {path: 'Waitless/:restaurantName/Dashboard', component: DashboardComponent, pathMatch: 'full'}
 
 ];
 

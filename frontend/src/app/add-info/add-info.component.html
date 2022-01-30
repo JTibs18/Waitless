@@ -49,7 +49,8 @@
 <form (submit)="onAdd(regForm)" #regForm="ngForm" >
   <p *ngFor="let x of labelText; let i = index" [attr.data-index]="i">
     <label [ngClass]= "x.st" class="labelText"  > {{x.label}}</label>
-    <textarea [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel]="locVal" [placeholder]="x.prompt" required ></textarea>
+    <input *ngIf="i == 2" [ngClass]="x.tbClass" class="promptText" type="email" [name]="x.inVar" #name="ngModel" [ngModel]="locVal" [placeholder]="x.prompt" required email >
+    <input *ngIf="i != 2" [ngClass]="x.tbClass" class="promptText" type="text" [name]="x.inVar" #name="ngModel" [ngModel]="locVal" [placeholder]="x.prompt" required >
   </p>
 
 <!--Needs to be a condition on this button to only go to create menu when a valid registration occurs. Otherwise that option should be disabled -->

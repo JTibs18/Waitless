@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
 const multer = require("multer");
 const path = require("path");
+const bcrypt = require("bcrypt");
 const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 var ObjectId = require('mongodb').ObjectID;
@@ -42,21 +43,16 @@ app.use((req, res ,next) => {
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
   next();
 });
+
 client.connect(err => {
   let db = client.db('Waitless');
   let collRestaurant = db.collection('RestaurantData');
   let collMenu = db.collection('MenuData');
-
-
+  collRestaurant.createIndex({"email": 1}, {unique:true}).catch(e => { console.log(e) })
 
 
   app.get('/Waitless',(req, res, next)=>{
-    res.send("Hello I am Waitless!");
-    let p = [ { name: 'Tasty Cotton Chair',
-        price: 444.00,
-        dimensions: { x: 2, y: 4, z: 5 },
-        stock: 21,
-        id: 0}]
+
     collRestaurant.insertMany(p, function(err,result){
       if (err) throw err;
     });
@@ -64,43 +60,18 @@ client.connect(err => {
   })
 
   app.get('/Waitless/Registration',(req, res, next)=>{
-    // res.send("Hello world from express!");
-    const regData = [
-      {
-        name: "Jess Bar",
-        location: "GTA",
-        email: "JessRest@gmail.com",
-        phoneNumber: 9057515554,
-        password: "xxxx",
-        password2: "xxxx"
-      },
-      {
-        name: "Kayla Krabs",
-        location: "GTA",
-        email: "KrayKay@gmail.com",
-        phoneNumber: 9057445554,
-        password: "xxxxJJJ",
-        password2: "xxxxJJJ"
-      }
-    ]
     collRestaurant.find().toArray(function(err, result){
       if (err) throw err;
 
       res.status(201).json({
-        message: "Post added successfully",
+        message: "Registration added successfully",
         data: result
       });
     })
-    //
-    // res.status(200).json({message: 'Data fetched successfully!',
-    //           data: regData
-    // });
-
   })
 
 
   app.get('/Waitless/Create_Menu',(req, res, next)=>{
-    // res.send("Hello world from express!");
 
     collMenu.find().toArray(function(err, result){
       if (err) throw err;
@@ -110,16 +81,10 @@ client.connect(err => {
         data: result
       });
     })
-    //
-    // res.status(200).json({message: 'Data fetched successfully!',
-    //           data: regData
-    // });
-
   })
 
   app.get('/Waitless/Create_Menu/Edit/:id',(req, res, next)=>{
-    // res.send("Hello world from express!");
-    console.log("OF INTEREST")
+
     collMenu.find({_id: {$eq: ObjectId(req.params.id)}}).toArray(function(err, result){
       if (err) throw err;
     // console.log(result, result[0].itemName, result[0]._id)
@@ -137,17 +102,31 @@ client.connect(err => {
    })
 
   app.post("/Waitless/Registration", (req, res, next) => {
-    const data = req.body;
-    console.log("HERE", data)
-    console.log(data);
-    collRestaurant.insertOne(data, function(err, result){
-      if (err) throw err;
-      // console.log("RESULTTT", data._id.toString())
-      res.status(201).json({
-        message: "Post added successfully",
-        dataId: data._id.toString()
+    bcrypt.hash(req.body.password, 10)
+      .then(hash=>{
+          const user = {
+          restaurantName: req.body.name,
+          location: req.body.location,
+          email: req.body.email,
+          phoneNumber: req.body.phoneNumber,
+          password: hash
+        }
+
+        collRestaurant.insertOne(user, function(err, result){
+          // if (err) console.log(err);
+          if(err){
+            res.status(500).json({
+              error: err
+            })
+          }
+          else{
+            res.status(201).json({
+              message: "Restaurant added successfully",
+              dataId: user._id.toString()
+            });
+          }
+          });
       });
-    })
 
   });
 
@@ -164,7 +143,6 @@ client.connect(err => {
       imagePath: imagePath
     }
 
-    console.log("HERE")
     console.log(data);
     collMenu.insertOne(data, function(err, result){
       if (err) throw err;

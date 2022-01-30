@@ -51,7 +51,7 @@ a{
 .box{
   position: absolute;
   width: 620px;
-  height: 420px;
+  height: 445px;
   left: 445px;
   top: 210px;
 
@@ -89,7 +89,7 @@ a{
   width: 545px;
   height: 50px;
   left: 35px;
-  top: 100px;
+  top: 110px;
 
   background: #FFFFFF;
   border: 2px solid #C4C4C4;
@@ -102,7 +102,7 @@ a{
   width: 328px;
   height: 64px;
   left: 150px;
-  top: 175px;
+  top: 205px;
 
   background: #8ED0EC;
   border: 1px solid #000000;
@@ -127,7 +127,7 @@ a{
   width: 287px;
   height: 36px;
   left: 170px;
-  top: 240px;
+  top: 260px;
 
   font-family: Roboto;
   font-style: normal;
@@ -144,7 +144,7 @@ hr{
   width: 550px;
   height: 0px;
   left: 35px;
-  top: 300px;
+  top: 320px;
   border: 2px solid #000000;
 }
 
@@ -153,7 +153,7 @@ hr{
   width: 328px;
   height: 69px;
   left: 150px;
-  top: 330px;
+  top: 350px;
 
   background: #AEECB8;
   border: 1px solid #000000;
@@ -171,4 +171,26 @@ hr{
   font-variant: small-caps;
 
   color: #000000;
+}
+
+.errorMsgEmail{
+  color:red;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  left: 36px;
+  top: 60px;
+}
+
+.errorMsgPassword{
+  color:red;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  left: 36px;
+  top: 145px;
 }
