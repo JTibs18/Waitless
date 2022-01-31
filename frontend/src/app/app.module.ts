@@ -12,6 +12,7 @@ import { AddInfoComponent } from './add-info/add-info.component';
 import { HeaderComponent } from './header/header.component';
 import { MiniMenuComponent } from './mini-menu/mini-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AddInfoComponent,
     HeaderComponent,
     MiniMenuComponent,
-    DashboardComponent
+    DashboardComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

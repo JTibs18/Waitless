@@ -5,7 +5,6 @@
 <ul class="header" style="list-style-type: none">
   <a routerLink="/Waitless"> <li class="title">Waitless</li></a>
   <a routerLink="/Waitless"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
-  <!-- <a routerLink="/Waitless/:restaurantName/Settings"> -->
-     <img *ngIf='mode === "dash"' class="settingsImg" src="assets/settings_icon.png" alt="Settings Icon">
+  <a routerLink="/Waitless/{{name}}/Settings"><img *ngIf='mode === "dash"' class="settingsImg" src="assets/settings_icon.png" alt="Settings Icon"></a>
   <p *ngIf='mode === "dash"' class="restName"> {{name}} </p>
 </ul>
