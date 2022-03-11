@@ -35,10 +35,59 @@ a{
   text-decoration: none;
 }
 
-img{
+.logoImg{
   position: absolute;
   width: 239px;
   height: 210px;
   left: -58px;
   top: -58px;
+}
+
+.settingsImg{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 1375px;
+  top: 5px;
+}
+
+.restName{
+  position: absolute;
+  width: 320px;
+  height: 58px;
+  left: 1100px;
+  top: -35px;
+
+  font-family: Dancing Script;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 58px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.logoutButt{
+  position: absolute;
+  width: 140px;
+  height: 58px;
+  left: 1225px;
+  top: -10px;
+
+  font-family: Dancing Script;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 58px;
+  /* identical to box height */
+  background: #B18FCF;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
 }

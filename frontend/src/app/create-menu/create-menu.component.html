@@ -2,9 +2,10 @@
 <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
-<a routerLink="/Waitless/Registration"><button class="backButton"> < </button> </a>
-<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<a *ngIf="mode=== 'create'" routerLink="/Waitless/Registration"><button class="backButton"> < </button> </a>
+<a *ngIf="mode=== 'edit'" routerLink="/Waitless/Create_Menu"><button class="backButton"> < </button> </a>
+
+ <!-- <input type="button" onclick="/Waitless/Registration"/ value"<">  -->
 
 <p class="createMenuLabel">Create Menu </p>
 <p *ngIf="mode=== 'create'"class="instruct">Please Enter A Menu Item </p>
@@ -21,8 +22,10 @@
 
   </p>
   <label class="uploadImageLabel"> Upload Image </label>
-  
-  <button type="button" class="uploadImageButt uploadButtonTxt" (click)="filePicker.click()">Upload</button>
+
+  <button *ngIf="mode=== 'create'" type="button" class="uploadImageButt uploadButtonTxt" (click)="filePicker.click()">Upload</button>
+  <button *ngIf="mode=== 'edit'" type="button" class="uploadImageButt uploadButtonTxt" (click)="filePicker.click()">Change Image</button>
+
   <input class="uploadImageButt"  type="file" #filePicker (change)="onImagePicked($event)">
   <div class="imagePreview" *ngIf="(imagePreview !== '' && imagePreview && form.get('image').valid) || form.get('image').valid">
     <img [src]="imagePicker === 'True' ? imagePreview : form.value.image " [alt]="form.get('image').invalid ? 'no image' : form.value.itemName " >

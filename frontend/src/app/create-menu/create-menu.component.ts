@@ -4,7 +4,7 @@ import { Menu } from '../create-menu/menu.model';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AddMenuService } from '../create-menu/AddMenu.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { mimeType } from './mime-type.validator';
 
 @Component({
@@ -67,7 +67,7 @@ export class CreateMenuComponent implements OnInit {
                                 'ingredients': this.data.ingredients,
                                 'price': this.data.price,
                                 'calories': this.data.calories,
-                                'image': this.data.imagePath 
+                                'image': this.data.imagePath
                               }
                               );
           });
