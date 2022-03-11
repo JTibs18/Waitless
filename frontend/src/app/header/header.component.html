@@ -7,4 +7,7 @@
   <a routerLink="/Waitless"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
   <a routerLink="/Waitless/{{name}}/Settings"><img *ngIf='mode === "dash"' class="settingsImg" src="assets/settings_icon.png" alt="Settings Icon"></a>
   <p *ngIf='mode === "dash"' class="restName"> {{name}} </p>
+  <button class="logoutButt" *ngIf="userIsAuthenticated == true" (click)="onLogout()"> Logout</button>
+  <button class="logoutButt" *ngIf="userIsAuthenticated == false" (click)="onLogout()"> BITCH</button>
+
 </ul>

@@ -71,3 +71,23 @@ a{
 
   color: #000000;
 }
+
+.logoutButt{
+  position: absolute;
+  width: 140px;
+  height: 58px;
+  left: 1225px;
+  top: -10px;
+
+  font-family: Dancing Script;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 58px;
+  /* identical to box height */
+  background: #B18FCF;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+}

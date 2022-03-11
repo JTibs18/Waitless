@@ -4,6 +4,8 @@ import { Rdata } from '../add-info/rData.model';
 import { NgForm } from '@angular/forms';
 import { AddInfoService } from '../add-info/add-info.service';
 import { Router } from '@angular/router';
+import { Subscription } from "rxjs";
+
 
 
 @Component({
@@ -13,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class AddInfoComponent implements OnInit {
   // @Output() addInfo = new EventEmitter<Rdata>();
+  private authListenerSubs: Subscription;
+  userIsAuthenticated = false;
 
   restInput = "Restaurant"
   locInput = "Location"
@@ -47,6 +51,9 @@ export class AddInfoComponent implements OnInit {
   constructor(public addInfoService: AddInfoService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+    });
   }
 
 
@@ -70,6 +77,8 @@ export class AddInfoComponent implements OnInit {
     this.addInfoService.addData(form.value.restVal, form.value.locVal, form.value.emailVal, form.value.pNumVal, form.value.pwVal, form.value.pw2Val)
 
     form.resetForm();
+
+    //NEEDS TO BE SOME ERROR HANDLING HERE SO THAT IF A USER ENTERS EMAIL THAT IS IN DB, DO NOT GO TO NEXT PAGE
     this.router.navigate(['/Waitless/Create_Menu'])
 
   }
