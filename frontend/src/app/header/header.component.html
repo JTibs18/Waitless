@@ -1,7 +1,13 @@
 <!-- <p>header works!</p> -->
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
 <ul class="header" style="list-style-type: none">
-  <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <a routerLink="/Waitless"> <li class="title">Waitless</li></a>
-  <img src="assets/WaitlessLogo.png" alt="Waitless Logo">
-  </ul>
+  <a routerLink="/Waitless"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
+  <a routerLink="/Waitless/{{name}}/Settings"><img *ngIf='mode === "dash"' class="settingsImg" src="assets/settings_icon.png" alt="Settings Icon"></a>
+  <p *ngIf='mode === "dash"' class="restName"> {{name}} </p>
+  <button class="logoutButt" *ngIf="userIsAuthenticated == true" (click)="onLogout()"> Logout</button>
+  <button class="logoutButt" *ngIf="userIsAuthenticated == false" (click)="onLogout()"> BITCH</button>
+
+</ul>

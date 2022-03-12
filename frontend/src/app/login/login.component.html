@@ -9,8 +9,12 @@
 <!-- <button>Registration</button> -->
 <div class='box'>
   <form (submit)="onSignIn(signInForm)" #signInForm="ngForm" >
-      <textarea [ngClass]="'prompt'"class="loginTextbox1" type="text"  [name]="'userName'" #name="ngModel" [ngModel]="userName" [placeholder]="'Email or Phone Number'"  required></textarea>
-      <textarea [ngClass]="'prompt'" class="loginTextbox2"  type="text" [name]="'password'" #name="ngModel" [ngModel]="password" [placeholder]="'Password'" required></textarea>
+      <textarea [ngClass]="'prompt'"class="loginTextbox1" type="email"  [name]="'userName'" #emailInput="ngModel" [ngModel]="userName" [placeholder]="'Email'"  required email></textarea>
+      <p class="errorMsgEmail" *ngIf="emailInput.invalid"> *PLEASE ENTER A VALID EMAIL </p>
+
+      <input [ngClass]="'prompt'" class="loginTextbox2"  type="password" [name]="'password'" #passwordInput="ngModel" [ngModel]="password" [placeholder]="'Password'" required>
+      <p class="errorMsgPassword" *ngIf="passwordInput.invalid"> *PLEASE ENTER A VALID PASSWORD </p>
+
       <button type="submit" class="loginButton loginText">Log In</button>
   <!-- This button goes to restaurant dashboard if it exists -->
   </form>
