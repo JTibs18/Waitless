@@ -46,7 +46,7 @@
 <!-- (form.get('itemName').invalid || form.get('price').invalid)  -->
 <p class="errorMsg" *ngIf="(form.get('itemName').invalid || form.get('description').invalid || form.get('ingredients').invalid || form.get('price').invalid || form.get('calories').invalid) && mode=='create'"> *PLEASE FILL IN ALL FIELDS </p>
 
-<button *ngIf="mode=== 'create'" class="saveButt saveAndExitText" type="submit">Save and Exit </button>
+<button *ngIf="mode=== 'create'" class="saveButt saveAndExitText" (click)="saveAndExit()" type="submit">Save and Exit </button>
 
 <!-- <p class="errorMsg" *ngIf="menuForm.invalid"> *PLEASE ENTER DATA IN FOR FIELDS </p> -->
 

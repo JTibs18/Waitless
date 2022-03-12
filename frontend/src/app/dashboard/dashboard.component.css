@@ -1,0 +1,154 @@
+ .dashTitle{
+  position: absolute;
+  height: 83px;
+  left: 572px;
+  top: 60px;
+
+  font-variant: small-caps;
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 83px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+
+  color: #000000;
+ }
+
+.tablesLabel{
+  position: absolute;
+  width: 111px;
+  height: 47px;
+  left: 119px;
+  top: 153px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 47px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.buttonLabel{
+  position: absolute;
+  width: 351px;
+  height: 47px;
+  left: 119px;
+  top: 486px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 47px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.inProgressButton{
+  position: absolute;
+  width: 265px;
+  height: 79px;
+  left: 119px;
+  top: 573px;
+
+  background: #8ED0EC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.completedButton{
+  position: absolute;
+  width: 265px;
+  height: 79px;
+  left: 438px;
+  top: 573px;
+
+  background: #AEECB8;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.paidButton{
+  position: absolute;
+  width: 265px;
+  height: 79px;
+  left: 763px;
+  top: 573px;
+
+  background: #FFBF81;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.pastOrdersButton{
+  position: absolute;
+  width: 265px;
+  height: 79px;
+  left: 1080px;
+  top: 573px;
+
+  background: #C2AEEC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+
+  color: #000000;
+}

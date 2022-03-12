@@ -22,6 +22,9 @@ const routes: Routes = [
   {path: 'Waitless/Create_Menu', component: CreateMenuComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/Create_Menu/Edit/:itemId', component: CreateMenuComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/Dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  // {path: 'Waihtless/:restaurantName/PastCompletedOrders', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  // {path: 'Waihtless/:restaurantName/PastCompletedOrders/:orderIdh', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  // {path: 'Waihtless/:restaurantName/:tablex/moreDetails', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/Settings', component: SettingsComponent, pathMatch: 'full', canActivate: [AuthGuard]}
 
 ];

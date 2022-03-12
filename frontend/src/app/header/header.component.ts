@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { AddInfoService } from "../add-info/add-info.service";
 import { Subscription } from "rxjs";
-
 
 @Component({
   selector: 'app-header',
@@ -33,14 +31,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }else{
           this.mode = 'default';
         }
+        });
 
         this.userIsAuthenticated = this.addInfoService.getIsAuth();
 
         this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
             this.userIsAuthenticated = isAuthenticated;
         });
-  });
-
   }
 
   onLogout(){

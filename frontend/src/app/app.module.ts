@@ -14,6 +14,7 @@ import { MiniMenuComponent } from './mini-menu/mini-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthInterceptor } from './add-info/auth-interceptor';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthInterceptor } from './add-info/auth-interceptor';
     HeaderComponent,
     MiniMenuComponent,
     DashboardComponent,
-    SettingsComponent
+    SettingsComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
