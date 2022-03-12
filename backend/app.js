@@ -138,6 +138,8 @@ client.connect(err => {
   });
 
   app.post("/Waitless/Registration", (req, res, next) => {
+    let id;
+
     bcrypt.hash(req.body.password, 10)
       .then(hash=>{
           const user = {
@@ -152,17 +154,28 @@ client.connect(err => {
           // if (err) console.log(err);
           if(err){
             console.log(err)
-            res.status(500).json({
+            return res.status(500).json({
               error: err
             })
           }
           else{
-            res.status(201).json({
-              message: "Restaurant added successfully",
+            id = result.insertedId;
+
+            const token = jwt.sign({email: req.body.email, userId: id}, 'secret_code_that_should_be_very_long_string', {expiresIn: '1h'}); //creates new token
+            console.log(token)
+            res.status(200).json({
+              token: token,
+              expiresIn: 3600,
               dataId: user._id.toString()
             });
           }
           });
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({
+          error: err
+        });
       });
 
   });

@@ -56,20 +56,25 @@ export class AddInfoService{
 
    addData(name: string, location: string, email: string, phoneNumber: number, password: string, password2: string){
      const data: Rdata = {name: name, location: location, email: email, phoneNumber: phoneNumber, password: password, password2: password2, id: null}
-       this.http.post<{message:string, dataId: string}>('http://localhost:3000/Waitless/Registration', data)
+       this.http.post<{token:string, expiresIn: number, dataId: string}>('http://localhost:3000/Waitless/Registration', data)
        .subscribe(responseData =>{
          const id = responseData.dataId;
-         console.log(responseData.message);
          data.id = id;
          this.dataList.push(data)
          this.dataUpdated.next([...this.dataList]);
 
-         // const token = responseData.token;
-         // this.token = token;
-         // if (token){
-         //   this.authStatusListener.next(true);
-         //   this.isAuthenticated = true;
-         // }
+         const token = responseData.token;
+         this.token = token;
+         if (token){
+           const expiresInDuration = responseData.expiresIn;
+           this.setAuthTimer(expiresInDuration);
+           this.authStatusListener.next(true);
+           this.isAuthenticated = true;
+           const now = new Date();
+           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+           this.saveAuthData(token, expirationDate)
+           this.router.navigate(['Waitless/Create_Menu']) //need to check db for actual restuarant name
+         }
        });
 
    }
@@ -97,6 +102,7 @@ export class AddInfoService{
 
     });
    }
+
 
    autoAuthUser(){
      const authInformation = this.getAuthData();

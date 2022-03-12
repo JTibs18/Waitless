@@ -50,7 +50,12 @@ export class AddInfoComponent implements OnInit {
 
   constructor(public addInfoService: AddInfoService, private router: Router) { }
 
+
+
   ngOnInit(): void {
+    this.userIsAuthenticated = this.addInfoService.getIsAuth();
+
+
     this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
     });
@@ -79,7 +84,7 @@ export class AddInfoComponent implements OnInit {
     form.resetForm();
 
     //NEEDS TO BE SOME ERROR HANDLING HERE SO THAT IF A USER ENTERS EMAIL THAT IS IN DB, DO NOT GO TO NEXT PAGE
-    this.router.navigate(['/Waitless/Create_Menu'])
+    // this.router.navigate(['/Waitless/Create_Menu'])
 
   }
 
