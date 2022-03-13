@@ -27,8 +27,29 @@
   <button class="createNewAccButt createNewAcc" (click)="onCreateNewAccount()">Create New Account</button>
 </div>
 
-<p>UserName: {{restName}}</p>
-<p>Password: {{pw}}</p>
+<div class ="errorBox" *ngIf='error'>
+<dialog  class="errorDialog" open>
+  <div class="header">
+    <h3 class="text">Login Error</h3>
+  </div>
+    <p *ngIf="errorMSG == ''" class="innerText"><label >Invalid credentials. Please try again </label></p>
+    <p *ngIf="errorMSG != ''" class="innerText"><label >{{errorMSG}}</label></p>
+
+      <button class="closeButt" (click)= "onClose()">Close</button>
+</dialog>
+</div>
+
+
+
+
+
+
+
+<!-- <p>UserName: {{restName}}</p>
+<p>Password: {{pw}}</p> DELETE-->
+
+
+
 
 
 <!-- <p> wtf</p> -->

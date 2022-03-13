@@ -3,11 +3,12 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <a *ngIf="mode=== 'create'" routerLink="/Waitless/Registration"><button class="backButton"> < </button> </a>
-<a *ngIf="mode=== 'edit'" routerLink="/Waitless/Create_Menu"><button class="backButton"> < </button> </a>
+<a *ngIf="mode=== 'edit'" routerLink="/Waitless/{{restaurantName}}/Create_Menu"><button class="backButton"> < </button> </a>
 
  <!-- <input type="button" onclick="/Waitless/Registration"/ value"<">  -->
 
 <p class="createMenuLabel">Create Menu </p>
+
 <p *ngIf="mode=== 'create'"class="instruct">Please Enter A Menu Item </p>
 <p *ngIf="mode=== 'edit'"class="instruct">Editing: {{data.itemName}} </p>
 <p class="menuTitle">User Menu Preview </p>

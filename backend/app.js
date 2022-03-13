@@ -50,7 +50,7 @@ client.connect(err => {
   let db = client.db('Waitless');
   let collRestaurant = db.collection('RestaurantData');
   let collMenu = db.collection('MenuData');
-  collRestaurant.createIndex({"email": 1}, {unique:true}).catch(e => { console.log(e) })
+  collRestaurant.createIndex({"email": 1}, {unique:true}).catch(e => { console.log(e)  })
 
 
   app.get('/Waitless',(req, res, next)=>{
@@ -73,7 +73,7 @@ client.connect(err => {
   })
 
 
-  app.get('/Waitless/Create_Menu', checkAuth, (req, res, next)=>{
+  app.get('/Waitless/:restaurantName/Create_Menu', checkAuth, (req, res, next)=>{
 
     collMenu.find({restaurantId: req.userData.userId}).toArray(function(err, result){
       if (err) throw err;
@@ -85,7 +85,7 @@ client.connect(err => {
     })
   })
 
-  app.get('/Waitless/Create_Menu/Edit/:id',checkAuth,(req, res, next)=>{
+  app.get('/Waitless/:restaurantName/Create_Menu/Edit/:id',checkAuth,(req, res, next)=>{
 
     collMenu.find({_id: {$eq: ObjectId(req.params.id)}}).toArray(function(err, result){
       if (err) throw err;
@@ -98,7 +98,7 @@ client.connect(err => {
       if(result){
         res.status(200).json(result[0]);
       }else{
-        res.status(404).json({messge: 'Id not found!'});
+        res.status(404).json({message: 'Id not found!'});
       }
     })
    })
@@ -109,7 +109,7 @@ client.connect(err => {
     .then(user => {
       if (!user) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Invalid authentication credentials!"
         });
       }
       fetchedUser = user
@@ -119,7 +119,7 @@ client.connect(err => {
     .then(result => {
       if (!result){
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Invalid authentication credentials!"
         });
       }
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'secret_code_that_should_be_very_long_string', {expiresIn: '1h'}); //creates new token
@@ -134,7 +134,7 @@ client.connect(err => {
     })
     .catch(err => {
       return res.status(401).json({
-      message: "Auth failed"
+      message: "Invalid authentication credentials!"
       });
     })
   });
@@ -157,7 +157,7 @@ client.connect(err => {
           if(err){
             console.log(err)
             return res.status(500).json({
-              error: err
+              message: "Registration failed. Email has already been registered. Please sign in or register with a new email"
             })
           }
           else{
@@ -178,13 +178,13 @@ client.connect(err => {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          error: err
-        });
+            message: "Invalid authentication credentials!"
+          });
       });
 
   });
 
-  app.post("/Waitless/Create_Menu", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+  app.post("/Waitless/:restaurantName/Create_Menu", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
     const url = req.protocol + '://' + req.get("host");
     const imagePath = url + "/images/" + req.file.filename;
 
@@ -210,7 +210,7 @@ client.connect(err => {
     })
   });
 
-  app.put("/Waitless/Create_Menu/Edit/:id", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+  app.put("/Waitless/:restaurantName/Create_Menu/Edit/:id", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
     let imagePath = req.body.imagePath;
     if (req.file){
       const url = req.protocol + "://" + req.get("host");
@@ -230,7 +230,7 @@ client.connect(err => {
       collMenu.updateOne({_id: ObjectId(req.params.id), restaurantId: req.userData.userId}, {$set: data}, function(err,result){
             if(err) throw err;
       console.log("THIS", result);
-      if (result.nModified > 0){
+      if (result.matchedCount > 0){
         res.status(200).json({message:"Update successful!"})
       }else{
         res.status(401).json({message:"Not authorized!"})
@@ -239,7 +239,7 @@ client.connect(err => {
     })
   });
 
-  app.delete("/Waitless/Create_Menu/:id", checkAuth, (req, res, next) => {
+  app.delete("/Waitless/:restaurantName/Create_Menu/:id", checkAuth, (req, res, next) => {
       console.log(req.params.id);
 
       collMenu.deleteOne({_id: ObjectId(req.params.id), restaurantId: req.userData.userId}, function(err, result){

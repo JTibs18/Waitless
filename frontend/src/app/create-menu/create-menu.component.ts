@@ -23,7 +23,7 @@ export class CreateMenuComponent implements OnInit {
   ){}
 
   menu = '';
-  mode = 'create';
+  mode = 'create'; 
   imagePicker = 'True';
   itemId: string;
   data: Menu;
@@ -55,6 +55,7 @@ export class CreateMenuComponent implements OnInit {
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
+
         if (paramMap.has('itemId')){
           this.mode = 'edit';
           this.imagePicker = 'False';
@@ -80,7 +81,8 @@ export class CreateMenuComponent implements OnInit {
                               }
                               );
           });
-        }else{
+        }
+        else{
           this.mode = 'create';
           this.itemId = null;
         }
@@ -115,7 +117,7 @@ export class CreateMenuComponent implements OnInit {
       this.addMenuService.addData(this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
     }else{
       this.addMenuService.updateItem(this.itemId, this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
-      this.router.navigate(['/Waitless/Create_Menu'])
+      this.router.navigate(['/Waitless/' + this.restaurantName + '/Create_Menu'])
     }
     // this.mode = 'create'
 

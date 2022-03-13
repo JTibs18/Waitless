@@ -77,7 +77,7 @@ export class AddInfoService{
            const now = new Date();
            const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
            this.saveAuthData(token, expirationDate, this.userId, this.restaurantName)
-           this.router.navigate(['Waitless/Create_Menu']) //need to check db for actual restuarant name
+           this.router.navigate(['Waitless/' + this.restaurantName +'/Create_Menu']) //need to check db for actual restuarant name
          }
        });
 

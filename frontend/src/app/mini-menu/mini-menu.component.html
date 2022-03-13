@@ -6,7 +6,7 @@
   <p *ngIf="dataList.length > 0 && userIsAuthenticated">
     <div class="separators" *ngFor="let x of dataList">
       <!-- <div class="separators" *ngIf="userId == x.restaurantId"> -->
-      <button class="editButton editButtonLabel" [routerLink]="['/Waitless/Create_Menu/Edit', x.id]">EDIT</button>
+      <button class="editButton editButtonLabel" routerLink='/Waitless/{{restaurantName}}/Create_Menu/Edit/{{x.id}}'>EDIT</button>
       <button class="deleteButton deleteText" (click)="onDelete(x.id)">DELETE</button>
 
       <label class="nameLabel"> {{x.itemName}}</label><br>

@@ -15,6 +15,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthInterceptor } from './add-info/auth-interceptor';
 import { TableComponent } from './table/table.component';
+import { ErrorInterceptor } from './error-interceptor';
+import { ErrorComponent } from './error/error.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { TableComponent } from './table/table.component';
     MiniMenuComponent,
     DashboardComponent,
     SettingsComponent,
-    TableComponent
+    TableComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { TableComponent } from './table/table.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+              {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }
