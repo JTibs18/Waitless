@@ -1,39 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
-const multer = require("multer");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const checkAuth = require("./middleware/check-auth")
+const extractFile = require("./middleware/image")
 const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 var ObjectId = require('mongodb').ObjectID;
 
 const app = express();
-const MIME_TYPE_MAP = {
-  'image/png': 'png',
-  'image/jpeg': 'jpeg',
-  'image/jpg': 'jpg'
-}
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const isValid = MIME_TYPE_MAP[file.mimetype];
-    let error = new Error('Invalid mime type');
-
-    if (isValid){
-      error = null;
-    }
-
-    cb(error, "backend/images");
-  },
-  filename: (req, file, cb) => {
-    const name = file.originalname.toLowerCase().split(' ').join("-");
-    const ext = MIME_TYPE_MAP[file.mimetype];
-    cb(null, name + "-" + Date.now() + '.' + ext);
-  }
-});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -50,7 +28,7 @@ client.connect(err => {
   let db = client.db('Waitless');
   let collRestaurant = db.collection('RestaurantData');
   let collMenu = db.collection('MenuData');
-  collRestaurant.createIndex({"email": 1}, {unique:true}).catch(e => { console.log(e) })
+  collRestaurant.createIndex({"email": 1}, {unique:true}).catch(e => { console.log(e)  })
 
 
   app.get('/Waitless',(req, res, next)=>{
@@ -73,9 +51,9 @@ client.connect(err => {
   })
 
 
-  app.get('/Waitless/Create_Menu', checkAuth, (req, res, next)=>{
+  app.get('/Waitless/:restaurantName/Create_Menu', checkAuth, (req, res, next)=>{
 
-    collMenu.find().toArray(function(err, result){
+    collMenu.find({restaurantId: req.userData.userId}).toArray(function(err, result){
       if (err) throw err;
 
       res.status(201).json({
@@ -85,7 +63,7 @@ client.connect(err => {
     })
   })
 
-  app.get('/Waitless/Create_Menu/Edit/:id',checkAuth,(req, res, next)=>{
+  app.get('/Waitless/:restaurantName/Create_Menu/Edit/:id',checkAuth,(req, res, next)=>{
 
     collMenu.find({_id: {$eq: ObjectId(req.params.id)}}).toArray(function(err, result){
       if (err) throw err;
@@ -98,7 +76,7 @@ client.connect(err => {
       if(result){
         res.status(200).json(result[0]);
       }else{
-        res.status(404).json({messge: 'Id not found!'});
+        res.status(404).json({message: 'Id not found!'});
       }
     })
    })
@@ -109,7 +87,7 @@ client.connect(err => {
     .then(user => {
       if (!user) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Invalid authentication credentials!"
         });
       }
       fetchedUser = user
@@ -119,25 +97,29 @@ client.connect(err => {
     .then(result => {
       if (!result){
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Invalid authentication credentials!"
         });
       }
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'secret_code_that_should_be_very_long_string', {expiresIn: '1h'}); //creates new token
-
+      console.log("THIS", fetchedUser)
       res.status(200).json({
         token: token,
-        expiresIn: 3600
+        expiresIn: 3600,
+        userId: fetchedUser._id,
+        restaurantName: fetchedUser.restaurantName
       });
 
     })
     .catch(err => {
       return res.status(401).json({
-      message: "Auth failed"
+      message: "Invalid authentication credentials!"
       });
     })
   });
 
   app.post("/Waitless/Registration", (req, res, next) => {
+    let id;
+
     bcrypt.hash(req.body.password, 10)
       .then(hash=>{
           const user = {
@@ -152,22 +134,29 @@ client.connect(err => {
           // if (err) console.log(err);
           if(err){
             console.log(err)
-            res.status(500).json({
-              error: err
+            return res.status(500).json({
+              message: "Registration failed. Email has already been registered. Please sign in or register with a new email"
             })
           }
           else{
-            res.status(201).json({
-              message: "Restaurant added successfully",
-              dataId: user._id.toString()
+            id = result.insertedId;
+
+            const token = jwt.sign({email: req.body.email, userId: id}, 'secret_code_that_should_be_very_long_string', {expiresIn: '1h'}); //creates new token
+            console.log(token)
+            res.status(200).json({
+              token: token,
+              expiresIn: 3600,
+              dataId: user._id.toString(),
+              userId: id,
+              restaurantName: req.body.name
             });
           }
-          });
-      });
+        })
+      })
 
   });
 
-  app.post("/Waitless/Create_Menu", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+  app.post("/Waitless/:restaurantName/Create_Menu", checkAuth, extractFile, (req, res, next) => {
     const url = req.protocol + '://' + req.get("host");
     const imagePath = url + "/images/" + req.file.filename;
 
@@ -177,7 +166,8 @@ client.connect(err => {
       ingredients: req.body.ingredients,
       price: req.body.price,
       calories: req.body.calories,
-      imagePath: imagePath
+      imagePath: imagePath,
+      restaurantId: req.userData.userId
     }
 
     console.log(data);
@@ -192,7 +182,7 @@ client.connect(err => {
     })
   });
 
-  app.put("/Waitless/Create_Menu/Edit/:id", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+  app.put("/Waitless/:restaurantName/Create_Menu/Edit/:id", checkAuth, extractFile, (req, res, next) => {
     let imagePath = req.body.imagePath;
     if (req.file){
       const url = req.protocol + "://" + req.get("host");
@@ -205,23 +195,33 @@ client.connect(err => {
       price: req.body.price,
       calories: req.body.calories,
       _id: ObjectId(req.params.id),
-      imagePath: imagePath
+      imagePath: imagePath,
+      restaurantId: req.userData.userId
     }
 
-      collMenu.updateOne({_id: ObjectId(req.params.id)}, {$set: data}, function(err,result){
+      collMenu.updateOne({_id: ObjectId(req.params.id), restaurantId: req.userData.userId}, {$set: data}, function(err,result){
             if(err) throw err;
-      console.log(result);
-      res.status(200).json({message:"Update successful!"})
+      console.log("THIS", result);
+      if (result.matchedCount > 0){
+        res.status(200).json({message:"Update successful!"})
+      }else{
+        res.status(401).json({message:"Not authorized!"})
+      }
 
     })
   });
 
-  app.delete("/Waitless/Create_Menu/:id", checkAuth, (req, res, next) => {
+  app.delete("/Waitless/:restaurantName/Create_Menu/:id", checkAuth, (req, res, next) => {
       console.log(req.params.id);
-      collMenu.deleteOne({_id: ObjectId(req.params.id)}, function(err, result){
+
+      collMenu.deleteOne({_id: ObjectId(req.params.id), restaurantId: req.userData.userId}, function(err, result){
         if (err) throw err;
+        if (result.deletedCount > 0){
+          res.status(200).json({message:"Deletion successful!"})
+        }else{
+          res.status(401).json({message:"Not authorized!"})
+        }
         console.log("Delete Response: ", result);
-        res.status(200).json({message:'Info deleted!'});
       })
   });
 

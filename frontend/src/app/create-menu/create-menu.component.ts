@@ -3,9 +3,10 @@ import { EventEmitter, Output } from '@angular/core';
 import { Menu } from '../create-menu/menu.model';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AddMenuService } from '../create-menu/AddMenu.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Router, RouterModule } from '@angular/router';
+import { AddInfoService } from "../add-info/add-info.service";
+import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { mimeType } from './mime-type.validator';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-create-menu',
@@ -13,6 +14,14 @@ import { mimeType } from './mime-type.validator';
   styleUrls: ['./create-menu.component.css']
 })
 export class CreateMenuComponent implements OnInit {
+
+  constructor(
+    public addMenuService: AddMenuService,
+    private addInfoService: AddInfoService,
+    public route: ActivatedRoute,
+    private router: Router
+  ){}
+  first = true;
   menu = '';
   mode = 'create';
   imagePicker = 'True';
@@ -20,6 +29,9 @@ export class CreateMenuComponent implements OnInit {
   data: Menu;
   form: FormGroup;
   imagePreview: string;
+  private authListenerSubs: Subscription;
+  userIsAuthenticated = false;
+  restaurantName = this.addInfoService.getRestaurantName();
 
   labelText = [{label: "Item Name", st: "label1", prompt: "Delicious dish name", tbClass: "t1", inVar: "itemName"},
                {label: "Description", st: "label2", prompt: "Fresh spinach, mushrooms, and hard-boiled egg", tbClass: "t2", inVar: "description"},
@@ -30,11 +42,7 @@ export class CreateMenuComponent implements OnInit {
 
   menuLabels = ["itemName", "description", "ingredients", "price" , "calories" ]
 
-  constructor(
-    public addMenuService: AddMenuService,
-    public route: ActivatedRoute,
-    private router: Router
-  ){}
+
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -47,6 +55,7 @@ export class CreateMenuComponent implements OnInit {
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
+
         if (paramMap.has('itemId')){
           this.mode = 'edit';
           this.imagePicker = 'False';
@@ -60,7 +69,8 @@ export class CreateMenuComponent implements OnInit {
               ingredients: menuData.ingredients,
               price: menuData.price,
               calories: menuData.calories,
-              imagePath: menuData.imagePath
+              imagePath: menuData.imagePath,
+              restaurantId: menuData.restaurantId
             };
             this.form.setValue({'itemName': this.data.itemName,
                                 'description': this.data.description,
@@ -71,10 +81,17 @@ export class CreateMenuComponent implements OnInit {
                               }
                               );
           });
-        }else{
+        }
+        else{
           this.mode = 'create';
           this.itemId = null;
         }
+    });
+
+    this.userIsAuthenticated = this.addInfoService.getIsAuth();
+
+    this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
     });
   }
 
@@ -95,12 +112,13 @@ export class CreateMenuComponent implements OnInit {
     if (this.form.invalid && this.mode ==='create'){
       return
     }
+    this.first = false;
 
     if (this.mode === 'create'){
       this.addMenuService.addData(this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
     }else{
       this.addMenuService.updateItem(this.itemId, this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
-      this.router.navigate(['/Waitless/Create_Menu'])
+      this.router.navigate(['/Waitless/' + this.restaurantName + '/Create_Menu'])
     }
     // this.mode = 'create'
 
@@ -108,6 +126,11 @@ export class CreateMenuComponent implements OnInit {
     // this.addMenuService.addData(form.value.itemName, form.value.des, form.value.ingred, form.value.price, form.value.cals)
 
     this.form.reset();
+  }
+
+  saveAndExit(){
+    this.router.navigate(['Waitless/'+ this.restaurantName + '/Dashboard']) //need to check db for actual restuarant name
+
   }
 
 }

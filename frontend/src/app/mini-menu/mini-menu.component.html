@@ -3,9 +3,10 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <div class="outerBox">
-  <p *ngIf="dataList.length > 0">
+  <p *ngIf="dataList.length > 0 && userIsAuthenticated">
     <div class="separators" *ngFor="let x of dataList">
-      <button class="editButton editButtonLabel" [routerLink]="['/Waitless/Create_Menu/Edit', x.id]">EDIT</button>
+      <!-- <div class="separators" *ngIf="userId == x.restaurantId"> -->
+      <button class="editButton editButtonLabel" routerLink='/Waitless/{{restaurantName}}/Create_Menu/Edit/{{x.id}}'>EDIT</button>
       <button class="deleteButton deleteText" (click)="onDelete(x.id)">DELETE</button>
 
       <label class="nameLabel"> {{x.itemName}}</label><br>
@@ -13,6 +14,7 @@
       <!-- <label > {{x.ingredients}}</label><br> -->
       <label class="priceLabel"> ${{x.price}}</label><br>
       <!-- <label> {{x.calories}}</label><br> -->
+      <!-- <div> -->
       </div>
 </div>
 <p *ngIf="dataList.length <= 0"> Empty inData!</p>

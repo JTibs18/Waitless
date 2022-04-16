@@ -14,22 +14,39 @@ import { Menu } from '../create-menu/menu.model'
 })
 export class MiniMenuComponent implements OnInit, OnDestroy{
   // @Input() inData: Rdata[] = [];
-  dataList: Menu[] = [];
   private addInfoSub: Subscription;
+  private authStatusSub :Subscription;
 
-  constructor( public AddMenuService: AddMenuService) {
-   }
+  dataList: Menu[] = [];
+  userId: string;
+  restaurantName: string;
+  userIsAuthenticated = false;
+
+
+  constructor( public AddMenuService: AddMenuService, public addInfoService: AddInfoService) {}
 
   ngOnInit() {
+    this.userId = this.addInfoService.getUserId();
+    this.restaurantName = this.addInfoService.getRestaurantName();
+    this.userIsAuthenticated = this.addInfoService.getIsAuth();
+    this.authStatusSub = this.addInfoService.getAuthStatiusListener()
+    .subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+      this.userId = this.addInfoService.getUserId();
+      this.restaurantName = this.addInfoService.getRestaurantName();
+    });
+
     // this.dataList = this.addInfoService.getData();
     this.AddMenuService.getData();
     this.addInfoSub = this.AddMenuService.getAddDataListener().subscribe((dataList: Menu[])=>{
       this.dataList = dataList;
+      console.log(this.dataList)
     });
   }
 
   ngOnDestroy(){
     this.addInfoSub.unsubscribe();
+    this.authStatusSub.unsubscribe();
   }
 
   onDelete(menuDataId: string){

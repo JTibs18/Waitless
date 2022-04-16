@@ -3,11 +3,12 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <a *ngIf="mode=== 'create'" routerLink="/Waitless/Registration"><button class="backButton"> < </button> </a>
-<a *ngIf="mode=== 'edit'" routerLink="/Waitless/Create_Menu"><button class="backButton"> < </button> </a>
+<a *ngIf="mode=== 'edit'" routerLink="/Waitless/{{restaurantName}}/Create_Menu"><button class="backButton"> < </button> </a>
 
  <!-- <input type="button" onclick="/Waitless/Registration"/ value"<">  -->
 
 <p class="createMenuLabel">Create Menu </p>
+
 <p *ngIf="mode=== 'create'"class="instruct">Please Enter A Menu Item </p>
 <p *ngIf="mode=== 'edit'"class="instruct">Editing: {{data.itemName}} </p>
 <p class="menuTitle">User Menu Preview </p>
@@ -21,7 +22,7 @@
     <textarea  class="promptText" [class]="x.tbClass" type="text" [formControlName]="x.inVar" [placeholder]="mode == 'edit' ? [data[menuLabels[i]]] :  [x.prompt]"  ></textarea>
 
   </p>
-  <label class="uploadImageLabel"> Upload Image </label>
+  <label class="uploadImageLabel"> Image </label>
 
   <button *ngIf="mode=== 'create'" type="button" class="uploadImageButt uploadButtonTxt" (click)="filePicker.click()">Upload</button>
   <button *ngIf="mode=== 'edit'" type="button" class="uploadImageButt uploadButtonTxt" (click)="filePicker.click()">Change Image</button>
@@ -46,7 +47,8 @@
 <!-- (form.get('itemName').invalid || form.get('price').invalid)  -->
 <p class="errorMsg" *ngIf="(form.get('itemName').invalid || form.get('description').invalid || form.get('ingredients').invalid || form.get('price').invalid || form.get('calories').invalid) && mode=='create'"> *PLEASE FILL IN ALL FIELDS </p>
 
-<button *ngIf="mode=== 'create'" class="saveButt saveAndExitText" type="submit">Save and Exit </button>
+<button *ngIf="(form.get('itemName').invalid && form.get('description').invalid && form.get('ingredients').invalid && form.get('price').invalid && form.get('calories').invalid) && mode=='create' " class="saveButt saveAndExitText" (click)="saveAndExit()" type="submit">Save and Exit </button>
+<!-- <button *ngIf="(form.get('itemName').invalid && form.get('description').invalid && form.get('ingredients').invalid && form.get('price').invalid && form.get('calories').invalid) && mode=='create'&& first == true" class="skipButt skipLabel" (click)="saveAndExit()" type="submit">Skip for Now </button> -->
 
 <!-- <p class="errorMsg" *ngIf="menuForm.invalid"> *PLEASE ENTER DATA IN FOR FIELDS </p> -->
 

@@ -1,13 +1,28 @@
 <!-- <p>header works!</p> -->
 <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Baskervville' rel='stylesheet' type='text/css'>
 
 <ul class="header" style="list-style-type: none">
   <a routerLink="/Waitless"> <li class="title">Waitless</li></a>
   <a routerLink="/Waitless"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
-  <a routerLink="/Waitless/{{name}}/Settings"><img *ngIf='mode === "dash"' class="settingsImg" src="assets/settings_icon.png" alt="Settings Icon"></a>
+  <a *ngIf= 'mode === "dash"' routerLink="/Waitless/{{name}}/Dashboard"> <li class="title">Waitless</li></a>
+  <a *ngIf= 'mode === "dash"' routerLink="/Waitless/{{name}}/Dashboard"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
+
+  <!-- <a routerLink="/Waitless/{{name}}/Settings"><img *ngIf='mode === "dash"' class="settingsImg" src="assets/settings_icon.png" alt="Settings Icon"></a> -->
+<a  class="space">
+  <div *ngIf='mode === "dash"' class="dropdown">
+   <button id='dropDownButt' class="dropbtn"><img src="assets/settings_icon.png" >
+   </button>
+   <div class="dropdown-content">
+     <a routerLink="/Waitless/{{name}}/Dashboard">Account Info</a> <!--T0 d0 -->
+     <a routerLink="/Waitless/{{name}}/Edit_Menu">Edit Menu</a>
+     <a routerLink="/Waitless">Print QR Codes</a><!--T0 d0 -->
+     <a (click)="onLogout()"> Logout</a>
+   </div>
+ </div>
+</a>
   <p *ngIf='mode === "dash"' class="restName"> {{name}} </p>
-  <button class="logoutButt" *ngIf="userIsAuthenticated == true" (click)="onLogout()"> Logout</button>
-  <button class="logoutButt" *ngIf="userIsAuthenticated == false" (click)="onLogout()"> BITCH</button>
+  <!-- <button class="logoutButt" *ngIf="userIsAuthenticated == true" (click)="onLogout()"> Logout</button> -->
 
 </ul>

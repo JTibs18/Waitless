@@ -1,0 +1,51 @@
+table{
+  position: absolute;
+  width: 1229px;
+  height: 250px;
+  left: 119px;
+  top: 240px;
+
+  background: #FFFFFF;
+}
+
+th, td, table{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.tableLabel{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 4px;
+  align-items: center;
+  text-align: center;
+  text-transform: capitalize;
+
+  color: #000000;
+}
+
+.radioButt{
+  width: 48px;
+  height: 50px; 
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.dataLabel{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+  /* background: #EAEC8E;  must change this dynamically*/
+}

@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   pw=''
   private authListenerSubs: Subscription;
   userIsAuthenticated = false;
+  error = false;
+  errorMSG = "";
 
 
   constructor(
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
-        // 
+        //
         // if (this.userIsAuthenticated == true) {
         //   // this.router.navigate(['Waitless/' + this.restName + '/Dashboard']) //need to check db for actual restuarant name
         // }
@@ -35,6 +37,8 @@ export class LoginComponent implements OnInit {
 
   onSignIn(form: NgForm){
     if(form.invalid){
+      this.error = true;
+      this.errorMSG = "Error: Invalid email and password. Please try entering your credentials again"; 
       return
     }
     this.restName = form.value.userName;
@@ -49,6 +53,10 @@ export class LoginComponent implements OnInit {
   onCreateNewAccount(){
     this.router.navigate(['/Waitless/Registration'])
 
+  }
+
+  onClose(){
+    this.error = false
   }
 
 }
