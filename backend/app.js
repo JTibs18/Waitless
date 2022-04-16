@@ -1,39 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
-const multer = require("multer");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const checkAuth = require("./middleware/check-auth")
+const extractFile = require("./middleware/image")
 const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 var ObjectId = require('mongodb').ObjectID;
 
 const app = express();
-const MIME_TYPE_MAP = {
-  'image/png': 'png',
-  'image/jpeg': 'jpeg',
-  'image/jpg': 'jpg'
-}
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const isValid = MIME_TYPE_MAP[file.mimetype];
-    let error = new Error('Invalid mime type');
-
-    if (isValid){
-      error = null;
-    }
-
-    cb(error, "backend/images");
-  },
-  filename: (req, file, cb) => {
-    const name = file.originalname.toLowerCase().split(' ').join("-");
-    const ext = MIME_TYPE_MAP[file.mimetype];
-    cb(null, name + "-" + Date.now() + '.' + ext);
-  }
-});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -173,18 +151,12 @@ client.connect(err => {
               restaurantName: req.body.name
             });
           }
-          });
+        })
       })
-      .catch(err => {
-        console.log(err)
-        res.status(500).json({
-            message: "Invalid authentication credentials!"
-          });
-      });
 
   });
 
-  app.post("/Waitless/:restaurantName/Create_Menu", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+  app.post("/Waitless/:restaurantName/Create_Menu", checkAuth, extractFile, (req, res, next) => {
     const url = req.protocol + '://' + req.get("host");
     const imagePath = url + "/images/" + req.file.filename;
 
@@ -210,7 +182,7 @@ client.connect(err => {
     })
   });
 
-  app.put("/Waitless/:restaurantName/Create_Menu/Edit/:id", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+  app.put("/Waitless/:restaurantName/Create_Menu/Edit/:id", checkAuth, extractFile, (req, res, next) => {
     let imagePath = req.body.imagePath;
     if (req.file){
       const url = req.protocol + "://" + req.get("host");

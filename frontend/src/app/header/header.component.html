@@ -15,13 +15,14 @@
    <button id='dropDownButt' class="dropbtn"><img src="assets/settings_icon.png" >
    </button>
    <div class="dropdown-content">
-     <a routerLink="/Waitless/{{name}}/Dashboard">Account</a> <!--T0 d0 -->
-     <a routerLink="/Waitless/{{name}}/Edit_Menu">Edit Menu</a> <!--T0 d0 -->
+     <a routerLink="/Waitless/{{name}}/Dashboard">Account Info</a> <!--T0 d0 -->
+     <a routerLink="/Waitless/{{name}}/Edit_Menu">Edit Menu</a>
      <a routerLink="/Waitless">Print QR Codes</a><!--T0 d0 -->
+     <a (click)="onLogout()"> Logout</a>
    </div>
  </div>
 </a>
   <p *ngIf='mode === "dash"' class="restName"> {{name}} </p>
-  <button class="logoutButt" *ngIf="userIsAuthenticated == true" (click)="onLogout()"> Logout</button>
+  <!-- <button class="logoutButt" *ngIf="userIsAuthenticated == true" (click)="onLogout()"> Logout</button> -->
 
 </ul>

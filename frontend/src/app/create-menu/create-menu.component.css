@@ -344,3 +344,28 @@ input[type="file"]{
   height: 100%;
   width: 100%;
 }
+
+.skipLabel{
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px; 
+  align-items: center;
+  text-align: center;
+
+  color: #005EB5;
+}
+
+.skipButt{
+  position: absolute;
+  width: 258px;
+  height: 65px;
+  left: 713px;
+  top: 800px;
+
+  background: #EBEBEB;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}

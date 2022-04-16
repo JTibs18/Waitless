@@ -74,7 +74,7 @@ export class AddInfoComponent implements OnInit {
 
   onAdd(form: NgForm){
     if (form.invalid){
-      return
+      return;
     }
     this.restInput =  "Entered Data: " + form.value.restVal;
 

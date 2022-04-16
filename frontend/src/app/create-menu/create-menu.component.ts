@@ -21,9 +21,9 @@ export class CreateMenuComponent implements OnInit {
     public route: ActivatedRoute,
     private router: Router
   ){}
-
+  first = true;
   menu = '';
-  mode = 'create'; 
+  mode = 'create';
   imagePicker = 'True';
   itemId: string;
   data: Menu;
@@ -112,6 +112,7 @@ export class CreateMenuComponent implements OnInit {
     if (this.form.invalid && this.mode ==='create'){
       return
     }
+    this.first = false;
 
     if (this.mode === 'create'){
       this.addMenuService.addData(this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
