@@ -1,3 +1,20 @@
 <app-header></app-header>
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <br><br><br><br>
-<p>settings works!</p>
+<!-- <p>General Account settings works!</p> -->
+<a routerLink="/Waitless/{{name}}/Dashboard"><button class="backButton"> < </button> </a>
+<h1 class="title">General Account Settings</h1>
+
+<div class = "box">
+  <form [formGroup]='form'(submit)="onSave()">
+    <p *ngFor="let x of labelText; let i = index" [attr.data-index]="i">
+
+      <label class="labelText" [class]="x.st"> {{x.label}}  </label>
+      <textarea  class="promptText" [class]="x.tbClass" type="text" [formControlName]="x.inVar" [placeholder]= "dummyData[x.inVar]"  ></textarea>
+
+    </p>
+
+<button type="submit" class="saveButt" >Save</button>
+</form>
+</div>

@@ -1,0 +1,229 @@
+input:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+   textarea:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+
+ .backButton{
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  left: 118px;
+  top: 115px;
+
+  background: #FFFFFF;
+  border-radius: 5px;
+}
+
+.title{
+ position: absolute;
+ height: 83px;
+ left: 390px;
+ top: 60px;
+
+ font-variant: small-caps;
+ font-family: 'Baskervville';
+ font-style: normal;
+ font-weight: 400;
+ font-size: 58px;
+ line-height: 83px;
+ /* identical to box height */
+
+ display: flex;
+ align-items: center;
+ text-align: center;
+ overflow: hidden;
+ white-space: nowrap;
+
+ color: #000000;
+}
+
+.t1 {
+  position: absolute;
+  width: 560px;
+  height: 35px;
+  left: 205px;
+  top: 15px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t2 {
+  position: absolute;
+  width: 560px;
+  height: 35px;
+  left: 205px;
+  top: 70px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t3{
+  position: absolute;
+  width: 560px;
+  height: 35px;
+  left: 205px;
+  top: 135px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t4{
+  position: absolute;
+  width: 560px;
+  height: 35px;
+  left: 205px;
+  top: 200px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t5{
+  position: absolute;
+  width: 560px;
+  height: 35px;
+  left: 205px;
+  top: 265px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.t6{
+  position: absolute;
+  width: 560px;
+  height: 35px;
+  left: 205px;
+  top: 330px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.labelText{
+  font-family: Baskervville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.promptText{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+}
+
+.label1{
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  left: 5px;
+  top: 35px;
+}
+
+.label2{
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  left: 5px;
+  top: 90px;
+}
+
+.label3{
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  left: 5px;
+  top: 155px;
+}
+
+.label4{
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  left: 5px;
+  top: 220px;
+}
+
+.label5{
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  left: 5px;
+  top: 285px;
+}
+
+.label6{
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  left: 5px;
+  top: 350px;
+}
+
+.box{
+  position: absolute;
+  width: 779px;
+  height: 380px;
+  left: 360px;
+  top: 200px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.saveButt{
+  position: absolute;
+  width: 265px;
+  height: 79px;
+  left: 515px;
+  top: 400px;
+
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
+  background: #AEECB8;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}

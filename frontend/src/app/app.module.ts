@@ -19,6 +19,7 @@ import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { OrderComponent } from './order/order.component';
 import { PastOrdersComponent } from './past-orders/past-orders.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PastOrdersComponent } from './past-orders/past-orders.component';
     TableComponent,
     ErrorComponent,
     OrderComponent,
-    PastOrdersComponent
+    PastOrdersComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,

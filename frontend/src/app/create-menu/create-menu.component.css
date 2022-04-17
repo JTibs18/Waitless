@@ -318,12 +318,8 @@ a{
   align-items: center;
   text-align: center;
   text-transform: capitalize;
-
-
   color: #FFFFFF;
 }
-
-
 
 input[type="file"]{
   visibility: hidden;
@@ -350,7 +346,7 @@ input[type="file"]{
   font-style: italic;
   font-weight: 400;
   font-size: 36px;
-  line-height: 42px; 
+  line-height: 42px;
   align-items: center;
   text-align: center;
 
