@@ -1,0 +1,122 @@
+<!-- <p>order works!</p> -->
+<app-header></app-header>
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<br><br><br><br>
+
+<a *ngIf="mode== 'Dashboard'" routerLink="/Waitless/{{name}}/Dashboard"><button class="backButton"> < </button> </a>
+<a *ngIf="mode== 'pastOrders'" routerLink="/Waitless/{{name}}/PastOrders"><button class="backButton"> < </button> </a>
+
+<h1 *ngIf="mode== 'Dashboard'" class="title">Table 1 (CHANGE THIS TO CUSTOM)</h1>
+<h1 *ngIf="mode== 'pastOrders'" class="title">Order 1 (CHANGE THIS TO CUSTOM)</h1>
+<h2 class="orderInformation">Order Information</h2>
+
+<div *ngIf="mode== 'Dashboard'" class = "orderInfoBox scrollable">
+  <table>
+    <tr>
+      <th class = "tableLabel"> Quantity </th>
+      <th class = "tableLabel"> Order </th>
+    </tr>
+    <tr>
+        <td class = "tableText">{{item.quantity}}</td>
+        <td class = "tableText">{{item.order}}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="mode== 'Dashboard'" class = "dietaryRestrictionsBox scrollable">
+  <table>
+    <tr>
+      <th class = "tableLabel"> Dietary Restrictions </th>
+    </tr>
+    <tr>
+        <td class = "tableText">{{item.dietaryRestrictions}}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="mode== 'Dashboard'" class ="specialNotes scrollable">
+  <table>
+    <tr>
+      <th class = "tableLabel"> Special Notes </th>
+    </tr>
+    <tr>
+        <td class = "tableText">{{item.specialNotes}}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="mode== 'Dashboard'" class ="miniBar">
+
+  <table>
+    <tr>
+      <th class = "tableLabel">Status</th>
+      <td class = "tableText">{{item.status}}</td>
+    </tr>
+    <tr>
+      <th class = "tableLabel">Tab</th>
+      <td class = "tableText">${{item.tab}}</td>
+    </tr>
+  </table>
+ </div>
+
+ <h2 *ngIf="mode== 'Dashboard'" class="updateOrderStatusLabel"> Update Order Status </h2>
+ <button *ngIf="mode== 'Dashboard'" class="inProgressButton"  (click)="updateProgress('In Progress')">In Progress</button>
+ <button *ngIf="mode== 'Dashboard'" class="completedButton" (click)="updateProgress('Complete')">Completed</button>
+ <button *ngIf="mode== 'Dashboard'" class="paidButton" (click)="updateProgress('Paid')">Paid</button>
+ <button *ngIf="mode== 'Dashboard'" class ="cancelButton">Cancel Order</button>
+
+
+
+ <div *ngIf="mode== 'pastOrders'" class = "orderInfoBox2 scrollable">
+   <table>
+     <tr>
+       <th class = "tableLabel"> Quantity </th>
+       <th class = "tableLabel"> Order </th>
+     </tr>
+     <tr>
+         <td class = "tableText">{{pastOrder.quantity}}</td>
+         <td class = "tableText">{{pastOrder.order}}</td>
+     </tr>
+   </table>
+ </div>
+
+ <div *ngIf="mode== 'pastOrders'" class = "dietaryRestrictionsBox2 scrollable">
+   <table>
+     <tr>
+       <th class = "tableLabel"> Dietary Restrictions </th>
+     </tr>
+     <tr>
+         <td class = "tableText">{{pastOrder.dietaryRestrictions}}</td>
+     </tr>
+   </table>
+ </div>
+
+ <div *ngIf="mode== 'pastOrders'" class ="specialNotes2 scrollable">
+   <table>
+     <tr>
+       <th class = "tableLabel"> Special Notes </th>
+     </tr>
+     <tr>
+         <td class = "tableText">{{pastOrder.specialNotes}}</td>
+     </tr>
+   </table>
+ </div>
+
+ <div *ngIf="mode== 'pastOrders'" class ="miniBar2">
+
+   <table>
+     <tr>
+       <th class = "tableLabel">Status</th>
+       <td class = "tableText">{{pastOrder.status}}</td>
+     </tr>
+     <tr>
+       <th class = "tableLabel">Tab</th>
+       <td class = "tableText">${{pastOrder.tab}}</td>
+     </tr>
+     <tr>
+       <th class = "tableLabel">Time</th>
+       <td class = "tableText">{{pastOrder.timeCompleted}}</td>
+     </tr>
+   </table>
+  </div>

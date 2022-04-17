@@ -17,6 +17,8 @@ import { AuthInterceptor } from './add-info/auth-interceptor';
 import { TableComponent } from './table/table.component';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { OrderComponent } from './order/order.component';
+import { PastOrdersComponent } from './past-orders/past-orders.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ErrorComponent } from './error/error.component';
     DashboardComponent,
     SettingsComponent,
     TableComponent,
-    ErrorComponent
+    ErrorComponent,
+    OrderComponent,
+    PastOrdersComponent
   ],
   imports: [
     BrowserModule,
