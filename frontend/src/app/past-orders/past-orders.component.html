@@ -1,0 +1,31 @@
+<!-- <p>past-orders works!</p> -->
+<app-header></app-header>
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<br><br><br><br>
+<a routerLink="/Waitless/{{name}}/Dashboard"><button class="backButton"> < </button> </a>
+<h1 class="title">Past Completed Orders</h1>
+
+<div class = "scrollable" >
+  <table>
+    <tr>
+      <th class = "tableLabel"> Order No. </th>
+      <th class = "tableLabel"> Total </th>
+      <th class = "tableLabel"> Quantity </th>
+      <th class = "tableLabel"> Order </th>
+      <th class = "tableLabel"> Table No. </th>
+      <th class = "tableLabel"> Time Completed</th>
+    </tr>
+    <ng-container *ngFor="let x of dummyData">
+    <tr>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.orderNum}}</button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">${{x.tab}}</button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.quantity}}</button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.order}}</button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.tableNo}}</button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.timeCompleted}}</button></td>
+    </tr>
+  </ng-container>
+
+  </table>
+</div>

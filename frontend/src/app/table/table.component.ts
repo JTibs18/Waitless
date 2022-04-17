@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-table',
@@ -6,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  locVal = ''
-  curVal = ''
-
+  locVal = '';
+  curVal = '';
+  name = '';
 
   dummyData = [{id: 1, tableNo: 1, order: "Burger", quantity: 1, dietaryRestrictions: "", specialNotes: "no cheese", status: "New", tab: 1.20 },
                {id: 2, tableNo: 2, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 },
@@ -16,9 +18,16 @@ export class TableComponent implements OnInit {
              {id: 4, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 },
            {id: 5, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 },
            {id: 6, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 }]
-  constructor() { }
+
+  constructor(
+    public route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+          this.name = paramMap.get('restaurantName');
+        });
   }
 
   onItemChange(value){
@@ -33,7 +42,5 @@ export class TableComponent implements OnInit {
         console.log(this.dummyData[i])
       }
     }
-    console.log("YES", this.curVal, state)
   }
-
 }

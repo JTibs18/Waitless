@@ -1,3 +1,14 @@
+a{
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.tableButton{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
 table{
 width: 100%;
 height: 100%;
@@ -11,7 +22,7 @@ td, table{
 th{
   position: sticky;
   height: 30px;
-  z-index: 2;
+  z-index: 1;
   top:0;
   border: 1px solid black;
   background-color: white;
@@ -130,6 +141,27 @@ th{
   line-height: 42px;
   align-items: center;
   text-align: center;
+
+  color: #000000;
+}
+
+.pastOrdersButton{
+  position: absolute;
+  width: 265px;
+  height: 79px;
+  left: 1080px;
+  top: 573px;
+
+  background: #C2AEEC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
 
   color: #000000;
 }

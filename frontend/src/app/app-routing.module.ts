@@ -5,8 +5,11 @@ import { RegistrationComponent } from './registration/registration.component';
 import { CreateMenuComponent } from './create-menu/create-menu.component';
 import { AddInfoComponent } from './add-info/add-info.component';
 import { MiniMenuComponent } from './mini-menu/mini-menu.component';
-import { DashboardComponent } from './dashboard/dashboard.component'
-import { SettingsComponent } from './settings/settings.component'
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SettingsComponent } from './settings/settings.component';
+import { OrderComponent } from './order/order.component';
+import { PastOrdersComponent } from './past-orders/past-orders.component';
+
 import { AuthGuard } from "./add-info/auth.guard";
 
 
@@ -24,10 +27,10 @@ const routes: Routes = [
   {path: 'Waitless/:restaurantName/Edit_Menu', component: CreateMenuComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/Edit_Menu/Edit/:itemId', component: CreateMenuComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/Dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-  // {path: 'Waihtless/:restaurantName/PastCompletedOrders', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-  // {path: 'Waihtless/:restaurantName/PastCompletedOrders/:orderIdh', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-  // {path: 'Waihtless/:restaurantName/:tablex/moreDetails', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-  {path: 'Waitless/:restaurantName/Settings', component: SettingsComponent, pathMatch: 'full', canActivate: [AuthGuard]}
+  {path: 'Waitless/:restaurantName/Settings', component: SettingsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: 'Waitless/:restaurantName/Dashboard/:orderId', component:OrderComponent , pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: 'Waitless/:restaurantName/PastOrders', component:PastOrdersComponent , pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: 'Waitless/:restaurantName/PastOrders/:pastOrderId', component:OrderComponent , pathMatch: 'full', canActivate: [AuthGuard]}
 
 ];
 
