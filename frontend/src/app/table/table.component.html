@@ -1,24 +1,56 @@
+<div class = "scrollable" >
+  <table>
+    <tr>
+      <th class = "tableLabel"> Select </th>
+      <th class = "tableLabel"> Table No. </th>
+      <th class = "tableLabel"> Order </th>
+      <th class = "tableLabel"> Quantity </th>
+      <th class = "tableLabel"> Dietary Restrictions </th>
+      <th class = "tableLabel"> Special Notes </th>
+      <th class = "tableLabel"> Status </th>
+      <th class = "tableLabel"> Tab </th>
+    </tr>
+    <ng-container *ngFor="let x of dummyData">
 
-<table>
-  <tr>
-    <th class = "tableLabel"> Select </th>
-    <th class = "tableLabel"> Table No. </th>
-    <th class = "tableLabel"> Order </th>
-    <th class = "tableLabel"> Quantity </th>
-    <th class = "tableLabel"> Dietary Restrictions </th>
-    <th class = "tableLabel"> Special Notes </th>
-    <th class = "tableLabel"> Status </th>
-    <th class = "tableLabel"> Tab </th>
-  </tr>
-  <tr>
-  <td><input class="radioButt" type="radio" id="NUM" name="select_table" value="TABLE ID"></td>
-  <td  class="dataLabel">1</td>
-  <td class="dataLabel" >Menu Item 2</td>
-  <td class="dataLabel">1</td>
-  <td class="dataLabel">Kosher</td>
-  <td class="dataLabel"></td>
-  <td class="dataLabel">NEW!</td>
-  <td class="dataLabel">$2.00</td>
-  </tr>
+    <tr *ngIf="x.status == 'New'" class="new">
+    <td ><input class="radioButt" type="radio" id="x.id" name="select_table" [value]="x.id" [(ngModel)]="locVal" (change)="onItemChange(x.id)"  ></td>
+        <td  class="dataLabel">{{x.tableNo}}</td>
+        <td  class="dataLabel">{{x.order}}</td>
+        <td  class="dataLabel">{{x.quantity}}</td>
+        <td  class="dataLabel">{{x.dietaryRestrictions}}</td>
+        <td  class="dataLabel">{{x.specialNotes}}</td>
+        <td  class="dataLabel">{{x.status}}</td>
+        <td  class="dataLabel">${{x.tab}}</td>
+    </tr>
 
-</table>
+
+    <tr *ngIf="x.status == 'In Progress'" class="inProgress">
+    <td ><input class="radioButt" type="radio" id="x.id" name="select_table" [value]="x.id" [(ngModel)]="locVal" (change)="onItemChange(x.id)"  ></td>
+        <td  class="dataLabel">{{x.tableNo}}</td>
+        <td  class="dataLabel">{{x.order}}</td>
+        <td  class="dataLabel">{{x.quantity}}</td>
+        <td  class="dataLabel">{{x.dietaryRestrictions}}</td>
+        <td  class="dataLabel">{{x.specialNotes}}</td>
+        <td  class="dataLabel">{{x.status}}</td>
+        <td  class="dataLabel">${{x.tab}}</td>
+    </tr>
+
+    <tr *ngIf="x.status == 'Complete'" class="completed">
+    <td ><input class="radioButt" type="radio" id="x.id" name="select_table" [value]="x.id" [(ngModel)]="locVal" (change)="onItemChange(x.id)"  ></td>
+        <td  class="dataLabel">{{x.tableNo}}</td>
+        <td  class="dataLabel">{{x.order}}</td>
+        <td  class="dataLabel">{{x.quantity}}</td>
+        <td  class="dataLabel">{{x.dietaryRestrictions}}</td>
+        <td  class="dataLabel">{{x.specialNotes}}</td>
+        <td  class="dataLabel">{{x.status}}</td>
+        <td  class="dataLabel">${{x.tab}}</td>
+    </tr>
+
+  </ng-container>
+
+  </table>
+</div>
+
+<button class="inProgressButton"  (click)="updateProgress('In Progress')">In Progress</button>
+<button class="completedButton" (click)="updateProgress('Complete')">Completed</button>
+<button class="paidButton" (click)="updateProgress('Paid')">Paid</button>

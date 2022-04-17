@@ -6,10 +6,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  dummyData = [{select: true, tableNo: 1, order: "Burger", quantity: 1, dietaryRestrictions: "", specialNotes: "no cheese", status: "New", tab: 1.20}]
+  locVal = ''
+  curVal = ''
+
+
+  dummyData = [{id: 1, tableNo: 1, order: "Burger", quantity: 1, dietaryRestrictions: "", specialNotes: "no cheese", status: "New", tab: 1.20 },
+               {id: 2, tableNo: 2, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 },
+             {id: 3, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 },
+             {id: 4, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 },
+           {id: 5, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 },
+           {id: 6, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10 }]
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onItemChange(value){
+    console.log("Value is: ", value);
+    this.curVal = value
+  }
+
+  updateProgress(state){
+    for (let i = 0; i< (this.dummyData.length); i++){
+      if (this.dummyData[i].id == Number(this.curVal)){
+        this.dummyData[i].status = state
+        console.log(this.dummyData[i])
+      }
+    }
+    console.log("YES", this.curVal, state)
   }
 
 }
