@@ -1,1 +1,36 @@
-<p>main-menu works!</p>
+<!-- <p>main-menu works!</p> -->
+<app-header></app-header>
+<br><br><br><br>
+<h1 class="title">{{restaurantName}} Menu</h1>
+<br><br><br><br>
+
+<div class="dietaryTagsBox horScroll">
+  <div *ngFor="let x of tagNames" class="tag">
+  <app-tags [tagName]="x"></app-tags>
+  </div>
+</div>
+
+<button class="dietaryRestrictionsButt dietaryRestrictionsText" routerLink="/Waitless/{{restaurantName}}/{{tableNumber}}/DietaryRestictions"> Add Dietary Restrictions</button>
+<h2 class="infoText">Click menu item for more information</h2>
+
+<div class="outerBox" *ngIf="dummyData.length > 0">
+    <div class="separators" *ngFor="let x of dummyData">
+      <button class="itemButtons" routerLink="/Waitless/{{restaurantName}}/{{tableNumber}}/{{x.itemId}}">
+
+      <label class="nameLabel"> {{x.itemName}}</label><br>
+      <label class="descriptionLabel"> {{x.description}}</label><br>
+      <label class="priceLabel"> ${{x.price}}</label><br>
+
+      </button>
+      <article class = "dropdown ">
+          <select (change)="selectChangeHandler($event, x.itemId)">
+            <ng-container *ngFor="let i of nums" >
+
+              <option value={{i}}>{{i}}</option>
+              </ng-container>
+          </select>
+          <!-- <p><span>You selected: </span><b>{{selectedDay}}</b></p> -->
+      </article>
+      </div>
+</div>
+<button class="submitOrderButt submitOrderText" routerLink="/Waitless/{{restaurantName}}/{{tableNumber}}/Order_Summary">Submit Order</button> <!-- this button needs to go to a function that sends the order to the dashboard, goes to confirmation step-->

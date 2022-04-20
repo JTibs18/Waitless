@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     public addInfoService: AddInfoService) { }
 
   ngOnInit(): void {
-    this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
+    this.authListenerSubs = this.addInfoService.getAuthStatusListener().subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
         //
         // if (this.userIsAuthenticated == true) {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   onSignIn(form: NgForm){
     if(form.invalid){
       this.error = true;
-      this.errorMSG = "Error: Invalid email and password. Please try entering your credentials again"; 
+      this.errorMSG = "Error: Invalid email and password. Please try entering your credentials again";
       return
     }
     this.restName = form.value.userName;

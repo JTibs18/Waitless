@@ -1,0 +1,93 @@
+Demo: 
+-create account button 
+-registration: 
+
+		Name: Jess Taurant 
+		Location: 101 Food Rd Ottawa ON 
+		Email: test@mail.com 
+		Phone Number: 999-222-1234
+		Password: 123
+
+- show mongodb encrypted
+- Add dishes in create menu 
+
+		Item Name: Pasta 
+		Description: Fresh spaghetti with Italian sauce
+		Ingredients: spagetti, tomato, garlic, basil, onion, carrots, celery 
+		Price: 18.99
+		Calories: 300
+
+
+		Item Name: Tacos
+		Description: Traditional Mexican tacos with a wheat tortilla. Choose either chicken, beef or tofu filling
+		Ingredients: wheat tortilla, avocado, beef, chicken, tofu, tomato, lettuce, onion, garlic
+		Price: 34.49
+		Calories: 600
+
+-show edit and delete in mini menu 
+-Save and exit 
+-Go to edit menu 
+
+		Item Name: Nachos
+		Description: Delicious chips with savoury toppings 
+		Ingredients: tortilla chips, avocado, lime, salsa, tomato, lettuce, sour cream
+		Price: 5.99
+		Calories: 250
+
+-click waitless to go back
+-logout 
+-go to register and click waitless to get back
+-sign back in 
+-go to edit menu and delete/edit something
+-copy dashboard url
+-logout
+-try to go to url 
+
+-register a new email, and show empty menu
+	-show that duplicate email jess@mail.com won't work
+
+
+-show error catching in login
+ 	-empty fields
+	-not detected as an email 
+	-wrong password 
+
+
+
+TALKING POINTS: 
+
+What is project
+-Waitless is a web application for restaurant menus
+Users are able to scan a QR code when seated at a restaurant to view the menu 
+Restaurants are able to recieve fulfill and keep track of orders and update their menu in real time, online. 
+
+
+Progress
+- completed log in, registration, create_menu (angular/express backend/db) 
+tell you a bit more about the milestones & ask you to observe these functionalities in this demo video 
+log in: 
+	- validating user input (email/password) 
+	- encrypting password 
+	- creating tokens 
+	- not allowing unvalidated users access protected routes 
+
+Registration : 
+	- no duplicate emails can be registered 
+
+create menu items: 
+	- each restaurant can only see the items they create 
+	- add/delete/edit works in ui/db 
+
+- halfway through restaurant dashboard view (dummy data being used in table), completed settings dropdown and edit menu
+
+
+
+Snags/difficulties/complications
+- difficulty with error handling / nice ui 
+- anticipating difficulties with websockets 
+
+Main Important Features still need to be implemented: 
+- Finish Restaurant Dashboard view 
+- patreon view 
+- Connect views with websockets 
+- implement logic to tag menu items with dietary restrictions

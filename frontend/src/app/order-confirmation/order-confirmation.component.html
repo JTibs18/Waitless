@@ -1,0 +1,9 @@
+<p>order-confirmation works!</p>
+<app-header></app-header>
+<h1 class="title">Order #{{orderNum}}</h1>
+
+<h2 class="subtitle">{{message1}}</h2>
+<h6 class="message">{{message2}}</h6>
+
+<button class="modifyButton" routerLink="/Waitless/{{restaurantName}}/{{tableNum}}/Order_Summary">Modify</button>
+<button class="cancelButton" routerLink="/Waitless/{{restaurantName}}/{{tableNum}}">Cancel</button>

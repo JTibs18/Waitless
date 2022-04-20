@@ -39,6 +39,31 @@ export class AddMenuService{
      // return [...this.dataList];
    }
 
+   getMenu(){
+     this.http
+      .get<{message: string, data: any}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() +'/Menu')
+      .pipe(map((menuData)=>{
+        return menuData.data.map(data =>{
+          return {
+            itemName: data.itemName,
+            description: data.description,
+            ingredients: data.ingredients,
+            price: data.price,
+            calories: data.calories,
+            id: data._id,
+            imagePath: data.imagePath,
+            restaurantId: data.restaurantId
+          };
+        });
+      }))
+      .subscribe((transformedData)=>{
+        this.dataList = transformedData;
+        this.dataUpdated.next([...this.dataList]);
+
+     });
+     // return [...this.dataList];
+   }
+
    getItem(id: string){
      // return{... this.dataList.find(i => i.id === id)};
      return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: string, calories: string, imagePath: string, restaurantId: string}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() + '/Create_Menu/Edit/'+ id);

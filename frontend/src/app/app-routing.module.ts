@@ -9,6 +9,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { OrderComponent } from './order/order.component';
 import { PastOrdersComponent } from './past-orders/past-orders.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { DietaryRestrictionsComponent } from './dietary-restrictions/dietary-restrictions.component';
+import { MenuItemComponent } from './menu-item/menu-item.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
+
 
 import { AuthGuard } from "./add-info/auth.guard";
 
@@ -30,7 +36,12 @@ const routes: Routes = [
   {path: 'Waitless/:restaurantName/Settings', component: SettingsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/Dashboard/:orderId', component:OrderComponent , pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/PastOrders', component:PastOrdersComponent , pathMatch: 'full', canActivate: [AuthGuard]},
-  {path: 'Waitless/:restaurantName/PastOrders/:pastOrderId', component:OrderComponent , pathMatch: 'full', canActivate: [AuthGuard]}
+  {path: 'Waitless/:restaurantName/PastOrders/:pastOrderId', component:OrderComponent , pathMatch: 'full', canActivate: [AuthGuard]},
+  {path: 'Waitless/:restaurantName/:tableNumber', component:MainMenuComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantName/:tableNumber/DietaryRestictions', component:DietaryRestrictionsComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantName/:tableNumber/Order_Confirmation', component:OrderConfirmationComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantName/:tableNumber/Order_Summary', component:OrderSummaryComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantName/:tableNumber/:menuItem', component:MenuItemComponent , pathMatch: 'full'} //ideally has authguard with qr code link
 
 ];
 

@@ -22,20 +22,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-        if (paramMap.has('restaurantName')){
+     this.route.paramMap.subscribe((paramMap: ParamMap) => {
+        if (paramMap.has('tableNumber')){
+          this.mode = 'default';
+        }else if(paramMap.has('restaurantName')){
           this.mode = 'dash';
           this.name = paramMap.get('restaurantName');
           this.name = this.name.replace("_", " ");
-
-        }else{
-          this.mode = 'default';
+        }
+        else{
+          this.mode='blank'
         }
         });
 
         this.userIsAuthenticated = this.addInfoService.getIsAuth();
 
-        this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
+        this.authListenerSubs = this.addInfoService.getAuthStatusListener().subscribe(isAuthenticated => {
             this.userIsAuthenticated = isAuthenticated;
         });
   }
