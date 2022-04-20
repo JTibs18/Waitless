@@ -15,7 +15,7 @@ export class DietaryRestrictionsComponent implements OnInit {
   listOfRestrictions = [];
   tagNames = []
 
-  dummyTagSuggestions = ["Vegan", "Dairy", "Keto", "Seafood", "Peanuts", "Almonds"]
+  dummyTagSuggestions = ["No Dairy", "No Egg", "No Meat", "No Fish", "No Shellfish", "No Gluten", "No Peanuts", "No Treenuts", "No Soy", "No Honey"]
   public static fireEvent: Subject<any> = new Subject();
 
   prompt = "Type a dietary restriction and press Enter";

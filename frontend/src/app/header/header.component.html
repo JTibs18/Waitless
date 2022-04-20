@@ -8,6 +8,7 @@
   <a routerLink="/Waitless"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
   <a *ngIf= 'mode === "dash"' routerLink="/Waitless/{{name}}/Dashboard"> <li class="title">Waitless</li></a>
   <a *ngIf= 'mode === "dash"' routerLink="/Waitless/{{name}}/Dashboard"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
+  <li *ngIf= 'mode === "default"' class="tableText">Table {{tableNum}}</li>
 
   <!-- <a routerLink="/Waitless/{{name}}/Settings"><img *ngIf='mode === "dash"' class="settingsImg" src="assets/settings_icon.png" alt="Settings Icon"></a> -->
 <a  class="space">

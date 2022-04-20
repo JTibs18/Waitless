@@ -93,7 +93,7 @@ input:focus {
   width: 305px;
   height: 37px;
   left: 37px;
-  top: 380px;
+  top: 360px;
 
   background: #FFFFFF;
   border: 1px solid #000000;
@@ -159,7 +159,12 @@ input:focus {
   overflow-x: auto;
 }
 
-.tag{
+.tag1{
+   flex: 0 0 auto;
+   width: 45%;
+}
+
+.tag2{
    flex: 0 0 auto;
    width: 35%;
 }

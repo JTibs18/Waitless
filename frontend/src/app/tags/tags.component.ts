@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router'
 import { Subscription } from "rxjs";
 import { MainMenuComponent } from '../main-menu/main-menu.component';
 import { DietaryRestrictionsComponent } from '../dietary-restrictions/dietary-restrictions.component';
+import { ConfirmDietaryTagsComponent } from '../confirm-dietary-tags/confirm-dietary-tags.component';
 
 @Component({
   selector: 'app-tags',
@@ -37,6 +38,9 @@ export class TagsComponent implements OnInit {
       MainMenuComponent.fireEvent.next({tagName: tagName, funct: "del"});
     }else if (this.mode == 'dr'){
       DietaryRestrictionsComponent.fireEvent.next({tagName: tagName, funct: "del"});
+    }else if (this.mode == 'dash'){
+      ConfirmDietaryTagsComponent.fireEvent.next({tagName: tagName, funct: "del"});
+
     }
 
   }
