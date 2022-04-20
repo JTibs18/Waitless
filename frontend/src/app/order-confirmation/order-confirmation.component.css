@@ -1,0 +1,98 @@
+.title{
+  position: absolute;
+  width: 241px;
+  height: 80px;
+  left: 65px;
+  top: 67px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 52px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.subtitle{
+  position: absolute;
+  width: 253px;
+  height: 171px;
+  left: 61px;
+  top: 174px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 47px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.message{
+  position: absolute;
+  width: 320px;
+  height: 59px;
+  left: 27px;
+  top: 408px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.modifyButton{
+  position: absolute;
+  width: 135px;
+  height: 50px;
+  left: 35px;
+  top: 530px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+
+  background: #8B9BA0;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  color: #000000;
+}
+
+.cancelButton{
+  position: absolute;
+  width: 135px;
+  height: 50px;
+  left: 200px;
+  top: 530px;
+
+  background: #E16A6A;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}

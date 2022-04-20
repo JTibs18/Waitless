@@ -1,0 +1,27 @@
+<!-- <p>menu-item works!</p> -->
+<app-header></app-header>
+<a routerLink="/Waitless/{{restaurantName}}/{{tableNum}}"><button class="backButton"> < </button> </a>
+<h1 class="title">{{dummyData.itemName}}</h1>
+<div class = "descriptionBox scrollable">
+  <p class="description">{{dummyData.description}}</p>
+</div>
+
+<div class = "imageBox">
+
+  </div>
+
+<h2 class="ingListTextTitle"> Ingredients List: </h2>
+
+<div class = "ingListBox scrollable">
+  <p class ="ingListText ">{{ dummyData.ingredients}}</p>
+</div>
+
+<p class="calText">({{dummyData.calories}} Cal)</p>
+
+<h2 class="QuantityText">Quantity</h2>
+
+<button class="plusButt" (click)='increaseQuant()'> + </button>
+<button class="minusButt" (click)='decreaseQuant()'> - </button>
+<label class="displayNum">{{dummyData.Quantity}}</label>
+
+<button class="saveChangesButt" routerLink="/Waitless/{{restaurantName}}/{{tableNum}}">Save Changes</button>

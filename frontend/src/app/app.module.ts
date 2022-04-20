@@ -20,6 +20,12 @@ import { ErrorComponent } from './error/error.component';
 import { OrderComponent } from './order/order.component';
 import { PastOrdersComponent } from './past-orders/past-orders.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { DietaryRestrictionsComponent } from './dietary-restrictions/dietary-restrictions.component';
+import { MenuItemComponent } from './menu-item/menu-item.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { TagsComponent } from './tags/tags.component';
+import { SuggestedTagsComponent } from './suggested-tags/suggested-tags.component';
 
 
 @NgModule({
@@ -37,7 +43,13 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     ErrorComponent,
     OrderComponent,
     PastOrdersComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    DietaryRestrictionsComponent,
+    MenuItemComponent,
+    OrderSummaryComponent,
+    OrderConfirmationComponent,
+    TagsComponent,
+    SuggestedTagsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,42 @@
+<!-- <p>order-summary works!</p> -->
+<app-header></app-header>
+<a routerLink="/Waitless/{{restaurantName}}/{{tableNum}}"><button class="backButton"> < </button> </a>
+<h1 class="title">{{restaurantName}}</h1>
+<h2 class="subheader">Order</h2>
+
+<hr class = "horizontalLine1">
+
+<div class = "scrollable" >
+  <table>
+    <ng-container *ngFor="let x of dummyData">
+
+    <tr>
+        <td class="menuText">{{x.quantity}}</td>
+        <td class="menuText">{{x.order}}</td>
+        <td class="menuText">${{x.tab}}</td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td class="dietaryRestrictionsText">{{x.dietaryRestrictions}}</td>
+        <td></td>
+    </tr>
+
+  </ng-container>
+  </table>
+</div>
+
+<hr class = "horizontalLine2">
+
+<p class="totalText"> Total: </p>
+<P class = "totalNumText"> ${{dummyTotal}}</P>
+
+<hr class = "horizontalLine3">
+
+<h2 class = "specialNotesText"> Special Notes </h2>
+
+<hr class = "horizontalLine4">
+
+<textarea class="specialNotesTextbox" type="text" [(ngModel)]="notes" [placeholder]="prompt"  ></textarea>
+
+<button class="confirmButt" routerLink="/Waitless/{{restaurantName}}/{{tableNum}}/Order_Confirmation"> Confirm </button>

@@ -63,6 +63,18 @@ client.connect(err => {
     })
   })
 
+  app.get('/Waitless/:restaurantName/Menu', (req, res, next)=>{
+    console.log("HWRE", res)
+    collMenu.find({restaurantId: req.userData.userId}).toArray(function(err, result){
+      if (err) throw err;
+
+      res.status(201).json({
+        message: "Item added successfully",
+        data: result
+      });
+    })
+  })
+
   app.get('/Waitless/:restaurantName/Create_Menu/Edit/:id',checkAuth,(req, res, next)=>{
 
     collMenu.find({_id: {$eq: ObjectId(req.params.id)}}).toArray(function(err, result){

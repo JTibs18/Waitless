@@ -24,7 +24,7 @@ export class AddInfoService{
      return this.token;
    }
 
-   getAuthStatiusListener(){
+   getAuthStatusListener(){
      return this.authStatusListener.asObservable();
    }
 

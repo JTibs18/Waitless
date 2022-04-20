@@ -1,0 +1,193 @@
+.title{
+  position: absolute;
+  width: 343px;
+  height: 39px;
+  left: 16px;
+  top: 75px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 39px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.dietaryRestrictionsButt{
+  position: absolute;
+  width: 305px;
+  height: 32px;
+  left: 37px;
+  top: 205px;
+
+  background: #8ED0EC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.dietaryRestrictionsText{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #000000;
+}
+
+.submitOrderButt{
+  position: absolute;
+  width: 305px;
+  height: 32px;
+  left: 37px;
+  top: 606px;
+
+  background: #AEECB8;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.submitOrderText{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  align-items: center;
+  text-align: center;
+  text-transform: capitalize;
+
+  color: #000000;
+}
+
+.infoText{
+  position: absolute;
+  width: 305px;
+  height: 30px;
+  left: 37px;
+  top: 240px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #000000;
+}
+
+.outerBox{
+  position: absolute;
+  width: 305px;
+  height: 300px;
+  left: 37px;
+  top: 290px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.separators{
+  position: relative;
+  height: 100px;
+  border-bottom: 1px solid #000000;
+  padding-left: 7px;
+  padding-top: 5px;
+}
+
+.nameLabel{
+  position:absolute;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  left:-60px;
+  width: 200px;
+  color: #000000;
+}
+
+.descriptionLabel{
+  position:absolute;
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 16px;
+  color: #000000;
+  display: inline-block;
+  width: 200px;
+  top: 35px;
+  left:0px;
+
+}
+
+.priceLabel{
+  position:absolute;
+  left: 230px;
+  top: 8px;
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.dropdown {
+  position:absolute;
+  left: 230px;
+  top: 10px;
+  margin-top: 20px;
+  padding: 2px;
+  float: left;
+  overflow: hidden;
+
+}
+
+
+select {
+  margin: 10px 0 25px;
+  height: 29px;
+  width:59px;
+
+  align-items: center;
+  text-align: center;
+
+  left: auto;
+   right: 0;
+}
+
+.itemButtons{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.dietaryTagsBox{
+  position: absolute;
+  width: 300px;
+  height: 50px;
+  left: 37px;
+  top: 145px;
+}
+
+.horScroll{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.tag{
+   flex: 0 0 auto;
+   width: 35%;
+}

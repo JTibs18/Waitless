@@ -90,7 +90,7 @@ export class CreateMenuComponent implements OnInit {
 
     this.userIsAuthenticated = this.addInfoService.getIsAuth();
 
-    this.authListenerSubs = this.addInfoService.getAuthStatiusListener().subscribe(isAuthenticated => {
+    this.authListenerSubs = this.addInfoService.getAuthStatusListener().subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
     });
   }
