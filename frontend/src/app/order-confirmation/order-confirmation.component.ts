@@ -9,7 +9,7 @@ import { Subscription } from "rxjs";
 })
 export class OrderConfirmationComponent implements OnInit {
   tableNum = '';
-  restaurantName = '';
+  restaurantID = '';
   orderNum = 1;
   message1 = "Thank you! Your order has been taken!"
   message2 = "Cancel will disappear when the kitchen begins preparing your order"
@@ -20,7 +20,7 @@ export class OrderConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-         this.restaurantName = paramMap.get('restaurantName');
+         this.restaurantID = paramMap.get('restaurantID');
          this.tableNum = paramMap.get('tableNumber');
         });
   }

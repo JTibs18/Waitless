@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { Subscription } from "rxjs";
+import { GetMenuService } from '../main-menu/getMenu.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -9,7 +10,9 @@ import { Subscription } from "rxjs";
 })
 export class OrderSummaryComponent implements OnInit {
   tableNum = '';
-  restaurantName = '';
+  restaurantID = '';
+  restaurantName: any;
+
   dummyData = [{id: 1, tableNo: 1, order: "Burger", quantity: 1, dietaryRestrictions: "", specialNotes: "no cheese", tab: 1.20 },
                {id: 2, tableNo: 2, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", tab: 11.10 },
              {id: 3, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", tab: 11.10 },
@@ -19,17 +22,23 @@ export class OrderSummaryComponent implements OnInit {
 dummyTotal = 420
 
 prompt = "Please enter any special notes for the kitchen"
-notes = ''; 
+notes = '';
 
   constructor(
     public route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public getMenuService: GetMenuService
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-         this.restaurantName = paramMap.get('restaurantName');
+         this.restaurantID = paramMap.get('restaurantID');
          this.tableNum = paramMap.get('tableNumber');
         });
+
+      this.getMenuService.getRestaurantName(this.restaurantID).subscribe(restName =>{
+        this.restaurantName = restName
+      console.log(restName)});
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { Subscription } from "rxjs";
+import { GetMenuService } from '../main-menu/getMenu.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -9,28 +10,49 @@ import { Subscription } from "rxjs";
 })
 export class MenuItemComponent implements OnInit {
   tableNum = '';
-  restaurantName = '';
-  dummyData = {itemId: 1, itemName: "Pasta", description: "Fresh Spaghetti with Sauce", ingredients: "Spagehetti pasta, tomato, garlic, basil, onion, carrot, celery", price: "18.99", calories: "300", imagePath:"http://localhost:3000/images/pasta-1647214491612.jpeg", restaurantId:"622e7f2ca4d77322ce8936ad", Quantity: 0}
+  restaurantID = '';
+  itemId = '';
+  data: any;
 
   constructor(
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public getMenuService: GetMenuService
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-         this.restaurantName = paramMap.get('restaurantName');
+         this.restaurantID = paramMap.get('restaurantID');
          this.tableNum = paramMap.get('tableNumber');
+         this.itemId = paramMap.get('menuItem');
+         console.log("ERE", this.itemId)
         });
+
+
+      this.getMenuService.getMenuItem(this.restaurantID, this.itemId).subscribe(item =>{
+        this.data = {
+          id: item._id,
+          itemName: item.itemName,
+          description: item.description,
+          ingredients: item.ingredients,
+          price: item.price,
+          calories: item.calories,
+          imagePath: item.imagePath,
+          restaurantId: item.restaurantId,
+          tags: item.tags,
+          Quantity: 0
+        }
+      console.log(this.data)});
+
   }
 
   increaseQuant(){
-    this.dummyData.Quantity += 1
+    this.data.Quantity += 1
   }
 
   decreaseQuant(){
-    if (this.dummyData.Quantity > 0){
-      this.dummyData.Quantity -= 1
+    if (this.data.Quantity > 0){
+      this.data.Quantity -= 1
     }
   }
 }

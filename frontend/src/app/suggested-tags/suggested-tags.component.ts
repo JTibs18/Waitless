@@ -42,6 +42,4 @@ export class SuggestedTagsComponent implements OnInit {
       ConfirmDietaryTagsComponent.fireEvent.next({tagName: tagName, funct: "add"});
     }
   }
-
-
 }

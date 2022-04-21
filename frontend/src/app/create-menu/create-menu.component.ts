@@ -37,7 +37,6 @@ export class CreateMenuComponent implements OnInit {
   imagePreview: string;
   dietaryTagsPopup = false;
 
-
   private authListenerSubs: Subscription;
   userIsAuthenticated = false;
   restaurantName = this.addInfoService.getRestaurantName();
@@ -51,8 +50,6 @@ export class CreateMenuComponent implements OnInit {
         ]
 
   menuLabels = ["itemName", "description", "ingredients", "price" , "calories" ]
-
-
 
   ngOnInit(): void {
     this.form = new FormGroup({
