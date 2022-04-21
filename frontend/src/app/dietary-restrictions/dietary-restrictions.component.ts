@@ -10,7 +10,7 @@ import { Subject } from 'rxjs/Subject';
 })
 export class DietaryRestrictionsComponent implements OnInit {
   tableNum = '';
-  restaurantName = '';
+  restaurantID = '';
   dietaryRestriction = '';
   listOfRestrictions = [];
   tagNames = []
@@ -35,7 +35,7 @@ export class DietaryRestrictionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-         this.restaurantName = paramMap.get('restaurantName');
+         this.restaurantID = paramMap.get('restaurantID');
          this.tableNum = paramMap.get('tableNumber');
         });
   }

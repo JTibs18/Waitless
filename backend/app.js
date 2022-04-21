@@ -57,19 +57,18 @@ client.connect(err => {
       if (err) throw err;
 
       res.status(201).json({
-        message: "Item added successfully",
+        message: "successful",
         data: result
       });
     })
   })
 
-  app.get('/Waitless/:restaurantName/Menu', (req, res, next)=>{
-    console.log("HWRE", res)
-    collMenu.find({restaurantId: req.userData.userId}).toArray(function(err, result){
+  app.get('/Waitless/:restaurantID/Menu', (req, res, next)=>{
+    collMenu.find({restaurantId: req.params.restaurantID}).toArray(function(err, result){
       if (err) throw err;
 
       res.status(201).json({
-        message: "Item added successfully",
+        message: "successful",
         data: result
       });
     })
@@ -92,6 +91,30 @@ client.connect(err => {
       }
     })
    })
+
+
+
+   app.get('/Waitless/:restaurantID/Name', (req, res, next)=>{
+     collRestaurant.find({_id: ObjectId(req.params.restaurantID)}).toArray(function(err, result){
+       if (err) throw err;
+
+       res.status(201).json(result[0].restaurantName);
+     })
+   })
+
+   app.get('/Waitless/:restaurantID/focusOneItem/:menuId',(req, res, next)=>{
+
+     collMenu.find({_id: {$eq: ObjectId(req.params.menuId)}}).toArray(function(err, result){
+       if (err) throw err;
+     result[0]._id = result[0]._id.toString()
+
+       if(result){
+         res.status(200).json(result[0]);
+       }else{
+         res.status(404).json({message: 'Id not found!'});
+       }
+     })
+    })
 
   app.post("/Waitless/Login", (req, res, next)=> {
     let fetchedUser;

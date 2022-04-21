@@ -1,6 +1,6 @@
 <!-- <p>order-summary works!</p> -->
 <app-header></app-header>
-<a routerLink="/Waitless/{{restaurantName}}/{{tableNum}}"><button class="backButton"> < </button> </a>
+<a routerLink="/Waitless/{{restaurantID}}/{{tableNum}}"><button class="backButton"> < </button> </a>
 <h1 class="title">{{restaurantName}}</h1>
 <h2 class="subheader">Order</h2>
 
@@ -39,4 +39,4 @@
 
 <textarea class="specialNotesTextbox" type="text" [(ngModel)]="notes" [placeholder]="prompt"  ></textarea>
 
-<button class="confirmButt" routerLink="/Waitless/{{restaurantName}}/{{tableNum}}/Order_Confirmation"> Confirm </button>
+<button class="confirmButt" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}/Order_Confirmation"> Confirm </button>

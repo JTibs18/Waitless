@@ -10,12 +10,12 @@
   </div>
 </div>
 
-<button class="dietaryRestrictionsButt dietaryRestrictionsText" routerLink="/Waitless/{{restaurantName}}/{{tableNumber}}/DietaryRestictions"> Add Dietary Restrictions</button>
+<button class="dietaryRestrictionsButt dietaryRestrictionsText" routerLink="/Waitless/{{restaurantID}}/{{tableNumber}}/DietaryRestictions"> Add Dietary Restrictions</button>
 <h2 class="infoText">Click menu item for more information</h2>
 
-<div class="outerBox" *ngIf="dummyData.length > 0">
-    <div class="separators" *ngFor="let x of dummyData">
-      <button class="itemButtons" routerLink="/Waitless/{{restaurantName}}/{{tableNumber}}/{{x.itemId}}">
+<div class="outerBox" *ngIf="dataList.length > 0">
+    <div class="separators" *ngFor="let x of dataList">
+      <button class="itemButtons" routerLink="/Waitless/{{restaurantID}}/{{tableNumber}}/{{x.id}}">
 
       <label class="nameLabel"> {{x.itemName}}</label><br>
       <label class="descriptionLabel"> {{x.description}}</label><br>
@@ -23,7 +23,7 @@
 
       </button>
       <article class = "dropdown ">
-          <select (change)="selectChangeHandler($event, x.itemId)">
+          <select (change)="selectChangeHandler($event, x.id)">
             <ng-container *ngFor="let i of nums" >
 
               <option value={{i}}>{{i}}</option>
@@ -33,4 +33,4 @@
       </article>
       </div>
 </div>
-<button class="submitOrderButt submitOrderText" routerLink="/Waitless/{{restaurantName}}/{{tableNumber}}/Order_Summary">Submit Order</button> <!-- this button needs to go to a function that sends the order to the dashboard, goes to confirmation step-->
+<button class="submitOrderButt submitOrderText" routerLink="/Waitless/{{restaurantID}}/{{tableNumber}}/Order_Summary">Submit Order</button> <!-- this button needs to go to a function that sends the order to the dashboard, goes to confirmation step-->

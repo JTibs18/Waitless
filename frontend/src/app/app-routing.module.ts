@@ -37,11 +37,11 @@ const routes: Routes = [
   {path: 'Waitless/:restaurantName/Dashboard/:orderId', component:OrderComponent , pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/PastOrders', component:PastOrdersComponent , pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'Waitless/:restaurantName/PastOrders/:pastOrderId', component:OrderComponent , pathMatch: 'full', canActivate: [AuthGuard]},
-  {path: 'Waitless/:restaurantName/:tableNumber', component:MainMenuComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
-  {path: 'Waitless/:restaurantName/:tableNumber/DietaryRestictions', component:DietaryRestrictionsComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
-  {path: 'Waitless/:restaurantName/:tableNumber/Order_Confirmation', component:OrderConfirmationComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
-  {path: 'Waitless/:restaurantName/:tableNumber/Order_Summary', component:OrderSummaryComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
-  {path: 'Waitless/:restaurantName/:tableNumber/:menuItem', component:MenuItemComponent , pathMatch: 'full'} //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantID/:tableNumber', component:MainMenuComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantID/:tableNumber/DietaryRestictions', component:DietaryRestrictionsComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantID/:tableNumber/Order_Confirmation', component:OrderConfirmationComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantID/:tableNumber/Order_Summary', component:OrderSummaryComponent , pathMatch: 'full'}, //ideally has authguard with qr code link
+  {path: 'Waitless/:restaurantID/:tableNumber/:menuItem', component:MenuItemComponent , pathMatch: 'full'} //ideally has authguard with qr code link
 
 ];
 
