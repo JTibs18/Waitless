@@ -19,7 +19,7 @@ export class MainMenuComponent implements OnInit {
 
   nums= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
   tableNumber = '';
-  tagNames = ["Vegan", "Dairy", "Keto", "Seafood", "Peanuts", "Almonds"]
+  dummyTagSuggestions = ["No Dairy", "No Egg", "No Meat", "No Fish", "No Shellfish", "No Gluten", "No Peanuts", "No Treenuts", "No Soy", "No Honey"]
 
   public static fireEvent: Subject<any> = new Subject();
 
@@ -52,6 +52,6 @@ export class MainMenuComponent implements OnInit {
 }
 
   remove(id) {
-      this.tagNames = this.tagNames.filter(name => name !== id);
+      this.dummyTagSuggestions = this.dummyTagSuggestions.filter(name => name !== id);
   }
 }

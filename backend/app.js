@@ -179,7 +179,8 @@ client.connect(err => {
       price: req.body.price,
       calories: req.body.calories,
       imagePath: imagePath,
-      restaurantId: req.userData.userId
+      restaurantId: req.userData.userId,
+      tags: req.body.tags
     }
 
     console.log(data);

@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   mode = '';
   name = '';
+  tableNum = '';
   private authListenerSubs: Subscription;
   userIsAuthenticated = false;
 
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
      this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (paramMap.has('tableNumber')){
           this.mode = 'default';
+          this.tableNum = paramMap.get('tableNumber'); 
         }else if(paramMap.has('restaurantName')){
           this.mode = 'dash';
           this.name = paramMap.get('restaurantName');

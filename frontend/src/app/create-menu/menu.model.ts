@@ -6,5 +6,6 @@ export interface Menu {
   calories: string;
   id: string;
   imagePath: string;
-  restaurantId: string; 
+  restaurantId: string;
+  tags: string[];
 }

@@ -1,0 +1,183 @@
+input:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+   }
+   textarea:focus {
+       outline: none !important;
+       border-color: #B18FCF;
+       box-shadow: 0 0 10px #B18FCF;
+       color: black;
+
+   }
+
+.title{
+  position: absolute;
+  width: 730px;
+  height: 124px;
+  left: 0px;
+  top: 0px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 50px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.subtitle{
+  position: absolute;
+  width: 730px;
+  height: 124px;
+  left: 0px;
+  top: 10px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.box{
+  position: absolute;
+  width: 730px;
+  height: 450px;
+  top: 190px;
+  left: 268px;
+  align-items: center;
+  position: fixed;
+  z-index:1;
+
+  background: #EBEBEB;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.dietaryTagsBox{
+  position: absolute;
+  width: 610px;
+  height: 50px;
+  left: 100px;
+  top: 210px;
+}
+
+.dietaryTagsBox2{
+  position: absolute;
+  width: 610px;
+  height: 50px;
+  left: 100px;
+  top: 320px;
+}
+
+.horScroll{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  align-items: center;
+
+}
+
+.tag1{
+   flex: 0 0 auto;
+   width: 21%;
+}
+
+.tag2{
+   flex: 0 0 auto;
+   width: 18%;
+}
+
+.inputBox{
+  position: absolute;
+  width: 539px;
+  height: 63px;
+  left: 100px;
+  top: 220px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.prompt{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+  padding-top: 15px;
+
+  color: #C4C4C4;
+}
+
+.tagHeader1{
+  position: absolute;
+  width: 255px;
+  height: 38px;
+  left: 100px;
+  top: 150px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+
+  color: #000000;
+}
+
+.tagHeader2{
+  position: absolute;
+  width: 255px;
+  height: 38px;
+  left: 100px;
+  top: 250px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+
+  color: #000000;
+}
+
+.saveButt{
+  position: absolute;
+  width: 165px;
+  height: 48px;
+  left: 545px;
+  top: 380px;
+
+  background: #8ED0EC;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}

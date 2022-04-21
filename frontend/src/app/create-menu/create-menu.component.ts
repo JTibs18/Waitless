@@ -7,6 +7,7 @@ import { AddInfoService } from "../add-info/add-info.service";
 import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { mimeType } from './mime-type.validator';
 import { Subscription } from "rxjs";
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-create-menu',
@@ -20,18 +21,27 @@ export class CreateMenuComponent implements OnInit {
     private addInfoService: AddInfoService,
     public route: ActivatedRoute,
     private router: Router
-  ){}
+  ){
+    CreateMenuComponent.fireEvent.subscribe(res=> {
+      this.completeSaveItem(res)
+      }); }
+
   first = true;
   menu = '';
   mode = 'create';
   imagePicker = 'True';
+  curItem: any;
   itemId: string;
   data: Menu;
   form: FormGroup;
   imagePreview: string;
+  dietaryTagsPopup = false;
+
+
   private authListenerSubs: Subscription;
   userIsAuthenticated = false;
   restaurantName = this.addInfoService.getRestaurantName();
+  public static fireEvent: Subject<any> = new Subject();
 
   labelText = [{label: "Item Name", st: "label1", prompt: "Delicious dish name", tbClass: "t1", inVar: "itemName"},
                {label: "Description", st: "label2", prompt: "Fresh spinach, mushrooms, and hard-boiled egg", tbClass: "t2", inVar: "description"},
@@ -70,7 +80,8 @@ export class CreateMenuComponent implements OnInit {
               price: menuData.price,
               calories: menuData.calories,
               imagePath: menuData.imagePath,
-              restaurantId: menuData.restaurantId
+              restaurantId: menuData.restaurantId,
+              tags: menuData.tags
             };
             this.form.setValue({'itemName': this.data.itemName,
                                 'description': this.data.description,
@@ -110,22 +121,39 @@ export class CreateMenuComponent implements OnInit {
 
   onSaveItem(){
     if (this.form.invalid && this.mode ==='create'){
+      // this.form.reset();
       return
     }
     this.first = false;
 
+
     if (this.mode === 'create'){
-      this.addMenuService.addData(this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
+      this.curItem = {itemName: this.form.value.itemName, description: this.form.value.description, ingredients: this.form.value.ingredients, price: this.form.value.price, calories: this.form.value.calories, image:this.form.value.image, tags:[] }
     }else{
-      this.addMenuService.updateItem(this.itemId, this.form.value.itemName, this.form.value.description, this.form.value.ingredients, this.form.value.price, this.form.value.calories, this.form.value.image)
-      this.router.navigate(['/Waitless/' + this.restaurantName + '/Create_Menu'])
+      this.curItem = {itemId: this.itemId, itemName: this.form.value.itemName, description: this.form.value.description, ingredients: this.form.value.ingredients, price: this.form.value.price, calories: this.form.value.calories, image:this.form.value.image, tags:[] }
     }
     // this.mode = 'create'
 
+    this.dietaryTagsPopup = true;
     // this.addInfoService.addData(form.value)
     // this.addMenuService.addData(form.value.itemName, form.value.des, form.value.ingred, form.value.price, form.value.cals)
 
     this.form.reset();
+  }
+
+  completeSaveItem(dietaryRestrictions){
+    this.dietaryTagsPopup = false;
+    console.log(dietaryRestrictions)
+
+    this.curItem.tags = dietaryRestrictions
+
+    if (this.mode === 'create'){
+      this.addMenuService.addData(this.curItem.itemName, this.curItem.description, this.curItem.ingredients, this.curItem.price, this.curItem.calories, this.curItem.image, this.curItem.tags)
+    }else{
+      this.addMenuService.updateItem(this.curItem.itemId, this.curItem.itemName, this.curItem.description, this.curItem.ingredients, this.curItem.price, this.curItem.calories, this.curItem.image, this.curItem.tags)
+      this.router.navigate(['/Waitless/' + this.restaurantName + '/Create_Menu'])
+    }
+
   }
 
   saveAndExit(){

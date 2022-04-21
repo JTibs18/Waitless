@@ -26,6 +26,8 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { TagsComponent } from './tags/tags.component';
 import { SuggestedTagsComponent } from './suggested-tags/suggested-tags.component';
+import { ConfirmDietaryTagsComponent } from './confirm-dietary-tags/confirm-dietary-tags.component';
+import { CancelConfirmationComponent } from './cancel-confirmation/cancel-confirmation.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { SuggestedTagsComponent } from './suggested-tags/suggested-tags.componen
     OrderSummaryComponent,
     OrderConfirmationComponent,
     TagsComponent,
-    SuggestedTagsComponent
+    SuggestedTagsComponent,
+    ConfirmDietaryTagsComponent,
+    CancelConfirmationComponent
   ],
   imports: [
     BrowserModule,
