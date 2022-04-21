@@ -64,7 +64,7 @@
  <button *ngIf="mode== 'Dashboard'" class="inProgressButton"  (click)="updateProgress('In Progress')">In Progress</button>
  <button *ngIf="mode== 'Dashboard'" class="completedButton" (click)="updateProgress('Complete')">Completed</button>
  <button *ngIf="mode== 'Dashboard'" class="paidButton" (click)="updateProgress('Paid')">Paid</button>
- <button *ngIf="mode== 'Dashboard'" class ="cancelButton">Cancel Order</button>
+ <button *ngIf="mode== 'Dashboard'" class ="cancelButton" (click)="cancel()">Cancel Order</button>
 
 
 
@@ -120,3 +120,6 @@
      </tr>
    </table>
   </div>
+
+<app-cancel-confirmation *ngIf="cancelClicked"  buttonClicked="cancel"></app-cancel-confirmation>
+<app-cancel-confirmation *ngIf="paidClicked"  buttonClicked="paid" [orderNum]="item.orderNum"></app-cancel-confirmation>

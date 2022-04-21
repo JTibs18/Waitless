@@ -54,3 +54,5 @@
 <button class="completedButton" (click)="updateProgress('Complete')">Completed</button>
 <button class="paidButton" (click)="updateProgress('Paid')">Paid</button>
 <button class="pastOrdersButton" routerLink="/Waitless/{{name}}/PastOrders">Past Orders</button>
+
+<app-cancel-confirmation *ngIf="paidClicked"  buttonClicked="paid" [orderNum]="orderNum"></app-cancel-confirmation>

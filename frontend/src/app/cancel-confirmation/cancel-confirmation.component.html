@@ -1,0 +1,21 @@
+<!-- <p>cancel-confirmation works!</p> -->
+<div *ngIf="buttonClicked == 'cancel'" class="box">
+  <button class = "xButt" (click)="close()">X</button>
+  <div class="innerBox">
+    <h1 class="title">Are you sure you want to cancel this order?</h1>
+    <h1 class="subTitle"> This action cannot be undone</h1>
+
+    <button class="keepButt keepButtText" (click)="no()">No, keep order </button>
+    <button class="cancelButt cancelButtText" (click)="yes()">Yes, cancel </button>
+    </div>
+  </div>
+
+  <div *ngIf="buttonClicked == 'paid'" class="box">
+    <button class = "xButt" (click)="close()">X</button>
+    <div class="innerBox2">
+      <h1 class="title">Please confirm that order #{{orderNum}} has been paid for</h1>
+
+      <button class="keepButt2 keepButtText" (click)="no()">Not paid yet </button>
+      <button class="cancelButt2" (click)="yes()">Yes, paid </button>
+      </div>
+    </div>

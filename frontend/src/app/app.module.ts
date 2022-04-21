@@ -27,6 +27,7 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { TagsComponent } from './tags/tags.component';
 import { SuggestedTagsComponent } from './suggested-tags/suggested-tags.component';
 import { ConfirmDietaryTagsComponent } from './confirm-dietary-tags/confirm-dietary-tags.component';
+import { CancelConfirmationComponent } from './cancel-confirmation/cancel-confirmation.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ConfirmDietaryTagsComponent } from './confirm-dietary-tags/confirm-diet
     OrderConfirmationComponent,
     TagsComponent,
     SuggestedTagsComponent,
-    ConfirmDietaryTagsComponent
+    ConfirmDietaryTagsComponent,
+    CancelConfirmationComponent
   ],
   imports: [
     BrowserModule,
