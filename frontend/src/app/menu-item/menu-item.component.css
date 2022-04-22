@@ -12,14 +12,14 @@
 .title{
   position: absolute;
   width: 270px;
-  height: 55px;
+  height: 50px;
   left: 75px;
-  top: 60px;
+  top: 70px;
 
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 36px;
   line-height: 56px;
   text-align: center;
 
@@ -29,9 +29,9 @@
 .descriptionBox{
   position: absolute;
   width: 270px;
-  height: 90px;
+  height: 80px;
   left: 75px;
-  top: 145px;
+  top: 150px;
 }
 
 .scrollable {
@@ -62,8 +62,14 @@
 
   background: #FFFDFD;
   border: 1px solid #000000;
-
+  box-sizing: border-box;
 }
+
+.imageBox img{
+  height: 100%;
+  width: 100%;
+}
+
 
 .ingListTextTitle{
   position: absolute;

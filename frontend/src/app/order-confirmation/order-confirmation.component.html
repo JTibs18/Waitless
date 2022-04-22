@@ -6,4 +6,4 @@
 <h6 class="message">{{message2}}</h6>
 
 <button class="modifyButton" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}/Order_Summary">Modify</button>
-<button class="cancelButton" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}">Cancel</button>
+<button class="cancelButton" (click)="reset()" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}">Cancel</button>

@@ -14,6 +14,8 @@ export class MenuItemComponent implements OnInit {
   itemId = '';
   curItem: any;
   quantity = 0;
+  dietaryRestrictions: any;
+  subscription: Subscription;
 
   constructor(
     public route: ActivatedRoute,
@@ -30,6 +32,7 @@ export class MenuItemComponent implements OnInit {
         });
 
       this.curItem = this.getMenuService.getItem(this.restaurantID, this.itemId)
+      this.subscription = this.getMenuService.curTags.subscribe(tags => this.dietaryRestrictions = tags)
 
       if(this.curItem.quantity){
         this.quantity = Number(this.curItem.quantity)
@@ -47,7 +50,7 @@ export class MenuItemComponent implements OnInit {
   }
 
   updateOrder(){
-    this.getMenuService.updateItemOrder(this.itemId, this.curItem.tags, this.quantity)
+    this.getMenuService.updateItemOrder(this.itemId, this.dietaryRestrictions, this.quantity)
   }
 
 }

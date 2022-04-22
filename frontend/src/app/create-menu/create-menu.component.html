@@ -30,6 +30,7 @@
   <input class="uploadImageButt"  type="file" #filePicker (change)="onImagePicked($event)">
   <div class="imagePreview" *ngIf="(imagePreview !== '' && imagePreview && form.get('image').valid) || form.get('image').valid">
     <img [src]="imagePicker === 'True' ? imagePreview : form.value.image " [alt]="form.get('image').invalid ? 'no image' : form.value.itemName " >
+    <!-- <p>{{form.value.image}}</p> -->
   </div>
 
   <!-- <div class="imagePreview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
