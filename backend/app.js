@@ -136,7 +136,6 @@ client.connect(err => {
         });
       }
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'secret_code_that_should_be_very_long_string', {expiresIn: '1h'}); //creates new token
-      console.log("THIS", fetchedUser)
       res.status(200).json({
         token: token,
         expiresIn: 3600,

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { Subscription } from "rxjs";
 import { Subject } from 'rxjs/Subject';
+import { GetMenuService } from '../main-menu/getMenu.service';
+
 
 @Component({
   selector: 'app-dietary-restrictions',
@@ -13,16 +15,19 @@ export class DietaryRestrictionsComponent implements OnInit {
   restaurantID = '';
   dietaryRestriction = '';
   listOfRestrictions = [];
-  tagNames = []
+  // tagNames = []
 
-  dummyTagSuggestions = ["No Dairy", "No Egg", "No Meat", "No Fish", "No Shellfish", "No Gluten", "No Peanuts", "No Treenuts", "No Soy", "No Honey"]
+  tagSuggestions = ["No Dairy", "No Egg", "No Meat", "No Fish", "No Shellfish", "No Gluten", "No Peanuts", "No Treenuts", "No Soy", "No Honey"]
   public static fireEvent: Subject<any> = new Subject();
 
   prompt = "Type a dietary restriction and press Enter";
+  tags: any;
+  subscription: Subscription;
 
   constructor(
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public getMenuService: GetMenuService
   ) {    DietaryRestrictionsComponent.fireEvent.subscribe(res=> {
           if (res.funct == "add"){
             this.add(res.tagName);
@@ -38,26 +43,35 @@ export class DietaryRestrictionsComponent implements OnInit {
          this.restaurantID = paramMap.get('restaurantID');
          this.tableNum = paramMap.get('tableNumber');
         });
+
+    this.subscription = this.getMenuService.curTags.subscribe(tags => this.tags = tags)
+
+    for (let i = 0; i < this.tags.length; i++){
+      this.removeFrom(this.tags[i])
+    }
   }
 
   remove(id) {
-      this.tagNames = this.tagNames.filter(name => name !== id);
+      this.tags = this.tags.filter(name => name !== id);
   }
 
   removeFrom(id) {
-      this.dummyTagSuggestions = this.dummyTagSuggestions.filter(name => name !== id);
+      this.tagSuggestions = this.tagSuggestions.filter(name => name !== id);
   }
 
   add(tagName){
-    if (!this.tagNames.includes(tagName)){
-      this.tagNames.push(tagName)
+    if (!this.tags.includes(tagName)){
+      this.tags.push(tagName)
     }
   }
 
   addTo(tagName){
-    if (!this.dummyTagSuggestions.includes(tagName)){
-      this.dummyTagSuggestions.push(tagName)
+    if (!this.tagSuggestions.includes(tagName)){
+      this.tagSuggestions.push(tagName)
     }
   }
 
+  updateTags(){
+    this.getMenuService.updateTags(this.tags)
+  }
 }

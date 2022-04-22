@@ -7,7 +7,7 @@
 <h2 class="tagHeader1"> Selected Dietary Tags:</h2>
 
 <div class="dietaryTagsBox horScroll">
-  <div *ngFor="let x of tagNames" class="tag1">
+  <div *ngFor="let x of tags" class="tag1">
   <app-tags [tagName]="x"></app-tags>
   </div>
 </div>
@@ -17,11 +17,11 @@
 <h2 class="tagHeader2"> Suggested Dietary Tags:</h2>
 
 <div class="dietaryTagsBox2 horScroll">
-  <div *ngFor="let x of dummyTagSuggestions" class="tag2">
+  <div *ngFor="let x of tagSuggestions" class="tag2">
   <app-suggested-tags [tagName]="x"></app-suggested-tags>
   </div>
 </div>
 
 
  <!-- <textarea class="inputBox prompt" type="text" [(ngModel)]="dietaryRestriction" [placeholder]="prompt"  ></textarea> -->
-<button class="saveButt" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}">Save </button>
+<button class="saveButt" (click)="updateTags()" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}">Save </button>

@@ -12,7 +12,8 @@ export class MenuItemComponent implements OnInit {
   tableNum = '';
   restaurantID = '';
   itemId = '';
-  data: any;
+  curItem: any;
+  quantity = 0;
 
   constructor(
     public route: ActivatedRoute,
@@ -25,34 +26,28 @@ export class MenuItemComponent implements OnInit {
          this.restaurantID = paramMap.get('restaurantID');
          this.tableNum = paramMap.get('tableNumber');
          this.itemId = paramMap.get('menuItem');
-         console.log("ERE", this.itemId)
+         // console.log("ERE", this.itemId)
         });
 
+      this.curItem = this.getMenuService.getItem(this.restaurantID, this.itemId)
 
-      this.getMenuService.getMenuItem(this.restaurantID, this.itemId).subscribe(item =>{
-        this.data = {
-          id: item._id,
-          itemName: item.itemName,
-          description: item.description,
-          ingredients: item.ingredients,
-          price: item.price,
-          calories: item.calories,
-          imagePath: item.imagePath,
-          restaurantId: item.restaurantId,
-          tags: item.tags,
-          Quantity: 0
-        }
-      console.log(this.data)});
-
+      if(this.curItem.quantity){
+        this.quantity = Number(this.curItem.quantity)
+      }
   }
 
   increaseQuant(){
-    this.data.Quantity += 1
+    this.quantity += 1
   }
 
   decreaseQuant(){
-    if (this.data.Quantity > 0){
-      this.data.Quantity -= 1
+    if (this.quantity > 0){
+        this.quantity -= 1
     }
   }
+
+  updateOrder(){
+    this.getMenuService.updateItemOrder(this.itemId, this.curItem.tags, this.quantity)
+  }
+
 }
