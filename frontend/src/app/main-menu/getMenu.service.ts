@@ -11,8 +11,8 @@ export class GetMenuService{
    private dataList: any[] = [];
    private dataUpdated = new Subject<any[]>();
 
-   private tags = new BehaviorSubject([]);
-   curTags = this.tags.asObservable();
+   private dietaryRestrictions = new BehaviorSubject([]);
+   curTags = this.dietaryRestrictions.asObservable();
 
    private mainMenuFirst = true;
 
@@ -65,20 +65,20 @@ export class GetMenuService{
      }
    }
 
-   updateTags(tag: any){
-     this.tags.next(tag)
+   updateDietaryRestrictions(dietaryRestriction: any){
+     this.dietaryRestrictions.next(dietaryRestriction)
    }
 
     getAddDataListener(){
         return this.dataUpdated.asObservable();
     }
 
-    updateItemOrder(dataId: string, tags:string[], quantity: Number ){
+    updateItemOrder(dataId: string, dietaryRestriction:string[], quantity: Number ){
       const updatedItem = [...this.dataList];
       const oldItemIndex = updatedItem.findIndex(i => i.id === dataId);
-      const data = {itemName: this.dataList[oldItemIndex].itemName, description: this.dataList[oldItemIndex].description, ingredients: this.dataList[oldItemIndex].ingredients, price: this.dataList[oldItemIndex].price, calories: this.dataList[oldItemIndex].calories, id: dataId, imagePath: this.dataList[oldItemIndex].imagePath, restaurantId: this.dataList[oldItemIndex].restaurantId, tags: tags, quantity: quantity};
+      const data = {itemName: this.dataList[oldItemIndex].itemName, description: this.dataList[oldItemIndex].description, ingredients: this.dataList[oldItemIndex].ingredients, price: this.dataList[oldItemIndex].price, calories: this.dataList[oldItemIndex].calories, id: dataId, imagePath: this.dataList[oldItemIndex].imagePath, restaurantId: this.dataList[oldItemIndex].restaurantId, tags: this.dataList[oldItemIndex].tags, quantity: quantity, dietaryRestrictions: dietaryRestriction};
 
-      const order = {itemName: this.dataList[oldItemIndex].itemName, price: this.dataList[oldItemIndex].price, id: dataId, restaurantId: this.dataList[oldItemIndex].restaurantId, tags: tags, quantity: quantity};
+      // const order = {itemName: this.dataList[oldItemIndex].itemName, price: this.dataList[oldItemIndex].price, id: dataId, restaurantId: this.dataList[oldItemIndex].restaurantId, tags: tags, quantity: quantity};
 
        updatedItem[oldItemIndex] = data;
        this.dataList = updatedItem;
@@ -91,12 +91,27 @@ export class GetMenuService{
       this.mainMenuFirst = false
     }
 
+    mainMenuReset(){
+      this.mainMenuFirst = true
+    }
+
     getMainMenuFirst(){
       return this.mainMenuFirst
     }
 
     getModifiedMenu(){
       return this.dataList
+    }
+
+    getOrderSummary(){
+      var order = [];
+
+      for (let i = 0; i < this.dataList.length; i++){
+        if(this.dataList[i].quantity && this.dataList[i].quantity > 0 ){
+          order.push(this.dataList[i])
+        }
+      }
+      return order
     }
 
 

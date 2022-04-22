@@ -21,7 +21,7 @@ export class DietaryRestrictionsComponent implements OnInit {
   public static fireEvent: Subject<any> = new Subject();
 
   prompt = "Type a dietary restriction and press Enter";
-  tags: any;
+  dietaryRestrictions: any;
   subscription: Subscription;
 
   constructor(
@@ -44,15 +44,15 @@ export class DietaryRestrictionsComponent implements OnInit {
          this.tableNum = paramMap.get('tableNumber');
         });
 
-    this.subscription = this.getMenuService.curTags.subscribe(tags => this.tags = tags)
+    this.subscription = this.getMenuService.curTags.subscribe(tags => this.dietaryRestrictions = tags)
 
-    for (let i = 0; i < this.tags.length; i++){
-      this.removeFrom(this.tags[i])
+    for (let i = 0; i < this.dietaryRestrictions.length; i++){
+      this.removeFrom(this.dietaryRestrictions[i])
     }
   }
 
   remove(id) {
-      this.tags = this.tags.filter(name => name !== id);
+      this.dietaryRestrictions = this.dietaryRestrictions.filter(name => name !== id);
   }
 
   removeFrom(id) {
@@ -60,8 +60,8 @@ export class DietaryRestrictionsComponent implements OnInit {
   }
 
   add(tagName){
-    if (!this.tags.includes(tagName)){
-      this.tags.push(tagName)
+    if (!this.dietaryRestrictions.includes(tagName)){
+      this.dietaryRestrictions.push(tagName)
     }
   }
 
@@ -71,7 +71,7 @@ export class DietaryRestrictionsComponent implements OnInit {
     }
   }
 
-  updateTags(){
-    this.getMenuService.updateTags(this.tags)
+  updateDietaryRestrictions(){
+    this.getMenuService.updateDietaryRestrictions(this.dietaryRestrictions)
   }
 }

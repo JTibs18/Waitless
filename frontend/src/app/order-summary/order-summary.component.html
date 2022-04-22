@@ -8,17 +8,17 @@
 
 <div class = "scrollable" >
   <table>
-    <ng-container *ngFor="let x of dummyData">
+    <ng-container *ngFor="let x of order">
 
     <tr>
         <td class="menuText">{{x.quantity}}</td>
-        <td class="menuText">{{x.order}}</td>
-        <td class="menuText">${{x.tab}}</td>
+        <td class="menuText">{{x.itemName}}</td>
+        <td class="menuText">${{x.price}}</td>
     </tr>
 
     <tr>
         <td></td>
-        <td class="dietaryRestrictionsText">{{x.dietaryRestrictions}}</td>
+        <td class="dietaryRestrictionsText">{{x.formatDietaryRestrictions}}</td>
         <td></td>
     </tr>
 
@@ -29,7 +29,7 @@
 <hr class = "horizontalLine2">
 
 <p class="totalText"> Total: </p>
-<P class = "totalNumText"> ${{dummyTotal}}</P>
+<P class = "totalNumText"> ${{total}}</P>
 
 <hr class = "horizontalLine3">
 
@@ -39,4 +39,4 @@
 
 <textarea class="specialNotesTextbox" type="text" [(ngModel)]="notes" [placeholder]="prompt"  ></textarea>
 
-<button class="confirmButt" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}/Order_Confirmation"> Confirm </button>
+<button class="confirmButt" (click)="notesTest()" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}/Order_Confirmation"> Confirm </button>
