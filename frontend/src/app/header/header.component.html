@@ -4,8 +4,10 @@
 <link href='http://fonts.googleapis.com/css?family=Baskervville' rel='stylesheet' type='text/css'>
 
 <ul class="header" style="list-style-type: none">
-  <a routerLink="/Waitless"> <li class="title">Waitless</li></a>
-  <a routerLink="/Waitless"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
+  <li class="title">Waitless</li>
+  <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo">
+  <a *ngIf='mode === "blank"' routerLink="/Waitless"> <li class="title">Waitless</li></a>
+  <a *ngIf='mode === "blank"' routerLink="/Waitless"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
   <a *ngIf= 'mode === "dash"' routerLink="/Waitless/{{name}}/Dashboard"> <li class="title">Waitless</li></a>
   <a *ngIf= 'mode === "dash"' routerLink="/Waitless/{{name}}/Dashboard"> <img class="logoImg" src="assets/WaitlessLogo.png" alt="Waitless Logo"></a>
   <li *ngIf= 'mode === "default"' class="tableText">Table {{tableNum}}</li>
