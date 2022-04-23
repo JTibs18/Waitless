@@ -6,12 +6,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const checkAuth = require("./middleware/check-auth")
 const extractFile = require("./middleware/image")
-const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 var ObjectId = require('mongodb').ObjectID;
 
-const app = express();
+const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -28,6 +28,8 @@ client.connect(err => {
   let db = client.db('Waitless');
   let collRestaurant = db.collection('RestaurantData');
   let collMenu = db.collection('MenuData');
+  let collOrder = db.collection('OrderData');
+
   collRestaurant.createIndex({"email": 1}, {unique:true}).catch(e => { console.log(e)  })
 
 
@@ -210,7 +212,7 @@ client.connect(err => {
       if (err) throw err;
       // console.log("RESULTTT", data._id.toString())
       res.status(201).json({
-        message: "Post added successfully",
+        message: "data added successfully",
         dataId: data._id.toString(),
         imagePath: url + "/images/" + req.file.filename
       });
@@ -243,6 +245,29 @@ client.connect(err => {
         res.status(401).json({message:"Not authorized!"})
       }
 
+    })
+  });
+
+  app.post("/Waitless/:restaurantName/Dashboard", checkAuth, (req, res, next) => {
+
+    const order = {
+      tableNum: req.body.tableNum,
+      order: req.body.order,
+      specialNotes: req.body.specialNotes,
+      tab: req.body.tab,
+      restuarantId: req.body.restaurantId
+    }
+
+    console.log(order);
+    collOrder.insertOne(order, function(err, result){
+      if (err) throw err;
+
+      console.log("ADDED TO DB")
+      // console.log("RESULTTT", data._id.toString())
+      res.status(201).json({
+        message: "Order added successfully",
+        orderId: order._id.toString()
+      });
     })
   });
 

@@ -8,7 +8,7 @@
 
 <div class = "scrollable" >
   <table>
-    <ng-container *ngFor="let x of order">
+    <ng-container *ngFor="let x of curOrder">
 
     <tr>
         <td class="menuText">{{x.quantity}}</td>
@@ -39,4 +39,4 @@
 
 <textarea class="specialNotesTextbox" type="text" [(ngModel)]="notes" [placeholder]="prompt"  ></textarea>
 
-<button class="confirmButt" (click)="notesTest()" routerLink="/Waitless/{{restaurantID}}/{{tableNum}}/Order_Confirmation"> Confirm </button>
+<button class="confirmButt" (click)="sendCurOrder()"> Confirm </button>

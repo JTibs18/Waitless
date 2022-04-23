@@ -1,14 +1,14 @@
 .title{
   position: absolute;
-  width: 241px;
+  width: 360px;
   height: 80px;
-  left: 65px;
+  left: 5px;
   top: 67px;
 
   font-family: 'Baskervville';
   font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
+  font-weight: 400px;
+  font-size: 36px;
   line-height: 52px;
   align-items: center;
   text-align: center;
@@ -16,17 +16,36 @@
   color: #000000;
 }
 
-.subtitle{
+.title2{
   position: absolute;
-  width: 253px;
-  height: 171px;
-  left: 61px;
-  top: 174px;
+  width: 360px;
+  height: 80px;
+  left: 5px;
+  top: 110px;
 
   font-family: 'Baskervville';
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 30px;
+  line-height: 52px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+
+.subtitle{
+  position: absolute;
+  width: 360px;
+  height: 171px;
+  left: 5px;
+  top: 260px;
+
+  font-family: 'Baskervville';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
   line-height: 47px;
   align-items: center;
   text-align: center;

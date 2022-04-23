@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
-import { Subscription } from "rxjs";
+import { Subscription, BehaviorSubject, Observable } from "rxjs";
 import { Subject } from 'rxjs/Subject';
+import { WebsocketService } from '../order-summary/websocket-service.service';
+import { OrderModel } from '../order-summary/orderModel';
+import { AddMenuService } from '../create-menu/AddMenu.service'
 
 @Component({
   selector: 'app-table',
@@ -9,11 +12,27 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+
+  constructor(
+    public route: ActivatedRoute,
+    private router: Router,
+    private websocketService: WebsocketService,
+    public addMenuService: AddMenuService
+  ) {
+    TableComponent.fireEvent.subscribe(res=> {
+      this.close(res)
+      });
+
+    }
+    orderList: string[] = [];
+
   locVal = '';
   curVal = '';
   name = '';
   paidClicked = false;
   orderNum = 0;
+  curOrderList: any[];
+  oid: any[];
 
 
   dummyData = [{id: 1, tableNo: 1, order: "Burger", quantity: 1, dietaryRestrictions: "", specialNotes: "no cheese", status: "New", tab: 1.20,  orderNum: 1 },
@@ -25,18 +44,29 @@ export class TableComponent implements OnInit {
 
   public static fireEvent: Subject<any> = new Subject();
 
-  constructor(
-    public route: ActivatedRoute,
-    private router: Router
-  ) {
-    TableComponent.fireEvent.subscribe(res=> {
-      this.close(res)
-      });}
-
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
           this.name = paramMap.get('restaurantName');
         });
+
+        this.websocketService.getNewOrder().subscribe((order: any) => {
+        this.orderList.push(order);
+        this.addMenuService.addOrder(order.tableNum, order.order, order.specialNotes, order.tab, order.restaurantId)
+
+        this.addMenuService.getCurOrder().subscribe(oList =>{
+          this.curOrderList = oList;
+          console.log(this.curOrderList)
+          console.log("OOP", oList[0].id)
+
+          this.oid = this.addMenuService.getCurrentOID()
+          console.log("OID", this.oid)
+          this.sendRec(this.oid)
+        });
+
+
+      })
+
+
   }
 
   onItemChange(value){
@@ -51,7 +81,7 @@ export class TableComponent implements OnInit {
         }else if (this.dummyData[i].id == Number(this.curVal)){
           this.orderNum = this.dummyData[i].orderNum
           this.paidClicked = true;
-          
+
         }
       }
   }
@@ -66,6 +96,10 @@ export class TableComponent implements OnInit {
     }
 
     this.paidClicked = false;
+  }
+
+  sendRec(data) {
+    this.websocketService.sendRec(data);
   }
 
 }

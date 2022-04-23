@@ -1,4 +1,6 @@
 import { Menu } from './menu.model'
+import { OrderModel } from '../order-summary/orderModel'
+
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
@@ -11,6 +13,11 @@ import { AddInfoService } from "../add-info/add-info.service";
 export class AddMenuService{
    private dataList: Menu[] = [];
    private dataUpdated = new Subject<any[]>();
+
+   private orderList: any[] = [];
+   private orderUpdated = new Subject<any[]>();
+
+   private currentOID: any;
 
    constructor(private http: HttpClient, private addInfoService: AddInfoService){}
 
@@ -112,5 +119,42 @@ export class AddMenuService{
           this.dataUpdated.next([...this.dataList]);
         });
    }
+
+   addOrder(tableNum: string, order: any[], specialNotes: string, tab:Number, restaurantId:string ){
+     let orderData: OrderModel;
+
+    if(order){
+      orderData = {
+        tableNum: tableNum,
+        order: order,
+        specialNotes: specialNotes,
+        tab: tab,
+        restaurantId: restaurantId
+      }
+
+      this.http
+       .post<{message:string, orderId: string}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() +'/Dashboard', orderData)
+        .subscribe(responseData =>{
+          const response =  {id: responseData.orderId, tableNum: tableNum, order: order, specialNotes: specialNotes, tab: tab}
+          // const id = responseData.dataId;
+          // console.log(responseData.message);
+          // data.id = id;
+          this.currentOID = {id: response.id, table: response.tableNum}
+          this.orderList.push(response)
+          this.orderUpdated.next([...this.orderList]);
+
+       });
+    }
+
+   }
+
+   getCurOrder(){
+     return this.orderUpdated
+   }
+
+   getCurrentOID(){
+     return this.currentOID
+   }
+
 
 }
