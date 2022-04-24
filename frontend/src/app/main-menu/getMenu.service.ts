@@ -122,5 +122,5 @@ export class GetMenuService{
 
     getOID(){
       return this.currentOID
-    } 
+    }
  }

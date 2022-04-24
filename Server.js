@@ -30,4 +30,8 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('disconnected!');
   });
+
+  socket.on('forceDisconnect', function(){
+    socket.disconnect();
+});
 });

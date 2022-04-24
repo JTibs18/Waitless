@@ -46,6 +46,7 @@ th{
  height: 83px;
  left: 390px;
  top: 60px;
+ width: 800px; 
 
  font-variant: small-caps;
  font-family: 'Baskervville';
@@ -55,8 +56,6 @@ th{
  line-height: 83px;
  /* identical to box height */
 
- display: flex;
- align-items: center;
  text-align: center;
  overflow: hidden;
  white-space: nowrap;
@@ -78,7 +77,6 @@ th{
   /* line-height: 47px; */
   /* identical to box height */
 
-  display: flex;
   align-items: center;
 
   color: #000000;

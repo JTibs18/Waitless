@@ -21,7 +21,7 @@ td, table{
 
 th{
   position: sticky;
-  height: 30px;
+  height: 60px;
   z-index: 1;
   top:0;
   border: 1px solid black;
@@ -176,4 +176,9 @@ th{
 
 .completed{
   background-color: #AEECB8;
+}
+
+.blank_row{
+    height: 10px !important; /* overwrites any other rules */
+    background-color: #C4C4C4;
 }

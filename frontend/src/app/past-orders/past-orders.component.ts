@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { Subscription } from "rxjs";
+import { AddMenuService } from '../create-menu/AddMenu.service'
 
 @Component({
   selector: 'app-past-orders',
@@ -8,29 +9,27 @@ import { Subscription } from "rxjs";
   styleUrls: ['./past-orders.component.css']
 })
 export class PastOrdersComponent implements OnInit {
-  name = '';
-
-  dummyData = [{id: 1, tableNo: 1, order: "Burger", quantity: 1, dietaryRestrictions: "", specialNotes: "no cheese", status: "New", tab: 1.20, orderNum: 1, timeCompleted: "11:01:02 Jan/30/22" },
-               {id: 2, tableNo: 2, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 2, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 3, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 3, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 4, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 4, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 5, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 5, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 6, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 6, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 1, tableNo: 1, order: "Burger", quantity: 1, dietaryRestrictions: "", specialNotes: "no cheese", status: "New", tab: 1.20, orderNum: 1, timeCompleted: "11:01:02 Jan/30/22" },
-               {id: 2, tableNo: 2, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 2, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 3, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 3, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 4, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 4, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 5, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 5, timeCompleted: "11:01:02 Jan/30/22"  },
-               {id: 6, tableNo: 3, order: "Pasta", quantity: 2, dietaryRestrictions: "Cheese", specialNotes: "no cheese", status: "New", tab: 11.10, orderNum: 6, timeCompleted: "11:01:02 Jan/30/22"  }]
-
   constructor(
     public route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public addMenuService: AddMenuService
+  ) { }
 
-  ngOnInit(): void {
+  name = '';
+  pastOrderList: any[] = [];
+  private addInfoSub: Subscription;
+
+  ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
           this.name = paramMap.get('restaurantName');
         });
-  }
+
+        this.addMenuService.getPastOrders();
+        this.addInfoSub = this.addMenuService.getAddPastOrderListener().subscribe((pastOrderList: any[])=>{
+          this.pastOrderList = pastOrderList;
+          console.log("J", this.pastOrderList)
+        });
+        console.log("HELLO", this.pastOrderList)
+        }
 
 }

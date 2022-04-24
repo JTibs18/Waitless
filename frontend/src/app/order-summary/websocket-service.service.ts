@@ -39,4 +39,7 @@ export class WebsocketService {
     return this.rec$.asObservable();
   };
 
+  public closeConnection(){
+    this.socket.emit('forceDisconnect');
+  }
 }

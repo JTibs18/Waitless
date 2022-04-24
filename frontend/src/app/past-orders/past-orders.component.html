@@ -16,13 +16,31 @@
       <th class = "tableLabel"> Table No. </th>
       <th class = "tableLabel"> Time Completed</th>
     </tr>
-    <ng-container *ngFor="let x of dummyData">
+    <ng-container *ngIf="pastOrderList === undefined || pastOrderList.length < 1">
+      <tr class="blank_row">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      </ng-container>
+
+    <ng-container *ngFor="let x of pastOrderList">
     <tr>
-        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.orderNum}}</button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.id}}</button></td>
         <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">${{x.tab}}</button></td>
-        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.quantity}}</button></td>
-        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.order}}</button></td>
-        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.tableNo}}</button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">
+          <ng-container *ngFor="let item of x.order">
+                  <p>{{item.quantity}}</p>
+          </ng-container></button></td>
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">
+          <ng-container *ngFor="let item of x.order">
+                  <p>{{item.itemName}}</p>
+          </ng-container></button></td>
+
+        <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.tableNum}}</button></td>
         <td><button class= " tableButton dataLabel" routerLink="/Waitless/{{name}}/PastOrders/{{x.id}}">{{x.timeCompleted}}</button></td>
     </tr>
   </ng-container>
