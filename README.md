@@ -11,7 +11,7 @@ orders digitally through the application’s restaurant dashboard thereby elimin
 inevitable delay between receiving a menu and ordering food items.
 
 <h1> Main Objectives </h1>
-The main objective of this project is to develop a MEAN full stack web application that
+The main objective of this project is to develop a MEAN stack web application that
 restaurants can easily adopt and implement as an efficient social distancing solution to slow
 and disorganized in person ordering processes. Additionally, WAITLESS menu will eliminate the
 ambiguity of meal ingredients so that those with dietary restrictions can instantly and clearly
