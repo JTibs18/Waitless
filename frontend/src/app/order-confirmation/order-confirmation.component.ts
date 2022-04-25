@@ -11,27 +11,29 @@ import { GetMenuService } from '../main-menu/getMenu.service';
 export class OrderConfirmationComponent implements OnInit {
   tableNum = '';
   restaurantID = '';
-  orderNum = 1;
-  message1 = "Thank you! Your order has been taken!"
-  message2 = "Cancel will disappear when the kitchen begins preparing your order"
+  orderNum: string;
+  message1 = "Thank you!"
+  message2 = "Your order has been recieved by the kitchen"
+  message3 = "Cancel will disappear when the kitchen begins preparing your order"
 
   constructor(
     public route: ActivatedRoute,
     private router: Router,
     public getMenuService: GetMenuService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
          this.restaurantID = paramMap.get('restaurantID');
          this.tableNum = paramMap.get('tableNumber');
         });
+
+    this.orderNum = this.getMenuService.getOID()
   }
 
   reset(){
     this.getMenuService.mainMenuReset();
     this.getMenuService.updateDietaryRestrictions([]);
-
   }
 
 }

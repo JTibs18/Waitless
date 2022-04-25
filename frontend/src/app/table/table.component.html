@@ -10,14 +10,41 @@
       <th class = "tableLabel"> Status </th>
       <th class = "tableLabel"> Tab </th>
     </tr>
-    <ng-container *ngFor="let x of dummyData">
+
+    <ng-container *ngIf="curOrderList === undefined || curOrderList.length < 1">
+      <tr class="blank_row">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+
+      </tr>
+      </ng-container>
+
+    <ng-container *ngFor="let x of curOrderList">
 
     <tr *ngIf="x.status == 'New'" class="new">
     <td ><input class="radioButt" type="radio" id="x.id" name="select_table" [value]="x.id" [(ngModel)]="locVal" (change)="onItemChange(x.id)"  ></td>
-        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.tableNo}}</button></td>
-        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.order}}</button></td>
-        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.quantity}}</button></td>
-        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.dietaryRestrictions}}</button></td>
+        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.tableNum}}</button></td>
+        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+          <ng-container *ngFor="let item of x.order">
+            <p>{{item.itemName}}</p>
+            </ng-container>
+        </button></td>
+        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+          <ng-container *ngFor="let item of x.order">
+            <p>{{item.quantity}}</p>
+            </ng-container>
+        </button></td>
+        <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+          <ng-container *ngFor="let item of x.order">
+            <p>{{item.formatDietaryRestrictions}}</p>
+            </ng-container>
+          </button></td>
         <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.specialNotes}}</button></td>
         <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.status}}</button></td>
         <td><button class= "new tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">${{x.tab}}</button></td>
@@ -25,10 +52,22 @@
 
     <tr *ngIf="x.status == 'In Progress'" class="inProgress">
     <td ><input class="radioButt" type="radio" id="x.id" name="select_table" [value]="x.id" [(ngModel)]="locVal" (change)="onItemChange(x.id)"  ></td>
-    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.tableNo}}</button></td>
-    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.order}}</button></td>
-    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.quantity}}</button></td>
-    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.dietaryRestrictions}}</button></td>
+    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.tableNum}}</button></td>
+    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+      <ng-container *ngFor="let item of x.order">
+        <p>{{item.itemName}}</p>
+        </ng-container>
+    </button></td>
+    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+      <ng-container *ngFor="let item of x.order">
+        <p>{{item.quantity}}</p>
+        </ng-container>
+    </button></td>
+    <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+      <ng-container *ngFor="let item of x.order">
+        <p>{{item.formatDietaryRestrictions}}</p>
+        </ng-container>
+      </button></td>
     <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.specialNotes}}</button></td>
     <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.status}}</button></td>
     <td><button class= "inProgress tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">${{x.tab}}</button></td>
@@ -36,10 +75,22 @@
 
     <tr *ngIf="x.status == 'Complete'" class="completed">
       <td ><input class="radioButt" type="radio" id="x.id" name="select_table" [value]="x.id" [(ngModel)]="locVal" (change)="onItemChange(x.id)"  ></td>
-      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.tableNo}}</button></td>
-      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.order}}</button></td>
-      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.quantity}}</button></td>
-      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.dietaryRestrictions}}</button></td>
+      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.tableNum}}</button></td>
+      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+        <ng-container *ngFor="let item of x.order">
+          <p>{{item.itemName}}</p>
+          </ng-container>
+      </button></td>
+      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+        <ng-container *ngFor="let item of x.order">
+          <p>{{item.quantity}}</p>
+          </ng-container>
+      </button></td>
+      <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">
+        <ng-container *ngFor="let item of x.order">
+          <p>{{item.formatDietaryRestrictions}}</p>
+          </ng-container>
+        </button></td>
       <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.specialNotes}}</button></td>
       <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">{{x.status}}</button></td>
       <td><button class= "completed tableButton dataLabel" routerLink="/Waitless/{{name}}/Dashboard/{{x.id}}">${{x.tab}}</button></td>
@@ -53,6 +104,6 @@
 <button class="inProgressButton"  (click)="updateProgress('In Progress')">In Progress</button>
 <button class="completedButton" (click)="updateProgress('Complete')">Completed</button>
 <button class="paidButton" (click)="updateProgress('Paid')">Paid</button>
-<button class="pastOrdersButton" routerLink="/Waitless/{{name}}/PastOrders">Past Orders</button>
+<button class="pastOrdersButton" (click)="updateProgress('Past')" routerLink="/Waitless/{{name}}/PastOrders">Past Orders</button>
 
 <app-cancel-confirmation *ngIf="paidClicked"  buttonClicked="paid" [orderNum]="orderNum"></app-cancel-confirmation>

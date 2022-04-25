@@ -1,10 +1,13 @@
 import { Menu } from './menu.model'
+import { OrderModel } from '../order-summary/orderModel'
+
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { AddInfoService } from "../add-info/add-info.service";
+import { WebsocketService } from '../order-summary/websocket-service.service';
 
 
 @Injectable({providedIn: 'root'})
@@ -12,7 +15,22 @@ export class AddMenuService{
    private dataList: Menu[] = [];
    private dataUpdated = new Subject<any[]>();
 
-   constructor(private http: HttpClient, private addInfoService: AddInfoService){}
+   private orderList: any[] = [];
+   private orderUpdated = new Subject<any[]>();
+
+   private pastOrderList: any[] = [];
+   private pastOrderUpdated = new Subject<any[]>();
+
+   private currentOID: any;
+
+   constructor(private http: HttpClient, private addInfoService: AddInfoService, private websocketService: WebsocketService,){
+     this.websocketService.getNewOrder().subscribe((order: any) => {
+     // this.orderList.push(order);
+     console.log("ORDER", order)
+     this.addOrder(order.tableNum, order.order, order.specialNotes, order.tab, order.restaurantId)
+
+   });
+   }
 
    getData(){
      this.http
@@ -40,10 +58,70 @@ export class AddMenuService{
      // return [...this.dataList];
    }
 
+   getPastOrders(){
+     this.http
+      .get<{message: string, data: any}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() +'/PastOrder')
+      .pipe(map((orderData)=>{
+        return orderData.data.map(data =>{
+          return {
+              id: data._id,
+              tableNum: data.tableNum,
+              order: data.order,
+              specialNotes: data.specialNotes,
+              tab: data.tab,
+              restaurantId: data.restaurantId,
+              status: data.status,
+              timeCompleted: data.timeCompleted
+          };
+        });
+      }))
+      .subscribe((transformedData)=>{
+        console.log("OD", transformedData)
+        this.pastOrderList = transformedData;
+        this.pastOrderUpdated.next([...this.pastOrderList]);
+
+     });
+     // return [...this.dataList];
+   }
+
+   // getCurOrder(){
+   //   this.http
+   //    .get<{message: string, data: any}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() +'/curOrders')
+   //    .pipe(map((orderData)=>{
+   //      return orderData.data.map(data =>{
+   //        return {
+   //          id: data._id,
+   //          tableNum: data.tableNum,
+   //          order: data.order,
+   //          specialNotes: data.specialNotes,
+   //          tab: data.tab,
+   //          restaurantId: data.restaurantId,
+   //          status: data.status
+   //        };
+   //      });
+   //    }))
+   //    .subscribe((transformedData)=>{
+   //      console.log("OD", transformedData)
+   //      this.orderList = transformedData;
+   //      this.orderUpdated.next([...this.orderList]);
+   //
+   //   });
+   //   // return [...this.dataList];
+   // }
+
    getItem(id: string){
      // return{... this.dataList.find(i => i.id === id)};
      return this.http.get<{_id: string, itemName: string, description: string, ingredients: string, price: string, calories: string, imagePath: string, restaurantId: string, tags: string[]}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() + '/Create_Menu/Edit/'+ id);
    }
+
+   getPastOrder(orderId){
+     for (let i = 0; i < this.pastOrderList.length; i++){
+       if(this.pastOrderList[i].id == orderId){
+         return this.pastOrderList[i]
+       }
+     }
+   }
+
 
    // getItem(id: string){
    //   return{... this.dataList.find(i => i.id === id)};
@@ -75,6 +153,14 @@ export class AddMenuService{
 
    getAddDataListener(){
      return this.dataUpdated.asObservable();
+   }
+
+   getAddPastOrderListener(){
+     return this.pastOrderUpdated.asObservable();
+   }
+
+   getAddCurOrderListener(){
+     return this.orderUpdated.asObservable();
    }
 
    deleteItem(dataId: string){
@@ -112,5 +198,92 @@ export class AddMenuService{
           this.dataUpdated.next([...this.dataList]);
         });
    }
+
+   addOrder(tableNum: string, order: any[], specialNotes: string, tab:Number, restaurantId:string ){
+     let orderData: any;
+
+    if(order && Number(order) != -1){
+      orderData = {
+        tableNum: tableNum,
+        order: order,
+        specialNotes: specialNotes,
+        tab: tab,
+        restaurantId: restaurantId,
+        status: "New"
+      }
+
+      this.http
+       .post<{message:string, orderId: string}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() +'/Dashboard', orderData)
+        .subscribe(responseData =>{
+          const response =  {id: responseData.orderId, tableNum: tableNum, order: order, specialNotes: specialNotes, tab: tab, status: "New"}
+
+          this.currentOID = {id: response.id, table: response.tableNum}
+          this.sendRec(this.currentOID);
+          this.orderList.push(response)
+          this.orderUpdated.next([...this.orderList]);
+          console.log("O", this.orderList)
+       });
+    }
+
+   }
+
+   addPastOrder(id: string, tableNum: string, order: any[], specialNotes: string, tab:Number, restaurantId:string, status: string, timeCompleted: string ){
+     let pastOrderData: any;
+      pastOrderData = {
+        id: id,
+        tableNum: tableNum,
+        order: order,
+        specialNotes: specialNotes,
+        tab: tab,
+        restaurantId: restaurantId,
+        status: status,
+        timeCompleted: timeCompleted
+      }
+
+      console.log("ERE", pastOrderData)
+      this.http
+       .post<{message:string}>('http://localhost:3000/Waitless/' + this.addInfoService.getRestaurantName() +'/PastOrder', pastOrderData)
+       .subscribe(responseData =>{
+         console.log(responseData)
+         this.pastOrderList.push(pastOrderData)
+         this.pastOrderUpdated.next([...this.pastOrderList]);
+
+      });
+   }
+
+   getCurOrder(){
+     return this.orderUpdated
+   }
+
+   initCurOrder(){
+     return this.orderList
+   }
+
+   getCurrentOID(){
+     return this.currentOID
+   }
+
+   updateOrderList(orderList: any){
+     this.orderList = orderList ;
+     this.orderUpdated.next(orderList);
+   }
+
+   updatePastOrderList(pastList: any){
+     this.pastOrderList = pastList ;
+     this.pastOrderUpdated.next(pastList);
+   }
+
+   sendRec(data) {
+     this.websocketService.sendRec(data);
+   }
+
+   sendConf() {
+     this.websocketService.sendOrder(-1);
+   }
+
+
+
+
+
 
 }

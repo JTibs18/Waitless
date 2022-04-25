@@ -43,9 +43,13 @@ td, table{
 
 table tr:nth-child(odd) td{
   background-color: #8854B6;
+  color: #000000;
+
 }
 table tr:nth-child(even) td{
   background-color: #C2AEEC;
+  color: #FFFFFF;
+
 }
 
 button{
@@ -81,7 +85,7 @@ th{
   text-align: center;
   text-transform: capitalize;
 
-  color: #000000;
+  /* color: #000000; */
 }
 
 .dataLabel{
@@ -94,7 +98,6 @@ th{
   align-items: center;
   text-align: center;
 
-  color: #000000;
   /* background: #EAEC8E;  must change this dynamically*/
 }
 
@@ -107,4 +110,9 @@ th{
 
   background: #FFFFFF;
   border-radius: 5px;
+}
+
+.blank_row{
+    height: 10px !important; /* overwrites any other rules */
+    background-color: #C4C4C4 !important;
 }

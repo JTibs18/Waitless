@@ -7,8 +7,8 @@
 <a *ngIf="mode== 'Dashboard'" routerLink="/Waitless/{{name}}/Dashboard"><button class="backButton"> < </button> </a>
 <a *ngIf="mode== 'pastOrders'" routerLink="/Waitless/{{name}}/PastOrders"><button class="backButton"> < </button> </a>
 
-<h1 *ngIf="mode== 'Dashboard'" class="title">Table 1 (CHANGE THIS TO CUSTOM)</h1>
-<h1 *ngIf="mode== 'pastOrders'" class="title">Order 1 (CHANGE THIS TO CUSTOM)</h1>
+<h1 *ngIf="mode== 'Dashboard'" class="title">Table #{{currentOrder[0].tableNum}}</h1>
+<h1 *ngIf="mode== 'pastOrders'" class="title">Order #{{currentOrder.id}}</h1>
 <h2 class="orderInformation">Order Information</h2>
 
 <div *ngIf="mode== 'Dashboard'" class = "orderInfoBox scrollable">
@@ -18,8 +18,14 @@
       <th class = "tableLabel"> Order </th>
     </tr>
     <tr>
-        <td class = "tableText">{{item.quantity}}</td>
-        <td class = "tableText">{{item.order}}</td>
+        <td class = "tableText">
+          <ng-container *ngFor="let item of currentOrder[0].order">
+                    <p>{{item.quantity}}</p>
+          </ng-container></td>
+        <td class = "tableText">
+          <ng-container *ngFor="let item of currentOrder[0].order">
+                  <p>{{item.itemName}}</p>
+        </ng-container></td>
     </tr>
   </table>
 </div>
@@ -30,7 +36,10 @@
       <th class = "tableLabel"> Dietary Restrictions </th>
     </tr>
     <tr>
-        <td class = "tableText">{{item.dietaryRestrictions}}</td>
+        <td class = "tableText">
+          <ng-container *ngFor="let item of currentOrder[0].order">
+                  <p>{{item.formatDietaryRestrictions}}</p>
+          </ng-container></td>
     </tr>
   </table>
 </div>
@@ -41,7 +50,7 @@
       <th class = "tableLabel"> Special Notes </th>
     </tr>
     <tr>
-        <td class = "tableText">{{item.specialNotes}}</td>
+        <td class = "tableText">{{currentOrder[0].specialNotes}}</td>
     </tr>
   </table>
 </div>
@@ -51,11 +60,11 @@
   <table>
     <tr>
       <th class = "tableLabel">Status</th>
-      <td class = "tableText">{{item.status}}</td>
+      <td class = "tableText">{{currentOrder[0].status}}</td>
     </tr>
     <tr>
       <th class = "tableLabel">Tab</th>
-      <td class = "tableText">${{item.tab}}</td>
+      <td class = "tableText">${{currentOrder[0].tab}}</td>
     </tr>
   </table>
  </div>
@@ -75,8 +84,14 @@
        <th class = "tableLabel"> Order </th>
      </tr>
      <tr>
-         <td class = "tableText">{{pastOrder.quantity}}</td>
-         <td class = "tableText">{{pastOrder.order}}</td>
+         <td class = "tableText">
+           <ng-container *ngFor="let item of currentOrder.order">
+                  <p>{{item.quantity}}</p>
+            </ng-container></td>
+         <td class = "tableText">
+           <ng-container *ngFor="let item of currentOrder.order">
+                 <p>{{item.itemName}}</p>
+       </ng-container></td>
      </tr>
    </table>
  </div>
@@ -87,7 +102,10 @@
        <th class = "tableLabel"> Dietary Restrictions </th>
      </tr>
      <tr>
-         <td class = "tableText">{{pastOrder.dietaryRestrictions}}</td>
+         <td class = "tableText">
+           <ng-container *ngFor="let item of currentOrder.order">
+              <p>{{item.formatDietaryRestrictions}}</p>
+          </ng-container></td>
      </tr>
    </table>
  </div>
@@ -98,7 +116,7 @@
        <th class = "tableLabel"> Special Notes </th>
      </tr>
      <tr>
-         <td class = "tableText">{{pastOrder.specialNotes}}</td>
+         <td class = "tableText">{{currentOrder.specialNotes}}</td>
      </tr>
    </table>
  </div>
@@ -108,18 +126,18 @@
    <table>
      <tr>
        <th class = "tableLabel">Status</th>
-       <td class = "tableText">{{pastOrder.status}}</td>
+       <td class = "tableText">{{currentOrder.status}}</td>
      </tr>
      <tr>
        <th class = "tableLabel">Tab</th>
-       <td class = "tableText">${{pastOrder.tab}}</td>
+       <td class = "tableText">${{currentOrder.tab}}</td>
      </tr>
      <tr>
        <th class = "tableLabel">Time</th>
-       <td class = "tableText">{{pastOrder.timeCompleted}}</td>
+       <td class = "tableText">{{currentOrder.timeCompleted}}</td>
      </tr>
    </table>
   </div>
 
 <app-cancel-confirmation *ngIf="cancelClicked"  buttonClicked="cancel"></app-cancel-confirmation>
-<app-cancel-confirmation *ngIf="paidClicked"  buttonClicked="paid" [orderNum]="item.orderNum"></app-cancel-confirmation>
+<app-cancel-confirmation *ngIf="paidClicked"  buttonClicked="paid" [orderNum]="currentOrder[0].id"></app-cancel-confirmation>

@@ -6,12 +6,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const checkAuth = require("./middleware/check-auth")
 const extractFile = require("./middleware/image")
-const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 var ObjectId = require('mongodb').ObjectID;
 
-const app = express();
+const uri = "mongodb+srv://Jess:codingking99@cluster0.vcgg3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -28,6 +28,8 @@ client.connect(err => {
   let db = client.db('Waitless');
   let collRestaurant = db.collection('RestaurantData');
   let collMenu = db.collection('MenuData');
+  let collOrder = db.collection('OrderData');
+
   collRestaurant.createIndex({"email": 1}, {unique:true}).catch(e => { console.log(e)  })
 
 
@@ -92,7 +94,57 @@ client.connect(err => {
     })
    })
 
+   app.get('/Waitless/:restaurantName/CurOrders', checkAuth, (req, res, next)=>{
+     restId = req.userData.userId.toString()
 
+     console.log("CURORDER", restId)
+
+
+     collOrder.find({$and: [{restaurantId: {$eq: req.userData.userId}},
+     {status: {$ne: "Paid"}}]}).toArray(function(err, result){
+       if (err) throw err;
+
+       console.log("CURORDER", result, req.userData.userId.toString())
+       res.status(201).json({
+         message: "successful",
+         data: result
+       });
+     })
+   })
+
+   app.get('/Waitless/:restaurantName/PastOrder', checkAuth, (req, res, next)=>{
+     restId = req.userData.userId.toString()
+
+     collOrder.find({$and: [{restaurantId: {$eq: req.userData.userId}},
+     {status: {$eq: "Paid"}}]}).toArray(function(err, result){
+       if (err) throw err;
+
+       console.log("PASTORDER", result, req.userData.userId.toString())
+       res.status(201).json({
+         message: "successful",
+         data: result
+       });
+     })
+   })
+
+
+   app.get('/Waitless/:restaurantName/PastOrder/:id',checkAuth,(req, res, next)=>{
+
+     collOrder.find({_id: {$eq: ObjectId(req.params.id)}}).toArray(function(err, result){
+       if (err) throw err;
+     // console.log(result, result[0].itemName, result[0]._id)
+     result[0]._id = result[0]._id.toString()
+     // console.log(result[0]._id, result[0]._id.toString())
+
+     // console.log(result, req.params.id)
+     console.log(result[0])
+       if(result){
+         res.status(200).json(result[0]);
+       }else{
+         res.status(404).json({message: 'Id not found!'});
+       }
+     })
+    })
 
    app.get('/Waitless/:restaurantID/Name', (req, res, next)=>{
      collRestaurant.find({_id: ObjectId(req.params.restaurantID)}).toArray(function(err, result){
@@ -208,9 +260,8 @@ client.connect(err => {
     console.log(data);
     collMenu.insertOne(data, function(err, result){
       if (err) throw err;
-      // console.log("RESULTTT", data._id.toString())
       res.status(201).json({
-        message: "Post added successfully",
+        message: "data added successfully",
         dataId: data._id.toString(),
         imagePath: url + "/images/" + req.file.filename
       });
@@ -245,6 +296,58 @@ client.connect(err => {
 
     })
   });
+
+  app.post("/Waitless/:restaurantName/Dashboard", checkAuth, (req, res, next) => {
+
+    const order = {
+      tableNum: req.body.tableNum,
+      order: req.body.order,
+      specialNotes: req.body.specialNotes,
+      tab: req.body.tab,
+      restaurantId: req.body.restaurantId,
+      status: req.body.status
+    }
+
+    console.log(order);
+    collOrder.insertOne(order, function(err, result){
+      if (err) throw err;
+
+      console.log("ADDED TO DB")
+      // console.log("RESULTTT", data._id.toString())
+      res.status(201).json({
+        message: "Order added successfully",
+        orderId: order._id.toString()
+      });
+    })
+  });
+
+  app.post("/Waitless/:restaurantName/PastOrder", checkAuth, (req, res, next) => {
+
+    const order = {
+      id: req.body.id,
+      tableNum: req.body.tableNum,
+      order: req.body.order,
+      specialNotes: req.body.specialNotes,
+      tab: req.body.tab,
+      restaurantId: req.body.restaurantId,
+      status: req.body.status,
+      timeCompleted: req.body.timeCompleted
+    }
+
+    console.log("J", req)
+
+    console.log(order);
+    collOrder.updateOne({_id: ObjectId(req.body.id), restaurantId: req.body.restaurantId}, {$set: {status: req.body.status, timeCompleted: req.body.timeCompleted}}, function(err,result){
+      if (err) throw err;
+
+      console.log("PAST ORDER ADDED TO DB")
+      // console.log("RESULTTT", data._id.toString())
+      res.status(201).json({
+        message: "Order added successfully"
+      });
+    })
+  });
+
 
   app.delete("/Waitless/:restaurantName/Create_Menu/:id", checkAuth, (req, res, next) => {
       console.log(req.params.id);

@@ -16,6 +16,8 @@ export class GetMenuService{
 
    private mainMenuFirst = true;
 
+   currentOID: string;
+
    // private order: any[] = [];
    // private orderUpdated = new Subject<any[]>();
 
@@ -114,5 +116,11 @@ export class GetMenuService{
       return order
     }
 
+    setOID(oid: string){
+      this.currentOID = oid
+    }
 
+    getOID(){
+      return this.currentOID
+    }
  }
