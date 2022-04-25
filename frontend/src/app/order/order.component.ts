@@ -37,10 +37,8 @@ export class OrderComponent implements OnInit {
           this.curOrderList = this.addMenuService.initCurOrder()
           this.formatDietaryRestrictions();
 
-          this.addMenuService.getCurOrder();
-          this.addInfoSub = this.addMenuService.getAddCurOrderListener().subscribe((curOrderList: any[])=>{
+          this.addMenuService.getCurOrder().subscribe(curOrderList =>{
             this.curOrderList = curOrderList;
-            console.log("J", this.curOrderList)
             this.formatDietaryRestrictions();
           });
 
@@ -79,7 +77,6 @@ export class OrderComponent implements OnInit {
 
   }else{
     this.currentOrder[0].status = state
-    // this.addMenuService.updateOrderList(this.curOrderList)
   }
 
   }
@@ -94,13 +91,14 @@ export class OrderComponent implements OnInit {
       this.curOrderList[0].timeCompleted = this.date()
       this.addMenuService.addPastOrder(this.curOrderList[0].id, this.curOrderList[0].tableNum, this.curOrderList[0].order, this.curOrderList[0].specialNotes, this.curOrderList[0].tab, this.curOrderList[0].order[0].restaurantId, this.curOrderList[0].status, this.curOrderList[0].timeCompleted)
       this.curOrderList = this.curOrderList.filter(item => item.id !== this.curOrderList[0].id);
+      this.updateOrderList(this.curOrderList);
       this.router.navigate(['Waitless/'+ this.name + '/Dashboard'])
     }
 
     if(this.cancelClicked == true && res == true){
       this.currentOrder[0].status = "Cancelled"
       this.curOrderList = this.curOrderList.filter(item => item.id !== this.curOrderList[0].id);
-      // this.updateOrderList(this.curOrderList);
+      this.updateOrderList(this.curOrderList);
       this.router.navigate(['Waitless/'+ this.name + '/Dashboard']) //need to check db for actual restuarant name
     }
 

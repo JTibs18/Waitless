@@ -260,7 +260,6 @@ client.connect(err => {
     console.log(data);
     collMenu.insertOne(data, function(err, result){
       if (err) throw err;
-      // console.log("RESULTTT", data._id.toString())
       res.status(201).json({
         message: "data added successfully",
         dataId: data._id.toString(),

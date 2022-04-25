@@ -78,7 +78,7 @@ export class TableComponent implements OnInit {
         if (this.curOrderList[i].id == this.curVal){
           this.curOrderList[i].status = "Paid"
           this.curOrderList[i].timeCompleted = this.date()
-          // this.pastOrderList.push(this.curOrderList[i])
+          this.pastOrderList.push(this.curOrderList[i])
           console.log("ERE", this.curOrderList)
           this.addMenuService.addPastOrder(this.curOrderList[i].id, this.curOrderList[i].tableNum, this.curOrderList[i].order, this.curOrderList[i].specialNotes, this.curOrderList[i].tab, this.curOrderList[i].order[0].restaurantId, this.curOrderList[i].status, this.curOrderList[i].timeCompleted)
           this.curOrderList = this.curOrderList.filter(item => item.id !== this.curOrderList[i].id);
